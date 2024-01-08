@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/office-data/list-head-office"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}
+    </h4>
+  </div>
+
+  <br>
+
+  <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Add Head Office'}}</h1>
+  
+  <br>
+
+  
+    <!-- <div class="card-title" style="display: flex;justify-content: center;">
+      <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Add Head Office'|
+        uppercase}}</h2>
+    </div> -->
+<div class="card">
+<form [formGroup]="myForm">
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Office Code</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Office_Code" >
+    </div>
+
+    <div class="section-b col">
+      <mat-label>Office Name</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_HeadOffice_Name" >
+    </div>
+
+    
+
+    <div class="section-b col">
+      <mat-label>Office Place</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_HeadOffice_Place" >
+    </div>
+  </div>
+
+<div class="row">
+
+    <div class="section-b col">
+      <mat-label> Office Head</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Office_Head" >
+    </div>
+
+  
+    <div class="section-b col">
+      <mat-label>Address</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Address" >
+    </div>
+  
+    <div class="section-b col">
+      <mat-label>Pincode</mat-label>
+      <input class="input" type="number" name="Search" matInput formControlName="n_Pincode" >
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="section-b col">
+      <mat-label>Tele Phone</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Phone" >
+    </div>
+  
+
+    <div class="section-b col">
+      <mat-label>Mobile Number</mat-label>
+      <input class="input" type="number" name="Search" matInput formControlName="n_Mobile" >
+    </div>
+
+    <div class="section-b col">
+      <mat-label>Email</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Email" >
+    </div>
+  </div>
+  
+  <div style="display: flex; justify-content: center;">
+    <button mat-raised-button  style="color: #470A3C; font-weight: bold;width: 150px;" routerLink="/office-data/list-head-office">Back</button>
+    &nbsp;&nbsp;&nbsp;
+    <!-- <button mat-raised-button style="background-color:#470A3C;color: white; font-weight: bold;width: 150px;"(click)="saveHeadOffice()" >Create</button> -->
+  </div>
+</form>
+</div>
+
+

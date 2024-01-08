@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/leave/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}
+    </h4>
+  </div>
+
+  <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Leave Approval'}}</h1>
+  
+  
+  
+    <!-- <div class="card-title" style="display: flex;justify-content: center;">
+      <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Leave
+        Application'|
+        uppercase}}</h2>
+    </div> -->
+<div class="card">
+<form [formGroup]="leaveFormGrp">
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Employe ID <span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="employeeId" maxlength="50">
+            
+    </div>
+    <div class="section-b col">
+      <mat-label>Employee Name<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="employeeName" maxlength="50">
+    </div>
+  </div>
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Date Of Application<span class="required">*</span></mat-label>
+      <input class="input" type="date" id="date" name="date" matInput formControlName="date">
+    </div>
+    <div class="section-b col">
+      <mat-label>Gender<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="gender" maxlength="50">
+    </div>
+  </div>
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Cadre Code<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="cadreCode" maxlength="50">
+    </div>
+    <div class="section-b col">
+      <mat-label>Cadre Name<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50">
+    </div>
+  </div>
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Mode of Leave<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="modeOfLeave" maxlength="50">
+    </div>  
+    <div class="section-b col">
+      <mat-label>No of days Applied<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="noOfDaysApplied" maxlength="50">
+    </div>  
+  </div>
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Leave Available<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="leaveAvailable" maxlength="50">
+    </div>
+    <div class="section-b col">
+      <mat-label>Leave Star Date<span class="required">*</span></mat-label>
+      <input class="input" type="date" id="date" name="date" matInput formControlName="leaveStartDate">
+    </div>
+  </div>
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Carde Category<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="category" maxlength="50">
+    </div>
+    <div class="section-b col">
+      <mat-label>Leave End Date<span class="required">*</span></mat-label>
+      <input class="input" type="date" id="date" name="date" matInput formControlName="leaveEndDate">
+    </div>
+  </div>
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Leave Balance<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="leaveBalance" maxlength="50">
+    </div>
+    <div class="section-b col">
+      <mat-label>Exempted days<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="exemptedDays" maxlength="50">
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Leave Purpose<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="leavePurpose" maxlength="50">
+    </div>
+    <div class="section-b col">
+      <mat-label>Date of Joining<span class="required">*</span></mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="dateOfJoin" maxlength="50">
+    </div>
+  </div>
+
+
+  <div class="disflex" *ngIf="!view">
+
+    <button mat-flat-button color="warn" [routerLink]="['/leave/list']">{{'Reject' | uppercase}}</button>
+            
+    <button mat-flat-button color="primary" (click)="onSubmit()">Approve</button>
+               
+  </div>
+</form>
+</div>

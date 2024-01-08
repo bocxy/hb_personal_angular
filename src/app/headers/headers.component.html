@@ -1,0 +1,71 @@
+<div class="head" [ngClass]="getHeadClass()">
+  <div class="head-content">
+    <div class="head-content-left">
+
+      <img src="../../../assets/tnhb_logo.png" alt="tnhb logo" width="300" height="20%">
+    </div>
+
+
+    <div class="head-content-right">
+      <div class="head-menu">
+
+
+        <div class="search-container">
+          <div class="normal-search">
+
+            <script>
+              function updateCurrentTime() {
+                var now = new Date();
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+                var seconds = now.getSeconds();
+            
+                // Add leading zero if needed
+                hours = (hours < 10) ? "0" + hours : hours;
+                minutes = (minutes < 10) ? "0" + minutes : minutes;
+                seconds = (seconds < 10) ? "0" + seconds : seconds;
+            
+                var currentTimeString = hours + ":" + minutes + ":" + seconds;
+            
+                document.getElementById("currentTime").innerHTML = currentTimeString;
+              }
+            
+              // Update the current time every second
+              setInterval(updateCurrentTime, 1000);
+            
+              // Initial update
+              updateCurrentTime();
+            </script>
+
+            <input type="search" class="search" name="" id="" placeholder="Employee Name/id">
+            <mat-icon class="search-icon">search</mat-icon>
+          </div>
+
+        </div>
+        <div class="head-menu-item">
+          <button class="head-menu-item-btn ripple">
+            <mat-icon>notifications</mat-icon>
+          </button>
+        </div>
+        <div class="head-menu-item">
+          <button class="head-menu-item-btn ripple">
+            <mat-icon>person</mat-icon>
+          </button>
+        </div>
+      </div>
+      <!-- <div class="head-menu-item">
+        <button class="head-menu-item-btn ripple">
+          <mat-icon>person</mat-icon>
+        </button>
+      </div> -->
+      <!-- <div class="head-user-avatar-container">
+        <div class="head-user-avatar">
+          <img src="../../assets/user3.jpg" alt="user" class="user-avatar">
+          <div class="circle-indicator pulse">
+
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>

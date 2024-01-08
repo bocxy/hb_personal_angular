@@ -1,0 +1,120 @@
+
+<div class="container">
+    <div class="card-title">
+      <!-- <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/leave/list"></i>&nbsp;&nbsp; -->
+      <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee Exam History'}}
+      </h2>
+    </div>
+
+   
+  
+  <div class="container">
+   
+
+
+    <div class="filter-row mb-4">
+      <div>
+          <!-- <label for="search-input" class="label">Filter</label><br> -->
+          <div class="search-container">
+              <div>
+                  <input matInput #input (keyup)="applyFilter($event)" type="text" id="search-input"
+                      class="search-input" placeholder="Search Emp Id/Name">
+                  <div class="search-icon">
+                      <mat-icon>search</mat-icon>
+                  </div>
+              </div>
+          </div>
+          
+          
+      </div>
+  <div>
+  <div>
+      <button class="btn btn-light add-dataBtn" routerLink="/exam-history/add">
+        Add Data</button>
+  </div>
+  </div>
+  </div>
+
+
+
+    <div class="card">
+      <table mat-table matSort [dataSource]="filteredData?.length? filteredData:dataSource">
+       
+        <!-- <mat-table #table [dataSource]="dataSource"> -->
+        <ng-container matColumnDef="sno">
+          <th class="first" style="border-top-left-radius:20px;border-bottom-left-radius: 20px; text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>S.No</span>
+          </th>
+          <td mat-cell *matCellDef="let request index as i"> {{ i + 1 }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="empId">
+          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Employee Id</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{ request?.empId }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="empName">
+          <th style= "text-align: center"  mat-header-cell *matHeaderCellDef>
+            <span>Employee Name</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{ request?.empName }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="cadCode">
+          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Cadre Code</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{ request?.cadreCode }}</td>
+        </ng-container>
+        <ng-container matColumnDef="cadName">
+          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Cadre Name</span>
+          </th>
+          <td mat-cell *matCellDef="let request"> {{ request?.cadreName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cadCate">
+            <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+              <span>Cadre Category</span>
+            </th>
+            <td mat-cell *matCellDef="let request"> {{ request?.cadreCategory }} </td>
+          </ng-container>
+
+                 
+        <ng-container matColumnDef="action">
+          <th class="last" style="border-top-right-radius:20px;border-bottom-right-radius: 20px; text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Action</span>
+          </th>
+          <td mat-cell *matCellDef="let request">
+            <div class="add-coupon row-md-3">
+              <!-- <a [routerLink]="['/exam-history/view', request.nid]">{{'View' | uppercase}}</a> -->
+              <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit" [routerLink]="['/exam-history/edit', request.nid]"  >edit</mat-icon>
+              <mat-icon style="font-size: 18px; cursor: pointer; color: red" matTooltip="Delete" (click)="deleteEmpExamHistory(request.nid)">delete</mat-icon>
+
+              <!-- <mat-icon style="font-size: 18px;cursor:pointer;color:red" matTooltip="Delete" (click)="Delete( request.nid )">delete</mat-icon> -->
+              <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View" [routerLink]="['/exam-history/view', request.nid]">visibility</mat-icon>
+
+              <!-- <a [routerLink]="['/exam-history/view/:id', request.id]">{{'View' | uppercase}}</a> -->
+            </div>
+          </td>
+        
+        
+          
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let request; columns: columnsToDisplay"></tr>
+  
+      </table>
+    
+      <!-- <div class="spinner-container" *ngIf="(dataSource.data?.length ===0 || filteredData?.length===0) && !noData">
+        <mat-spinner [diameter]="50"></mat-spinner>
+      </div> -->
+      <!-- <div class="no_data mt-2" *ngIf="(dataSource.data?.length ===0 || filteredData?.length===0)  && noData">
+        <p>{{'No data available'}}</p> -->
+      </div>
+    </div>
+  </div>
+  

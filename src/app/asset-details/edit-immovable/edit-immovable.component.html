@@ -1,0 +1,331 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/asset-details/list"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+    </div>
+
+    <br>
+    <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Immovable Assets'}}</h1>
+  <br>
+  
+  
+    <div>
+     
+            <div class="card">
+              <div class="card-title" style="display: flex;justify-content: center;">
+               
+              </div>
+    
+              <form [formGroup]="immovableFormGrp">
+    
+                <div class="row">
+                  <div class="section-b col-md-6">
+                    <mat-label>Employee Id<span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="empId" maxlength="50" required>
+                   
+                    <mat-error *ngIf="submitted && immovableFormGrp.get('empId')?.errors?.required">
+                      {{'Employee Id is required'}}</mat-error>
+                  </div>
+                  
+    
+                </div>
+                <div class="row">
+                  <div class="section-b col-md-6">
+                    <mat-label > Employee Name <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="empName" >
+                    </div>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>                
+                    <mat-error *ngIf="submitted && immovableFormGrp.get('empName')?.errors?.required">
+                      {{'Employee Name is required'}}</mat-error>
+                  </div>
+                  
+    
+                </div>
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="cadreCode" >
+                      </div>
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && immovableFormGrp.get('cadreCode')?.errors?.required">
+                        {{'Cadre Code is required'}}</mat-error>
+                    </div> 
+                  <div class="section-b col">
+                      <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                      <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50">
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                        required'}}</mat-error>
+                    </div>
+    
+                </div>
+                <div class="row">
+                  <div class="section-b col">
+                    <mat-label> Date of Birth <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfBirth">
+                    
+                    <mat-error *ngIf="submitted && immovableFormGrp.get('dateOfBirth')?.errors?.required">
+                      {{'Date of Birth is required'}}</mat-error>
+                  </div>
+                 
+    
+                  <div class="section-b col">
+                      <mat-label> Date of Joining <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="date" name="Search" matInput formControlName="dateOfJointService" maxlength="50">
+                        <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                      </div>
+                      
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('dateOfJointService')?.errors?.required">
+                        {{'Applicant Age is required'}}
+                      </mat-error>
+                    </div>
+                </div>
+    
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Property Description <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="descOfProperty" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('descOfProperty')?.errors?.required">
+                        {{'Property Description is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Property District <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="districtOfProperty" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('districtOfProperty')?.errors?.required">
+                        {{'Property District is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+                </div>
+    
+    
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Property Division <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="divisionOfProperty" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('divisionOfProperty')?.errors?.required">
+                        {{'Property Division is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Property Taluk <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="talukOfProperty" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('talukOfProperty')?.errors?.required">
+                        {{'Property Taluk is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+                </div>
+    
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Property Village <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="villageOfProperty" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('villageOfProperty')?.errors?.required">
+                        {{'Property Village is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Survey Number <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="surveyNo" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('surveyNo')?.errors?.required">
+                        {{' Survey Number  is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+    
+                </div>
+    
+    
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Area of Property <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="areaOfProperty" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('areaOfProperty')?.errors?.required">
+                        {{'Area of Property is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Nature of Land <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="natureOfLand" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('natureOfLand')?.errors?.required">
+                        {{'Nature of Land is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+    
+                </div>
+    
+    
+                <div class="row">
+
+                  
+                  
+                  <div class="section-b col">
+                      <mat-label> Acquired Employee <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="acquiredEmployee" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('acquiredEmployee')?.errors?.required">
+                        {{'Acquired Employee is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Buyer Name <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="buyerName" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('buyerName')?.errors?.required">
+                        {{'Buyer Name is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+    
+                </div>
+    
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Buyer Relationship <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="buyerRelationship" maxlength="50">
+                       
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('buyerRelationship')?.errors?.required">
+                        {{'Buyer Relationship is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Date of Acquisition <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="date" name="Search" matInput formControlName="dateOfAcquisition" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('dateOfAcquisition')?.errors?.required">
+                        {{'Date of Acquisition is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+    
+                </div>
+    
+    
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Mode of Acquistion <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="modeOfAcquired" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('modeOfAcquired')?.errors?.required">
+                        {{'Mode of Acquistion is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Seller Name <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="sellerName" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('sellerName')?.errors?.required">
+                        {{'Seller Name is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+    
+                </div>
+    
+    
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Value of Properties <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="valueOfProperty" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('valueOfProperty')?.errors?.required">
+                        {{'Value of Properties is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Sanction Details <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="sanctionedDetails" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('sanctionedDetails')?.errors?.required">
+                        {{'Sanction Details is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+    
+                </div>
+    
+    
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Annual Income <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="annualIncome" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('annualIncome')?.errors?.required">
+                        {{'Annual Income is required'}}
+                      </mat-error>
+                    </div>
+                  </div>
+    
+                   <div class="section-b col">
+                      <mat-label> Remarks <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <input class="input" type="text" name="Search" matInput formControlName="remarks" maxlength="50">
+                      <mat-error *ngIf="submitted && immovableFormGrp.get('remarks')?.errors?.required">
+                        {{'Remarks is required'}}
+                      </mat-error>
+                    </div>
+                   </div>
+    
+    
+                </div>
+    
+    
+    
+               
+                <div class="row">               
+                  
+                  <div class="disflex">
+                    <button mat-flat-button color="warn" [routerLink]="['/asset-details/list']">{{'Discard' | uppercase}}</button> 
+                     
+                    <button mat-flat-button color="primary" (click)="onUpdate(id)">Update</button>
+          
+                    </div>
+    
+                </div>
+                
+              </form>
+    
+            </div>
+          
+    </div>
+  </div>
+

@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="card-title">
+    <!-- <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/staf-sanc/add"></i>&nbsp;&nbsp; -->
+    <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Circle Office'}}
+    </h2>
+  </div>
+
+
+  
+
+    <div class="filter-row mb-4">
+      <div>
+          <!-- <label for="search-input" class="label">Filter</label><br> -->
+          <div class="search-container">
+              <div>
+                  <input matInput #input (keyup)="applyFilter($event)" type="text" id="search-input"
+                      class="search-input" placeholder="Search Emp Id/Name">
+                  <div class="search-icon">
+                      <mat-icon>search</mat-icon>
+                  </div>
+              </div>
+          </div>
+          
+          
+      </div>
+  <div>
+  <div>
+      <button class="btn btn-light add-dataBtn" routerLink="/office-data/add-circle-office">
+        Add Circle Office</button>
+  </div>
+  </div>
+  </div>
+
+
+
+    <div class="card">
+      <table mat-table matSort [dataSource]="dataSource" class="schemes-table" >
+        <ng-container  matColumnDef="SNo">
+          <th  style="border-top-left-radius:20px;border-bottom-left-radius: 20px; " mat-header-cell *matHeaderCellDef> S.No </th>
+          <td mat-cell *matCellDef="let response; index as i" style = "text-align: center "> {{ i + 1 }} </td>
+      </ng-container>
+
+      <ng-container  matColumnDef="v_Circle_Code">
+          <th  mat-header-cell *matHeaderCellDef> 
+            <div>Office</div>
+          <span>Code</span>
+           </th>
+          <td mat-cell *matCellDef="let response" style = "text-align: center "> {{ response?.v_Circle_Code }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="v_Circle_Name">
+        <th  mat-header-cell *matHeaderCellDef> 
+          
+          <span>Office Name</span>
+           </th>
+        <td mat-cell *matCellDef="let response"> {{ response?.v_Circle_Name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="v_Circle_Place">
+          <th  mat-header-cell *matHeaderCellDef> Office Place </th>
+          <td mat-cell *matCellDef="let response" > {{ response?.v_Circle_Place }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="v_Address">
+          <th  mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let response"> {{ response?.v_Address }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="n_Pincode">
+          <th  mat-header-cell *matHeaderCellDef> Pincode </th>
+          <td mat-cell *matCellDef="let response"> {{ response?.n_Pincode }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="v_Phone">
+          <th  mat-header-cell *matHeaderCellDef> Phone </th>
+          <td mat-cell *matCellDef="let response"> {{ response?.v_Phone }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="v_Email">
+          <th  mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let response"> {{ response?.v_Email }} </td>
+      </ng-container>
+
+
+
+        <ng-container matColumnDef="action">
+          <th  style="border-top-right-radius:20px;border-bottom-right-radius: 20px; " mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let response; let i = index;" class="action-icons">
+            <div class="displayicon">
+              <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View" [routerLink]="['/office-data/view-circle-office', response.n_ID]">visibility</mat-icon>
+
+              <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit" [routerLink]="['/office-data/edit-circle-office',response.n_ID]"  >edit</mat-icon>
+              <mat-icon style="font-size: 18px;cursor:pointer;color:red" matTooltip="Delete" (click)="Delete( response.n_ID )">delete</mat-icon>
+             
+          </div>
+          </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="action">
+        <th class="last" style="border-top-right-radius:20px;border-bottom-right-radius: 20px; text-align: center" mat-header-cell *matHeaderCellDef>
+          <span>Action</span>
+        </th>
+        <td mat-cell *matCellDef="let request">
+          <div class="add-coupon row-md-3">
+           
+           
+            <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View" [routerLink]="['/office-data/edit-circle-office',response.n_ID]">visibility</mat-icon>
+
+            <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit" [routerLink]="['/office-data/view-circle-office', response.n_ID]"  >edit</mat-icon>
+            <mat-icon style="font-size: 18px; cursor: pointer; color: red" matTooltip="Delete" (click)="Delete(response.n_ID)">delete</mat-icon>
+         
+            
+          </div>
+        </td>
+      
+      
+        
+      </ng-container> -->
+
+        <!-- <ng-container matRowDef="let row; columns: columnsToDisplay"></ng-container>
+<tr mat-row *matRowDef="let request; columns: columnsToDisplay"></tr> -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+         <tr mat-row *matRowDef="let request; columns: displayedColumns"></tr>
+       
+
+      </table>
+     
+    </div>
+
+  </div>
+
+
+
+
+

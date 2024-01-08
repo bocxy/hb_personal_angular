@@ -1,0 +1,171 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/noc-details/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+
+  <br>
+
+  <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Noc Details'}}</h2>
+
+  <br>
+
+  <div>
+   
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <!-- <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Direct Recruitment'|
+              uppercase}}</h2> -->
+          </div>
+
+          <form [formGroup]="nocDetailsFrmGrp">
+
+            <div class="row">
+              <div class="section-b col-md-6">
+                <mat-label>Employee Id<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="empId" maxlength="50" required>
+               
+                <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('empId')?.errors?.required">
+                  {{'Employee Id is required'}}</mat-error>
+              </div>
+              
+              
+            </div>
+            <div class="row">
+              <div class="section-b col-md-6">
+                <mat-label > Employee Name <span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="empName" >
+                </div>
+                  <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>                
+                <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('empName')?.errors?.required">
+                  {{'Employee Name is required'}}</mat-error>
+              </div>
+              
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                  <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="cadreCode" >
+                  </div>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('cadreCode')?.errors?.required">
+                    {{'Cadre Code is required'}}</mat-error>
+                </div> 
+              <div class="section-b col">
+                  <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50">
+                  <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                  <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                    required'}}</mat-error>
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Date of Birth <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfBirth">
+                
+                <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('dateOfBirth')?.errors?.required">
+                  {{'Date of Birth is required'}}</mat-error>
+              </div>
+             
+
+              <div class="section-b col">
+                  <mat-label> Date of Joining <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="date" name="Search" matInput formControlName="dateOfJointService" maxlength="50">
+                   
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('dateOfJointService')?.errors?.required">
+                    {{'Applicant Age is required'}}
+                  </mat-error>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="section-b col">
+                    <mat-label> NOC Applied <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        <mat-select  [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()" matInput formControlName="nocApplied">
+                      <mat-option *ngFor="let row of status" [value]="row.status">{{row.status}}</mat-option>
+                    </mat-select>
+                    </div>
+                   
+                    <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('nocApplied')?.errors?.required">
+                      {{'NOC Applied is required'}}
+                    </mat-error>
+                  </div>
+
+               <div class="section-b col">
+                  <mat-label> NOC Purpose <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="nocPurpose" maxlength="50">
+                   
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('nocPurpose')?.errors?.required">
+                    {{'NOC Purpose is required'}}
+                  </mat-error>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+              <div class="section-b col">
+                <mat-label for = "date"> NOC Issue Date <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="dat" name="dat" matInput formControlName="nocDate">
+                <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('nocDate')?.errors?.required">
+                  {{'NOC Issue Date is required'}}</mat-error>
+              </div>
+             
+
+              <div class="section-b col">
+                  <mat-label> Remarks <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="remarks" maxlength="50">
+                    
+                  </div>
+                  <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('remarks')?.errors?.required">
+                    {{'Remarks is required'}}
+                  </mat-error>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="section-b col-6">
+                  <mat-label> Upload NOC/Permission Order <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="documentPath" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </div>
+                  <mat-error *ngIf="submitted && nocDetailsFrmGrp.get('documentPath')?.errors?.required">
+                    {{'Upload NOC/Permission Order is required'}}
+                  </mat-error>
+                </div>
+
+            </div>
+
+           
+            <div class="row">               
+              
+              <div class="disflex">
+                <button mat-flat-button color="warn" [routerLink]="['/noc-details/list']">{{'Back' | uppercase}}</button> 
+                                          
+                </div>
+
+            </div>
+            
+          </form>
+
+        </div>
+     
+  </div>
+</div>
+

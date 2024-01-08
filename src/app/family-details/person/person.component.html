@@ -1,0 +1,391 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/family-detailslist"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+    </div>
+  
+    <div>
+      <mat-tab-group class="remove-border-bottom">
+        <mat-tab label="Employee Family Deatils">
+          <div class="card">
+            <div class="card-title" style="display: flex;justify-content: center;">
+              <!-- <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Direct Recruitment'|
+                uppercase}}</h2> -->
+            </div>
+  
+            <form [formGroup]="personalForm">
+  
+              
+             
+              <div class="container-box">
+
+                <div class="row">
+
+                    <div class="section-b col-6">
+                        <h5>Person 1</h5>
+                        <h5>Last Updated on :</h5>
+
+                        
+                      </div>
+
+                <div class="select-link">
+                    <a routerLink="/family-details/person">+&nbsp;{{'Add Person' | uppercase}}</a>
+                  </div>
+                </div>
+
+                <div class="row" *ngFor="let person of persons; let i = index">
+                    <div class="section-b col">
+                        <button class="delete-button" (click)="deletePerson(i)">Delete</button>
+                    </div>
+                </div>
+
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label > Name of Family Member <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="fmlyMemName" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && personalForm.get('fmlyMemName')?.errors?.required">{{' Name of Family Member is
+                      required'}}</mat-error>
+                    
+                  </div>
+
+                  <div class="section-b col">
+                    <mat-label> Relationship with Employee <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                    <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+                        <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+                      placeholder="Relations">
+                        <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+                      </mat-select>
+                    </div>
+                   
+                    <mat-error *ngIf="submitted && personalForm.get('relation')?.errors?.required">
+                      {{'Relationship with Employee'}}
+                    </mat-error>
+                  </div>
+
+  
+              </div>
+
+
+              <div class="row">
+                <div class="section-b col-6">
+                    <mat-label> Family Member DOB <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="fmDOB">
+                    
+                    <mat-error *ngIf="submitted && personalForm.get('fmDOB')?.errors?.required">
+                      {{'Family Member DOB is required'}}</mat-error>
+                  </div>
+               
+              </div>         
+
+            </div>
+
+            <div class="container-box">
+
+<div class="row">
+
+    <div class="section-b col-6">
+        <h5>Person 2</h5>
+        <h5>Last Updated on :</h5>
+
+        
+      </div>
+
+<div class="select-link">
+    <a routerLink="/family-details/person">+&nbsp;{{'Add Person' | uppercase}}</a>
+  </div>
+</div>
+
+<div class="row" *ngFor="let person of persons; let i = index">
+    <div class="section-b col">
+        <button class="delete-button" (click)="deletePerson(i)">Delete</button>
+    </div>
+</div>
+
+
+<div class="row">
+<div class="section-b col">
+    <mat-label > Name of Family Member <span class="required">*</span></mat-label>
+    <input class="input" type="text" name="Search" matInput formControlName="fmlyMemName" maxlength="50">
+    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+    <mat-error *ngIf="submitted && personalForm.get('fmlyMemName')?.errors?.required">{{' Name of Family Member is
+      required'}}</mat-error>
+    
+  </div>
+
+  <div class="section-b col">
+    <mat-label> Relationship with Employee <span class="required">*</span></mat-label>
+      <div class="input-container">
+    <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+        <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+      placeholder="Relations">
+        <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+      </mat-select>
+    </div>
+   
+    <mat-error *ngIf="submitted && personalForm.get('relation')?.errors?.required">
+      {{'Relationship with Employee'}}
+    </mat-error>
+  </div>
+
+
+</div>
+
+
+<div class="row">
+<div class="section-b col-6">
+    <mat-label> Family Member DOB <span class="required">*</span></mat-label>
+    <input class="input" type="date" id="dat" name="dat" matInput formControlName="fmDOB">
+    
+    <mat-error *ngIf="submitted && personalForm.get('fmDOB')?.errors?.required">
+      {{'Family Member DOB is required'}}</mat-error>
+  </div>
+
+</div>         
+
+</div>
+
+<div class="container-box">
+
+<div class="row">
+
+    <div class="section-b col-6">
+        <h5>Person 3</h5>
+        <h5>Last Updated on :</h5>
+
+        
+      </div>
+
+<div class="select-link">
+    <a routerLink="/family-details/person">+&nbsp;{{'Add Person' | uppercase}}</a>
+  </div>
+</div>
+
+<div class="row" *ngFor="let person of persons; let i = index">
+    <div class="section-b col">
+        <button class="delete-button" (click)="deletePerson(i)">Delete</button>
+    </div>
+</div>
+
+
+<div class="row">
+<div class="section-b col">
+    <mat-label > Name of Family Member <span class="required">*</span></mat-label>
+    <input class="input" type="text" name="Search" matInput formControlName="fmlyMemName" maxlength="50">
+    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+    <mat-error *ngIf="submitted && personalForm.get('fmlyMemName')?.errors?.required">{{' Name of Family Member is
+      required'}}</mat-error>
+    
+  </div>
+
+  <div class="section-b col">
+    <mat-label> Relationship with Employee <span class="required">*</span></mat-label>
+      <div class="input-container">
+    <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+        <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+      placeholder="Relations">
+        <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+      </mat-select>
+    </div>
+   
+    <mat-error *ngIf="submitted && personalForm.get('relation')?.errors?.required">
+      {{'Relationship with Employee'}}
+    </mat-error>
+  </div>
+
+
+</div>
+
+
+<div class="row">
+<div class="section-b col-6">
+    <mat-label> Family Member DOB <span class="required">*</span></mat-label>
+    <input class="input" type="date" id="dat" name="dat" matInput formControlName="fmDOB">
+    
+    <mat-error *ngIf="submitted && personalForm.get('fmDOB')?.errors?.required">
+      {{'Family Member DOB is required'}}</mat-error>
+  </div>
+
+</div>         
+
+</div>
+
+<div class="container-box">
+
+<div class="row">
+
+    <div class="section-b col-6">
+        <h5>Person 4</h5>
+        <h5>Last Updated on :</h5>
+
+        
+      </div>
+
+
+
+<div class="select-link">
+    <a routerLink="/family-details/person">+&nbsp;{{'Add Person' | uppercase}}</a>
+  </div>
+</div>
+
+<div class="row" *ngFor="let person of persons; let i = index">
+    <div class="section-b col">
+        <button class="delete-button" (click)="deletePerson(i)">Delete</button>
+    </div>
+</div>
+
+
+<div class="row">
+<div class="section-b col">
+    <mat-label > Name of Family Member <span class="required">*</span></mat-label>
+    <input class="input" type="text" name="Search" matInput formControlName="fmlyMemName" maxlength="50">
+    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+    <mat-error *ngIf="submitted && personalForm.get('fmlyMemName')?.errors?.required">{{' Name of Family Member is
+      required'}}</mat-error>
+    
+  </div>
+
+  <div class="section-b col">
+    <mat-label> Relationship with Employee <span class="required">*</span></mat-label>
+      <div class="input-container">
+    <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+        <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+      placeholder="Relations">
+        <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+      </mat-select>
+    </div>
+   
+    <mat-error *ngIf="submitted && personalForm.get('relation')?.errors?.required">
+      {{'Relationship with Employee'}}
+    </mat-error>
+  </div>
+
+
+</div>
+
+
+<div class="row">
+<div class="section-b col-6">
+    <mat-label> Family Member DOB <span class="required">*</span></mat-label>
+    <input class="input" type="date" id="dat" name="dat" matInput formControlName="fmDOB">
+    
+    <mat-error *ngIf="submitted && personalForm.get('fmDOB')?.errors?.required">
+      {{'Family Member DOB is required'}}</mat-error>
+  </div>
+
+</div>         
+
+</div>
+
+
+<div class="container-box">
+
+<div class="row">
+
+    <div class="section-b col-6">
+        <h5>Person 5</h5>
+        <h5>Last Updated on :</h5>
+
+        
+      </div>
+
+<div class="select-link">
+    <a routerLink="/family-details/person">+&nbsp;{{'Add Person' | uppercase}}</a>
+  </div>
+</div>
+
+<div class="row" *ngFor="let person of persons; let i = index">
+    <div class="section-b col">
+        <button class="delete-button" (click)="deletePerson(i)">Delete</button>
+    </div>
+</div>
+
+
+<div class="row">
+<div class="section-b col">
+    <mat-label > Name of Family Member <span class="required">*</span></mat-label>
+    <input class="input" type="text" name="Search" matInput formControlName="fmlyMemName" maxlength="50">
+    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+    <mat-error *ngIf="submitted && personalForm.get('fmlyMemName')?.errors?.required">{{' Name of Family Member is
+      required'}}</mat-error>
+    
+  </div>
+
+  <div class="section-b col">
+    <mat-label> Relationship with Employee <span class="required">*</span></mat-label>
+      <div class="input-container">
+    <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+        <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+      placeholder="Relations">
+        <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+      </mat-select>
+    </div>
+   
+    <mat-error *ngIf="submitted && personalForm.get('relation')?.errors?.required">
+      {{'Relationship with Employee'}}
+    </mat-error>
+  </div>
+
+
+</div>
+
+
+<div class="row">
+<div class="section-b col-6">
+    <mat-label> Family Member DOB <span class="required">*</span></mat-label>
+    <input class="input" type="date" id="dat" name="dat" matInput formControlName="fmDOB">
+    
+    <mat-error *ngIf="submitted && personalForm.get('fmDOB')?.errors?.required">
+      {{'Family Member DOB is required'}}</mat-error>
+  </div>
+
+</div>         
+
+</div>
+
+
+            <div class="row">
+                <div class="section-b col">
+                    <mat-label > Remarks <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="remarks" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && personalForm.get('remarks')?.errors?.required">{{' Remarks is
+                      required'}}</mat-error>
+                    
+                  </div>
+               
+              </div>
+
+
+              <div class="row">               
+                
+                <div class="disflex">
+                    <button mat-flat-button color="warn">{{'Discard' | uppercase}}</button>
+                    <button mat-flat-button color="primary" type="submit">{{'Save' |
+                      uppercase}}</button>
+        
+                  </div>
+  
+              </div>
+
+              <div class="row">               
+                
+                <div class="section-b col-md-6">
+                    <h4>Disclaimer :</h4>
+        
+                  </div>
+  
+              </div>
+
+              
+            </form>
+  
+          </div>
+        </mat-tab>
+  
+      </mat-tab-group>
+    </div>
+  </div>
+

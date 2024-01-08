@@ -1,0 +1,275 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/emp-tenure/list"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+    </div>
+
+    <br>
+    <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee Tenure'}}</h1>
+  <br>
+
+    <div>
+     
+          <div class="card">
+            <!-- <div class="card-title" style="display: flex;justify-content: center;">
+              <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Employee Tenure'|
+                uppercase}}</h2>
+            </div> -->
+
+            <form [formGroup]="tenureFormGrp" >
+
+              <div class="row">
+               
+                
+                <div class="section-b col-6">
+                  <mat-label>Employee Id<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="employeeId" maxlength="50"
+                    style="width: calc(95.5% - 5px);" >
+                    <button class="browse-button" (click)="onButtonClicked()">Fetch
+                      <input type="input" #fileInput style="display: none;">
+                    </button>
+                 </div>
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('employeeId')?.errors?.required">
+                    {{ 'Employee Id is required' }}
+                  </mat-error>
+                </div>
+
+              </div>
+  
+               
+  
+              <div class= "container-box1" >
+                <h5 class="green-text">* Value Auto - populated</h5>
+
+
+                <div class="row">
+                  <div class="section-b col">
+                    <mat-label > Employee Name <span class="required">*</span></mat-label>
+                    
+                      <input class="input" type="text" name="Search" matInput formControlName="employeeName"
+                       readonly>
+                   
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>                
+                    <mat-error *ngIf="submitted && tenureFormGrp.get('employeeName')?.errors?.required">
+                      {{'Employee Name is required'}}</mat-error>
+                  </div>
+
+
+                 
+
+                  <div class="section-b col">
+                    <mat-label > Cadre Category <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="category" maxlength="50" readonly>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && tenureFormGrp.get('category')?.errors?.required">{{' Cadre Name is
+                      required'}}</mat-error>
+                  </div>
+  
+                  
+    
+                </div>
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="cadreCode" readonly>
+                    </div>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && tenureFormGrp.get('cadreCode')?.errors?.required">
+                      {{'Cadre Code is required'}}</mat-error>
+                  </div> 
+                <div class="section-b col">
+                    <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50" readonly>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && tenureFormGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                      required'}}</mat-error>
+                  </div>
+  
+              </div>
+            
+
+
+           </div>
+  
+             <br>
+
+              <div class="row">
+
+                
+
+                
+               
+
+
+
+                <div class="section-b col">
+                <mat-label>Present Office Code <span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <mat-select formControlName="presentOfficeCode">
+                    <mat-option *ngFor="let code of officeCodes" [value]="code">{{ code }}</mat-option>
+                  </mat-select>
+
+                  <button class="browse-button" (click)="getOfficeName()">Fetch
+                    <input type="input" #fileInput style="display: none;">
+                  </button>
+               </div>
+                <mat-error *ngIf="submitted && tenureFormGrp.get('presentOfficeCode')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+                
+                
+
+
+                <div class="section-b col">
+                  <mat-label>Present Office Name <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="presentOfficeName" maxlength="50" readonly>
+                  
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('presentOfficeName')?.errors?.required">
+                    {{'Present Office Name is required'}}</mat-error>
+                </div>
+
+              </div>
+              <div class="row">
+               
+                
+              
+
+
+
+                <div class="section-b col">
+                <mat-label>Transfer Office Code <span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <mat-select formControlName="transferOfficeCode">
+                    <mat-option *ngFor="let code of officeCodes" [value]="code">{{ code }}</mat-option>
+                  </mat-select>
+
+                  <button class="browse-button" (click)="getOfficeName1()">Fetch
+                    <input type="input" #fileInput style="display: none;">
+                  </button>
+               </div>
+                <mat-error *ngIf="submitted && tenureFormGrp.get('transferOfficeCode')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+
+
+
+                <div class="section-b col">
+                  <mat-label>Transfer Office Name <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="transferOfficeName" maxlength="50" readonly>
+                  
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('transferOfficeName')?.errors?.required">
+                    {{'Transfer Office Nameis required'}}</mat-error>
+                </div>
+
+
+              </div>
+              <div class="row">
+               
+
+ <div class="section-b col">
+                  <mat-label> Gender <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="gender" maxlength="50" required>
+                  
+                  <!-- <mat-select formControlName="gender" multiple>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                  </mat-select> -->
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('gender')?.errors?.required">
+                    {{'Gender is required'}}</mat-error>
+                </div>
+
+                
+             
+               
+
+
+                <div class="section-b col">
+                  <mat-label>Date Of Joining <span class="required">*</span></mat-label>
+                  <input class="input" type="date" name="Search" matInput formControlName="dateOfJoined" maxlength="50">
+                 
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('dateOfJoined')?.errors?.required">
+                    {{'Date Of Joining Place is required'}}</mat-error>
+                </div>
+
+              </div>
+              <div class="row">
+               
+                <div class="section-b col">
+                  <mat-label>Date Of Relief<span class="required">*</span></mat-label>
+                  <input class="input" type="date" name="Search" matInput formControlName="dateOfRelieved" maxlength="50">
+                  
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('dateOfRelieved')?.errors?.required">
+                    {{'Date Of Relief is required'}}</mat-error>
+                </div>
+
+            
+                <div class="section-b col">
+                  <mat-label>Mode of Transfer <span class="required">*</span></mat-label>
+                 
+
+                    <mat-select formControlName="modeOfTransfer" >
+                  <mat-option [value]="'By Transfer'">By Transfer</mat-option>
+                  <mat-option [value]="'Diversion'">Diversion</mat-option>
+                  <mat-option [value]="'Addl. Charge'">Addl. Charge</mat-option>
+                  <mat-option [value]="'In-charge'">In-charge</mat-option>
+                  <mat-option [value]="'Deputation'">Deputation</mat-option>
+                </mat-select>
+                  
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('modeOfTransfer')?.errors?.required">
+                    {{'>Mode of Transfer is required'}}</mat-error>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label> Joining Time EL Credit <span class="required">*</span></mat-label>
+                  <input class="input" type="number" name="Search" matInput formControlName="joiningTimeElCredit" maxlength="50">
+                 
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('joiningTimeElCredit')?.errors?.required">
+                    {{'Joining Time EL Credit is required'}}</mat-error>
+                </div>
+
+             
+                <div class="section-b col">
+                  <mat-label>Date Of Transfer Order <span class="required">*</span></mat-label>
+                  <input class="input" type="date" name="Search" matInput formControlName="dateOfTransferOrder" maxlength="50"
+                    required>
+                  
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('dateOfTransferOrder')?.errors?.required">
+                    {{'Date Of Transfer Order  is required'}}</mat-error>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>Remarks Tenure<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="remarks" maxlength="50">
+                  
+                  <mat-error *ngIf="submitted && tenureFormGrp.get('remarks')?.errors?.required">
+                    {{'Remarks Tenure is required'}}</mat-error>
+                </div>
+
+                <div class="row">               
+              
+                    <div class="disflex">
+                        
+                       
+                              <button mat-flat-button color="warn" [routerLink]="['/exam-tenure/list']">{{'Discard' | uppercase}}</button>
+                           
+                           <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+                     
+                          </div>
+      
+                  </div>
+
+              </div>
+
+            </form>
+
+          </div>
+        
+    </div>
+  </div>

@@ -1,0 +1,45 @@
+<section class="grid-container">
+
+  <div class="d-flex border" style="height: 70%; width: 75% ;">
+ 
+      <div >
+
+          <img src="../../../assets/image.png" alt="marketing-img" width="500" height="100%" style="max-width: 90%;" >
+      </div>
+      <div class="d-flex flex-column justify-content-center px-4" style="background-color: white;">
+          <img src="../../../assets/tnhb_logo.png" alt="tnhb logo" width="450" height="25%">
+          <h3 class="text-center" style="font-weight: 500;font-size: 1.5rem;">Login</h3>
+          <form [formGroup]="loginForm" class="d-flex flex-column">
+              <mat-form-field appearance="outline">
+                  <mat-label>Username</mat-label>
+                  <input matInput formControlName="username">
+                  <mat-icon matSuffix>account_circle</mat-icon>
+              </mat-form-field>
+              <!-- <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput  formControlName="password">
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+              </mat-form-field> -->
+
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+
+              <button routerLink="office-data/list-circle-office" mat-raised-button color="primary" type="submit"
+                  [disabled]="loginForm.invalid">Submit</button>
+          </form>
+      </div>
+    
+  </div>
+
+
+</section>

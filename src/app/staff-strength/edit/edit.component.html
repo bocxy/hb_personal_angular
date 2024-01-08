@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/staff-strength/list"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}
+      </h4>
+    </div>
+      <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Staff Strength'}}</h1>
+ 
+    <div class="card">
+      
+  <div class="card">
+  <form [formGroup]="staffSancFormGrp" (ngSubmit)="onUpdate(staffSancFormGrp.value)">
+    <div class="row">
+      <div class="section-b col">
+        <mat-label>Cadre Code</mat-label>
+        <input class="input" type="text" name="Search" matInput formControlName="cadreCode" >
+
+      </div>
+      <div class="section-b col">
+        <mat-label>Cadre Name</mat-label>
+        <input class="input" type="text" name="Search" matInput formControlName="cadreName" >
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="section-b col">
+        <mat-label>Cade Category</mat-label>
+        <input class="input" type="text"  name="Search" matInput formControlName="cadreCategory">
+      </div>
+
+    
+      <div class="section-b col">
+        <mat-label>Sanctioned</mat-label>
+        <input class="input" type="text" name="Search" matInput formControlName="sanctioned" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="section-b col">
+        <mat-label>Present</mat-label>
+        <input class="input" type="text" name="Search" matInput formControlName="present" >
+      </div>
+
+      <div class="section-b col">
+        <mat-label > Vacant <span class="required">*</span></mat-label>
+        <input class="input"   type="text" name="Search" matInput formControlName="vacant" [value]="(staffSancFormGrp.get('sanctioned').value || 0) - (staffSancFormGrp.get('present').value || 0)" readonly>
+        <mat-error *ngIf="submitted && staffSancFormGrp.get('vacant')?.hasError('required')">
+Vacant is required
+</mat-error>
+      </div>
+
+    </div>
+    <div class="disflex" *ngIf="!view">
+      <button mat-flat-button color="warn"  routerLink="/staff-strength/list">{{'Back' | uppercase}}</button>
+      <button mat-flat-button color="primary" type="submit" >{{'Update' |
+        uppercase}}</button>
+    </div>
+ </form>
+  </div>
+</div>
+

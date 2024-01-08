@@ -1,0 +1,190 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/emp-asset/list"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+    </div>
+
+    <br>
+    <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee File Detils'}}</h1>
+  
+    <br>
+  
+    <div>
+      
+          <div class="card">
+            <div class="card-title" style="display: flex;justify-content: center;">
+              <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Employee File Details'|
+                uppercase}}</h2>
+            </div>
+  
+            <form [formGroup]="empAssetFrmGrp">
+
+
+              <div class="row">
+               
+
+                <div class="section-b col-6">
+                  <mat-label>Employee Id<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="employeeId" maxlength="50"
+                    style="width: calc(95.5% - 5px);" >
+                    <button class="browse-button" (click)="onButtonClicked()">Fetch
+                      <input type="input" #fileInput style="display: none;">
+                    </button>
+                 </div>
+                  
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('employeeId')?.errors?.required">
+                    {{ 'Employee Id is required' }}
+                  </mat-error>
+                </div>
+              </div>
+  
+               
+  
+                <div class= "container-box1" >
+                  <h5 class="green-text">* Value Auto - populated</h5>
+  
+  
+                  <div class="row">
+                    <div class="section-b col">
+                      <mat-label > Employee Name <span class="required">*</span></mat-label>
+                      
+                        <input class="input" type="text" name="Search" matInput formControlName="employeeName"
+                         readonly>
+                     
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>                
+                      <mat-error *ngIf="submitted && empAssetFrmGrp.get('employeeName')?.errors?.required">
+                        {{'Employee Name is required'}}</mat-error>
+                    </div>
+                    
+      
+                 
+                  <div class="section-b col">
+                      <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="cadreCode" readonly>
+                      </div>
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && empAssetFrmGrp.get('cadreCode')?.errors?.required">
+                        {{'Cadre Code is required'}}</mat-error>
+                    </div> 
+                 
+    
+                </div>
+              
+  
+             </div>
+  
+             <br>
+
+
+  
+              <div class="row">
+               
+                <div class="section-b col">
+                  <mat-label>Office Code<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <mat-select formControlName="officeCode">
+                      <mat-option *ngFor="let code of officeCodes" [value]="code">{{ code }}</mat-option>
+                    </mat-select>
+  
+                    <button class="browse-button" (click)="getOfficeName()">Fetch
+                      <input type="input" #fileInput style="display: none;">
+                    </button>
+                 </div>
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('officeCode')?.errors?.required">
+                    {{ 'Employee Id is required' }}
+                  </mat-error>
+                </div>
+  
+  
+  
+  
+                <div class="section-b col">
+                  <mat-label> Office Name <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="officeName" maxlength="50" readonly >
+                  
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('officeName')?.errors?.required">
+                    {{'Pan Number is required'}}</mat-error>
+                </div>
+  
+              </div>
+              <div class="row">
+               
+  
+                <div class="section-b col">
+                  <mat-label>Employee Seat No.<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="seatNo" maxlength="50">
+                 
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('seatNo')?.errors?.required">
+                    {{'Employee Seat No. is required'}}</mat-error>
+                </div>
+
+                <div class="section-b col">
+                  <mat-label >File Disposal date <span class="required">*</span></mat-label>
+                  <input class="input" type="date" name="Search" matInput formControlName="fileDisposalDate" maxlength="50"
+                    required>
+                 
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('fileDisposalDate')?.errors?.required">
+                    {{'File Disposal date is required'}}</mat-error>
+                </div>
+  
+              </div>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>Employee File Number<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="fileNo" maxlength="50"
+                    required>
+                 
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('fileNo')?.errors?.required">
+                    {{'Employee File Number is required'}}</mat-error>
+                </div>
+                <div class="section-b col">
+                  <mat-label>Employee File Gist<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="fileGist" maxlength="50">
+                 
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('fileGist')?.errors?.required">
+                    {{'Employee File Gist is required'}}</mat-error>
+                </div>  
+              </div>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>File Status<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="fileStatus" maxlength="50"
+                    required>
+                 
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('fileStatus')?.errors?.required">
+                    {{'Cadre Name is required'}}</mat-error>
+                </div>
+                <div class="section-b col-6">
+                  <mat-label > Type of Disposal<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="typeOfDisposal" maxlength="50"
+                    required>
+                  <mat-error *ngIf="submitted && empAssetFrmGrp.get('typeOfDisposal')?.errors?.required">{{'Type of Disposal is
+                    required'}}</mat-error>
+                </div>
+  
+              </div>
+             
+
+              <div class="row">               
+                
+                <div class="disflex">
+                   
+                  <button mat-flat-button color="warn" [routerLink]="['/emp-asset/list']">{{'Discard' | uppercase}}</button> 
+                
+                        <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+            
+                     
+        
+                  </div>
+  
+              </div>
+              
+            </form>
+  
+          </div>
+      
+    </div>
+  </div>
+

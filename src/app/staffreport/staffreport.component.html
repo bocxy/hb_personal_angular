@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="card-title">
+    <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Staff Report'}}
+    </h2>
+  </div>
+
+  <div class="container">
+
+    <div class="filter-row mb-4 no-print">
+      <div class="filter-container">
+        <label for="filter-select" class="label">Filter</label>
+        <mat-form-field appearance="outline" class="select-field">
+          <mat-select id="filter-select" [(ngModel)]="selectedDataType" (change)="updateDynamicFields()"
+            placeholder="Choose">
+            <mat-option value="staff">Staff Data</mat-option>
+            <mat-option value="office">Office Data</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="search-container">
+          <div *ngIf="selectedDataType === 'staff'" class="select-multiple">
+            <mat-form-field>
+              <mat-select multiple placeholder="Choose">
+                <mat-option *ngFor="let field of fields">
+
+                  <input type="checkbox" class="search-input" placeholder="Choose" [(ngModel)]="field.checked"
+                    (ngModelChange)="updateSelectedFields()" />
+                  {{ field.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="selectedDataType === 'office'" class="select-multiple">
+            <mat-form-field>
+              <mat-select multiple placeholder="Choose">
+                <mat-option *ngFor="let officename of officeData">
+                <input type="checkbox" class="search-input" placeholder="Choose" [checked]="selectedOfficeNames[officename]"
+                  (change)="toggleOfficeSelection(officename)" />
+                  {{ officename }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <button class="btn btn-light" (click)="clearFilters()">Clear Filter</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th *ngFor="let field of selectedFields">
+                {{ field.name }}
+                <div
+                  *ngIf="field.name !== 'Date_Of_Appointment' && field.name !== 'Date_Of_Birth' && field.name !== 'Date_Of_Joining_Service' && field.name !== 'Date_Of_Probation_Declaration' && field.name !== 'Date_Of_Regularization'   && field.name !==  'Date_Of_Retirement' && field.name !==  'FBF_Sanctioned_Date' && field.name !==  'Increment_Due_Date' && field.name !==  'Provisional_Admin_Approval_Date' && field.name !==  'Provisional_Pension_Sanction_Date' && field.name !==  'Regular_Retirement_Admin_Approval_Date' && field.name !==  'Regular_Retirement_Pension_Sanction_Date' && field.name !==  'Unblemished_Order_Date'">
+                  <input type="text" [(ngModel)]="filterValues[field.name]" placeholder="Filter">
+                </div>
+
+                <div
+                  *ngIf="field.name === 'Date_Of_Appointment' || field.name === 'Date_Of_Birth' || field.name === 'Date_Of_Joining_Service' || field.name === 'Date_Of_Probation_Declaration' || field.name === 'Date_Of_Regularization'   || field.name ===  'Date_Of_Retirement' || field.name ===  'FBF_Sanctioned_Date' || field.name ===  'Increment_Due_Date' || field.name ===  'Provisional_Admin_Approval_Date' || field.name ===  'Provisional_Pension_Sanction_Date' || field.name ===  'Regular_Retirement_Admin_Approval_Date' || field.name ===  'Regular_Retirement_Pension_Sanction_Date' || field.name ===  'Unblemished_Order_Date'">
+                  <input type="date" [(ngModel)]="filterValues[field.name]" placeholder="Filter">
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of filteredRecords">
+              <td *ngFor="let field of selectedFields">
+                {{ record[field.name] }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>

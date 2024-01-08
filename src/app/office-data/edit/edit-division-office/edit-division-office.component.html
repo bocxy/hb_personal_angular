@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/office-data/list-division-office"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}
+    </h4>
+  </div>
+
+  <br>
+
+  <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Add Division Office'}}</h1>
+  
+  <br>
+
+ 
+    <!-- <div class="card-title" style="display: flex;justify-content: center;">
+      <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Add Division Office'|
+        uppercase}}</h2> -->
+    </div>
+<div class="card">
+<form [formGroup]="myForm">
+  <div class="row">
+    <div class="section-b col">
+      <mat-label>Division Code</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Division_Code" >
+    </div>
+    <div class="section-b col">
+      
+        <mat-label> Circle</mat-label>
+        
+       
+        <mat-select  class="input" type="text" name="Search" formControlName="v_Select_Circle" placeholder="Circle Name ">
+                 <mat-option value="Select">Select</mat-option>
+                 <mat-option value="Chennai Circle – I">Chennai Circle – I</mat-option>
+                <mat-option value="Chennai Circle – II">Chennai Circle – II</mat-option>
+                <mat-option value="Project Circle (City)">Project Circle (City)</mat-option>
+                 <mat-option value="Project Circle (Rural)">Project Circle (Rural)</mat-option>
+                 <mat-option value="Salem Circle">Salem Circle</mat-option>
+                 <mat-option value="Madurai Circle">Madurai Circle</mat-option>
+             </mat-select>
+     
+    </div>
+
+
+    <div class="section-b col">
+      <mat-label>Division Name</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Division_Name" >
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="section-b col">
+      <mat-label>Office Head</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Office_Head" >
+    </div>
+
+    <div class="section-b col">
+      <mat-label>Division Place</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Division_Place" >
+    </div>
+
+  
+  
+    <div class="section-b col">
+      <mat-label>Address</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Address" >
+    </div>
+    <div class="section-b col">
+      <mat-label>Pincode</mat-label>
+      <input class="input" type="number" name="Search" matInput formControlName="n_Pincode" >
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="section-b col">
+      <mat-label>Phone</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Phone" >
+    </div>
+
+    <div class="section-b col">
+      <mat-label>Mobile</mat-label>
+      <input class="input" type="number" name="Search" matInput formControlName="n_Mobile" >
+    </div>
+
+    <div class="section-b col">
+      <mat-label>Email</mat-label>
+      <input class="input" type="text" name="Search" matInput formControlName="v_Email" >
+    </div>
+
+  </div>
+  <div style="display: flex; justify-content: center;">
+    <button mat-raised-button  style="color: #470A3C; font-weight: bold;width: 150px;" routerLink="/office-data/list-division-office">Back</button>
+    &nbsp;&nbsp;&nbsp;
+    <button mat-raised-button style="background-color:#470A3C;color: white; font-weight: bold;width: 150px;"(click)="saveDivisionsOffice()" >Update</button>
+  </div>
+</form>
+</div>
+
+

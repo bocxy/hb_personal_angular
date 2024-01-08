@@ -1,0 +1,258 @@
+
+<div class="container">
+    <div class="card-title">
+      <!-- <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/leave/list"></i>&nbsp;&nbsp; -->
+      <h3 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee Asset Details'| uppercase}}
+      </h3>
+    </div>
+  
+  <div class="container">
+    <!-- <div class="card">
+      <div class="row" style="display:flex;flex-direction: row;align-items: center;gap: 0;">
+        <div class="section-b col-md-3">
+          <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+            placeholder="Search Emp Id/ Name">
+        </div>
+
+        <div class="section-b. col-md-3">
+            <mat-form-field appearance="outline">
+            <mat-label>Filter</mat-label>
+              <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+               
+                <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+         
+          
+          <div class="add-coupon col-md-3">
+            
+            <a routerLink="/asset-details/add">+&nbsp;{{'Add Movable Data' | uppercase}}</a>
+          </div>
+
+          <div class="add-coupon col-md-3">
+            
+            <a routerLink="/asset-details/add-immovable">+&nbsp;{{'Add Immovable Data' | uppercase}}</a>
+          </div>
+                 
+
+        <div class="col-md-6" style="display:flex ;justify-content:flex-start;gap: 10px;">
+          <form style="display: flex;gap:15px">
+
+           
+          </form>
+        </div>
+        
+      </div>
+  
+    </div> -->
+
+    <!-- <div class="card">
+      <div class="row" style="display:flex;flex-direction: row;align-items: center;gap: 2rem;">
+        <div class="section-b col-md-3">
+          <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+            placeholder="Search...">
+        </div>
+  
+  
+          <div class="add-coupon col-md-3">
+              <select class="form-select m-3" (change)="applyFilter($event.target.value)" id="divisionSelect" name="Division">
+              <option value="">Filter</option>
+              <option value="division1">Division 1</option>
+              <option value="division2">Division 2</option>
+              <option value="division3">Division 3</option>
+  
+            </select>
+          </div>
+  
+           
+  
+            <div class="section-b col">
+              <button class="btn btn-light add-dataBtn" routerLink="/asset-details/add">
+                  <span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus"
+                          viewBox="0 0 16 17">
+                          <path
+                              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                      </svg></span>Add Movable Data</button>
+          </div>
+
+          <div class="section-b col">
+            <button class="btn btn-light add-dataBtn" routerLink="/asset-details/add-immovable">
+                <span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                    </svg></span>Add Immovable Data</button>
+        </div>
+  
+  
+        </div>
+  
+       
+      </div> -->
+
+
+      <div class="filter-row mb-4">
+        <div>
+            <!-- <label for="search-input" class="label">Filter</label><br> -->
+            <div class="search-container">
+                <div>
+                    <input matInput #input (keyup)="applyFilter($event)" type="text" id="search-input"
+                        class="search-input" placeholder="Search Emp Id/Name">
+                    <div class="search-icon">
+                        <mat-icon>search</mat-icon>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    <div>
+    <div>
+        <button class="btn btn-light add-dataBtn" >
+         
+
+
+          <mat-label> Add Data </mat-label>
+          <mat-select >
+            <mat-option value="Movable Data" routerLink="/asset-details/add"> Movable Data</mat-option>
+            <mat-option value="Immovable Data" routerLink="/asset-details/add-immovable">Immovable Data</mat-option>
+           
+          </mat-select>
+
+        </button>
+    </div>
+  
+    
+    </div>
+    </div>
+
+
+
+    <div class="card">
+      <table mat-table matSort [dataSource]="filteredData?.length? filteredData:dataSource">
+       
+        <!-- <mat-table #table [dataSource]="dataSource"> -->
+          <ng-container matColumnDef="sno">
+            <th class="first" style="border-top-left-radius:20px;border-bottom-left-radius: 20px; text-align: center" mat-header-cell *matHeaderCellDef>
+              <span>S.No</span>
+            </th>
+            <td mat-cell *matCellDef="let request index as i"> {{ i + 1 }} </td>
+          </ng-container>
+  
+        <ng-container matColumnDef="empId">
+          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Employee Id</span>
+          </th>
+          <td mat-cell *matCellDef="let request"> {{request.empId}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="empName">
+          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Employee Name</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{request.empName}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="cadreCode">
+          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Cadre Code</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{request.cadreCode}}</td>
+        </ng-container>
+        <ng-container matColumnDef="cadreName">
+          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Cadre Name</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{request.cadreName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="moveImmove">
+            <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+              <span>Movable/Immovable</span>
+            </th>
+            <td mat-cell *matCellDef="let request">{{request.moveImmove}}
+                <!-- <div class="add-coupon col-md-3">
+                    <h4>Movable</h4>
+                  </div> -->
+        
+            </td>
+        </ng-container>
+
+                 
+        <!-- <ng-container matColumnDef="action">
+          <th class="last" style="border-top-right-radius:10px;border-bottom-right-radius: 10px" mat-header-cell *matHeaderCellDef>
+            <span>Action</span>
+          </th>
+          <td mat-cell *matCellDef="let request" (click)="goToView(request)">
+            <div class="add-coupon row-md-3">
+             
+           {{'View' | uppercase}}
+
+            </div>
+          </td>
+
+          <td mat-cell *matCellDef="let request">
+            <div class="add-coupon col-md-3">
+             
+            {{'Next' | uppercase}}
+
+            </div>
+          </td>
+        
+                  
+          
+        </ng-container> -->
+
+        <ng-container matColumnDef="action">
+          <th class="last" style="border-top-right-radius:20px;border-bottom-right-radius: 20px; text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Action</span>
+          </th>
+          <td mat-cell *matCellDef="let request">
+            <div class="add-coupon row-md-3">
+              <!-- <a [routerLink]="['/exam-history/view', request.nid]">{{'View' | uppercase}}</a> -->
+              <!-- <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit" [routerLink]="['/asset-details/edit-immovable', request.nid]"  >edit</mat-icon> -->
+              <mat-icon style="font-size: 18px; cursor: pointer"
+           matTooltip="Edit"
+           [routerLink]="request.moveImmove === 'Movable' ? ['/asset-details/edit-movable', request.nid] : ['/asset-details/edit-immovable', request.nid]">
+            edit</mat-icon>
+
+              <!-- <mat-icon style="font-size: 18px; cursor: pointer; color: red" matTooltip="Delete" (click)="deleteEmpImmovable(request.nid)">delete</mat-icon> -->
+
+
+            <mat-icon
+           style="font-size: 18px; cursor: pointer; color: red"
+           matTooltip="Delete"
+          (click)="request.moveImmove === 'Movable' ? deleteEmpMovable(request.nid) : deleteEmpImmovable(request.nid)">
+           delete</mat-icon>
+
+
+
+              <mat-icon style="font-size: 18px; cursor: pointer"
+           matTooltip="View"
+           [routerLink]="request.moveImmove === 'Movable' ? ['/asset-details/view', request.nid] : ['/asset-details/view2', request.nid]">
+            visibility</mat-icon>
+              <!-- <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View" [routerLink]="['/asset-details/view2', request.nid]">visibility</mat-icon> -->
+
+             
+            </div>
+          </td>
+
+         
+          
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let request; columns: columnsToDisplay"></tr>
+  
+      </table>
+    
+      <div class="spinner-container" *ngIf="(dataSource.data?.length ===0 || filteredData?.length===0) && !noData">
+        <mat-spinner [diameter]="50"></mat-spinner>
+      </div>
+      <!-- <div class="no_data mt-2" *ngIf="(dataSource.data?.length ===0 || filteredData?.length===0)  && noData">
+        <p>{{'No data available'}}</p> -->
+      </div>
+    </div>
+  </div>
+  

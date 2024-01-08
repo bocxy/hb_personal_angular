@@ -1,0 +1,630 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/cell-case/list"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+    </div>
+
+    <br>
+    <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Disciplinary Case Details'}}</h1>
+  
+    <br>
+  
+    <div>
+      
+          <div class="card">
+            <div class="card-title" style="display: flex;justify-content: center;">
+              <!-- <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Direct Recruitment'|
+                uppercase}}</h2> -->
+            </div>
+  
+            <form [formGroup]="cellCaseFrmGrp">
+  
+              <div class="row">
+               
+
+                <div class="section-b col-6">
+                  <mat-label>Employee Id<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="empId" maxlength="50"
+                    style="width: calc(95.5% - 5px);" >
+                    <button class="browse-button" (click)="onButtonClicked()">Fetch
+                      <input type="input" #fileInput style="display: none;">
+                    </button>
+                 </div>
+                 
+                  <mat-error *ngIf="submitted && cellCaseFrmGrp.get('empId')?.errors?.required">
+                    {{ 'Employee Id is required' }}
+                  </mat-error>
+                </div>
+              </div>
+  
+               
+  
+                <div class= "container-box1" >
+                  <h5 class="green-text">* Value Auto - populated</h5>
+  
+  
+                  <div class="row">
+                    <div class="section-b col-md-6">
+                      <mat-label > Employee Name <span class="required">*</span></mat-label>
+                      
+                        <input class="input" type="text" name="Search" matInput formControlName="empName"
+                        style="width: calc(96.5% - 5px);" readonly>
+                     
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>                
+                      <mat-error *ngIf="submitted && cellCaseFrmGrp.get('empName')?.errors?.required">
+                        {{'Employee Name is required'}}</mat-error>
+                    </div>
+                    
+      
+                  </div>
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="cadreCode" readonly>
+                      </div>
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && cellCaseFrmGrp.get('cadreCode')?.errors?.required">
+                        {{'Cadre Code is required'}}</mat-error>
+                    </div> 
+                  <div class="section-b col">
+                      <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                      <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50" readonly>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && cellCaseFrmGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                        required'}}</mat-error>
+                    </div>
+    
+                </div>
+                <div class="row">
+                  <div class="section-b col">
+                    <mat-label> Date of Birth <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfBirth" readonly>
+                    
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dateOfBirth')?.errors?.required">
+                      {{'Date of Birth is required'}}</mat-error>
+                  </div>
+                 
+  
+                  <div class="section-b col">
+                      <mat-label> Date of Joining <span class="required">*</span></mat-label>
+                      <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfJointService" readonly>
+                      
+                      <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dateOfJointService')?.errors?.required">
+                        {{'Date of Joining is required'}}</mat-error>
+                    </div>
+                   
+                </div>
+
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Office Code <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="officeCode" readonly>
+                      </div>
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && cellCaseFrmGrp.get('officeCode')?.errors?.required">
+                        {{'Office Name is required'}}</mat-error>
+                    </div> 
+                  <div class="section-b col">
+                      <mat-label > Office Name <span class="required">*</span></mat-label>
+                      <input class="input" type="text" name="Search" matInput formControlName="officeName" maxlength="50" readonly>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && cellCaseFrmGrp.get('officeName')?.errors?.required">{{' Office Name is
+                        required'}}</mat-error>
+                    </div>
+    
+                </div>
+  
+  
+             </div>
+  
+             <br>
+
+
+            <div class="row">
+                <div class="section-b col-6">
+                    <mat-label > File No <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="fileNo" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('fileNo')?.errors?.required">{{' File No is
+                      required'}}</mat-error>
+                 
+                  </div>
+            </div>
+
+            <div class="container-box">
+                <div class="row">
+                    <div class="section-b col">
+                        <mat-label > Nature of Case <span class="required">*</span></mat-label>
+                        <input class="input" type="text" name="Search" matInput formControlName="natureOfCase" maxlength="50">
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && cellCaseFrmGrp.get('natureOfCase')?.errors?.required">{{'Nature of Case is
+                          required'}}</mat-error>
+                     
+                      </div>
+
+                      <div class="section-b col">
+                        <mat-label > Mode of Charges <span class="required">*</span></mat-label>
+                        <input class="input" type="text" name="Search" matInput formControlName="modeOfCharge" maxlength="50">
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && cellCaseFrmGrp.get('modeOfCharge')?.errors?.required">{{' Mode of Charges is
+                          required'}}</mat-error>
+                     
+                      </div>
+                </div>
+
+            </div>
+
+
+
+              <div class="row">
+
+                <div class="section-b col">
+                    <mat-label> Susension Mode <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                    <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+                        <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+                      placeholder="Mode" matInput formControlName = "suspensionMade">
+                        <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+                      </mat-select>
+                    </div>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('suspensionMade')?.errors?.required">
+                        {{'Susension Mode is required'}}
+                      </mat-error>
+                </div>
+
+
+                <div class="section-b col">
+                  <mat-label for = "date"> Date of Suspension <span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfSuspension">
+                  <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dateOfSuspension')?.errors?.required">
+                    {{'Date of Suspension is required'}}</mat-error>
+                </div>
+                
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label > No of Charges <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="noOfCharges" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('noOfCharges')?.errors?.required">{{' No of Charges is
+                      required'}}</mat-error>
+                 
+                  </div>
+
+                  <div class="section-b col">
+                    <mat-label for = "date"> Date of Charge <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfCharge">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dateOfCharge')?.errors?.required">
+                      {{'Date of Charge is required'}}</mat-error>
+                  </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label > Reply Received <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="replyReceived" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('replyReceived')?.errors?.required">{{' Reply Received is
+                      required'}}</mat-error>
+                 
+                  </div>
+
+                  <div class="section-b col">
+                    <mat-label for = "date"> IO Appointed Date <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="ioAppointedDate">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('ioAppointedDate')?.errors?.required">
+                      {{'IO Appointed Date  is required'}}</mat-error>
+                  </div>
+
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label > Name of IO <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="nameOfIo" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('nameOfIo')?.errors?.required">{{' Name of IO is
+                      required'}}</mat-error>
+                 
+                  </div>
+
+                  <div class="section-b col">
+                    <mat-label > Designation Of IO <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="designationOfIo" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('designationOfIo')?.errors?.required">{{' Designation Of IO is
+                      required'}}</mat-error>
+                 
+                  </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label for = "date"> IO Report Received Date <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="ioReportReceivedDate">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('ioReportReceivedDate')?.errors?.required">
+                      {{'IO Report Received Date is required'}}</mat-error>
+                  </div>
+
+                  <div class="section-b col">
+                    <mat-label> IO Findings <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="ioFindings" maxlength="50">
+                      <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </div>
+                  
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('ioFindings')?.errors?.required">
+                      {{'IO Findings is required'}}
+                    </mat-error>
+                  </div>
+
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label > No of Charges Proven <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="noOfChargesProven" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('noOfChargesProven')?.errors?.required">{{' No of Charges Proven is
+                      required'}}</mat-error>
+                 
+                  </div>
+
+                  <div class="section-b col">
+                    <mat-label > No of Charges not Proven <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="noOfChargesNotProven" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('noOfChargesNotProven')?.errors?.required">{{' No of Charges not Proven  is
+                      required'}}</mat-error>
+                 
+                  </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label > No of Charges Partly Proven <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="noOfChargesPartlyProven" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('noOfChargesPartlyProven')?.errors?.required">{{' Reply Received is
+                      required'}}</mat-error>
+                 
+                  </div>
+
+                  <div class="section-b col">
+                    <mat-label for = "date"> FR Received Date <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="frReceivedDate">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('frReceivedDate')?.errors?.required">
+                      {{'FR Received Date is required'}}</mat-error>
+                  </div>
+
+              </div>
+
+              <div class="row">
+                <div class="section-b col-6">
+                    <mat-label> Compt Authority <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                        
+                    <mat-select   (selectionChange)="applyTypeFilter2($event.value)" formControlName="comptAuthority" >
+                       
+                        <mat-option *ngFor="let row of authority" [value]="row.authority">{{row.authority }}</mat-option>
+                      </mat-select>
+                    </div>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('comptAuthority')?.errors?.required">
+                        {{'Compt Authority  is required'}}
+                      </mat-error>
+                </div>
+              </div>
+             
+               {{cellCaseFrmGrp.get('comptAuthority').value}} 
+
+              <div class= "container-box"   *ngIf="cellCaseFrmGrp.get('comptAuthority').value=='Managing Director' ">
+                
+                
+              <div class= "Managing Director" >
+              <div class="row" >
+                <div class="section-b col">
+                    <mat-label for = "date"> Date of Final Order <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfFinalOrder">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dateOfFinalOrder')?.errors?.required">
+                      {{'Date of Final Order is required'}}</mat-error>
+                  </div>
+                  <div class="section-b col">
+                    <mat-label> Final Order Proceedings <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="finalOrderProceedings" maxlength="50">
+                      <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </div>
+                    
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('finalOrderProceedings')?.errors?.required">
+                      {{'Final Order Proceedings  is required'}}
+                    </mat-error>
+                  </div>
+
+
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label for = "date"> Appeal Preffered to <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="appealPreferredTo">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('appealPreferredTo')?.errors?.required">
+                      {{' Appeal Preffered to is required'}}</mat-error>
+                  </div>
+                  <div class="section-b col">
+                    <mat-label> Appeal Status <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="appealStatus" maxlength="50">
+                      <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </div>
+                
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('appealStatus')?.errors?.required">
+                      {{' Appeal Status is required'}}
+                    </mat-error>
+                  </div>
+
+
+              </div> 
+
+
+              <div class="row">
+                <div class="section-b col-6">
+                  <mat-label> Final Order Proceeding <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="finalOrderProceedings1" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && cellCaseFrmGrp.get('finalOrderProceedings1')?.errors?.required">
+                    {{' Final Order Proceeding required'}}
+                  </mat-error>
+                </div>
+              </div>
+              
+            
+            </div>
+            </div>
+
+
+            <div class= "container-box"  *ngIf="cellCaseFrmGrp.get('comptAuthority').value=='Board & Govt' ">
+              <div class= "Board&Govt" >
+                
+              <div class="row" >
+                <div class="section-b col-6">
+                  <mat-label> DC Recommendation Status <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                     
+                  <mat-select   (selectionChange)="applyTypeFilter2($event.value)" formControlName="dcRecommendationStatus" >
+                     
+                      <mat-option *ngFor="let row of authrity" [value]="row.value">{{row.authrity}}</mat-option>
+                    </mat-select>
+                  </div>
+                  <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dcRecommendationStatus')?.errors?.required">
+                      {{' DC Recommendation Status is required'}}
+                    </mat-error>
+              </div>
+
+                  <div class="section-b col">
+                    <mat-label> Board Resolution No <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="boardResolutionNo" maxlength="50">
+                     </div>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('boardResolutionNo')?.errors?.required">
+                      {{'Board Resolution No is required'}}
+                    </mat-error>
+                  
+                  </div>
+
+
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label for = "date"> Board Resolution Date <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="boardResolutionDate">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('boardResolutionDate')?.errors?.required">
+                      {{'  Board Resolution Date is required'}}</mat-error>
+                  </div>
+                  <div class="section-b col">
+                    <mat-label for = "date">Date of Board Final Order<span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfBoardFinalOrder">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dateOfBoardFinalOrder')?.errors?.required">
+                      {{' Date of Board Final Order is required'}}</mat-error>
+                  </div>
+
+
+              </div> 
+
+
+              <div class="row">
+                <div class="section-b col-6">
+                  <mat-label> Final Order Proceeding <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="finalOrderProceedings2" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && cellCaseFrmGrp.get('finalOrderProceedings2')?.errors?.required">
+                    {{' Final Order Proceeding required'}}
+                  </mat-error>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label for = "date"> Appeal Preffered to <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="appealPreferredTo1">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('appealPreferredTo1')?.errors?.required">
+                      {{' Appeal Preffered to is required'}}</mat-error>
+                  </div>
+                  
+                  <div class="section-b col">
+                    <mat-label> Appeal Status <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="appealStatus1" maxlength="50">
+                      <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </div>
+                  
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('appealStatus1')?.errors?.required">
+                      {{' Appeal Status is required'}}
+                    </mat-error>
+                  </div>
+
+
+              </div>
+              
+              <div class="row">
+                <div class="section-b col-6">
+                  <mat-label> Final Order Proceeding <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="finalOrderProceedings3" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </div>
+                 
+                  <mat-error *ngIf="submitted && cellCaseFrmGrp.get('finalOrderProceedings3')?.errors?.required">
+                    {{' Final Order Proceeding required'}}
+                  </mat-error>
+                </div>
+              </div>
+
+
+
+            </div>
+            </div>
+
+
+
+
+            <div class= "container-box" *ngIf="cellCaseFrmGrp.get('comptAuthority').value=='Government' " >
+              <div class= "Government" >
+               
+                <div class="row">
+                <div class="section-b col">
+                  <mat-label for = "date"> Date of Proposal Sent to Government <span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfProposalSentToGovt">
+                  <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dateOfProposalSentToGovt')?.errors?.required">
+                    {{'Date of Proposal Sent to Government is required'}}</mat-error>
+                </div>
+
+                  <div class="section-b col">
+                    <mat-label>Go Number <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="goNumber" maxlength="50">
+                     </div>
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('goNumber')?.errors?.required">
+                      {{'Go Number is required'}}
+                    </mat-error>
+                  
+                  </div>
+
+
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label for = "date"> Date of G.O <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfGO">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('dateOfGO')?.errors?.required">
+                      {{'  Date of G.O is required'}}</mat-error>
+                  </div>
+                  <div class="section-b col-6">
+                    <mat-label> Final Order Proceeding <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="finalOrderProceedings4" maxlength="50">
+                      <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </div>
+                  
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('finalOrderProceedings4')?.errors?.required">
+                      {{' Final Order Proceeding required'}}
+                    </mat-error>
+                  </div>
+
+
+              </div> 
+
+
+             
+              
+              <div class="row">
+                <div class="section-b col">
+                 
+                    <mat-label for = "date">  Appeal Preffered to <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="appealPreferredTo2">
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('appealPreferredTo2')?.errors?.required">
+                      {{' Appeal Preffered to is required'}}</mat-error>
+                  </div>
+                  <div class="section-b col">
+                    <mat-label> Appeal Status <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="appealStatus2" maxlength="50">
+                      <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </div>
+                  
+                    <mat-error *ngIf="submitted && cellCaseFrmGrp.get('appealStatus2')?.errors?.required">
+                      {{' Appeal Status is required'}}
+                    </mat-error>
+                  </div>
+
+
+              </div>
+              
+              <div class="row">
+                <div class="section-b col-6">
+                  <mat-label> Final Order Proceeding <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="finalOrderProceedings5" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </div>
+                 
+                  <mat-error *ngIf="submitted && cellCaseFrmGrp.get('finalOrderProceedings5')?.errors?.required">
+                    {{' Final Order Proceeding required'}}
+                  </mat-error>
+                </div>
+              </div>
+
+
+
+              </div>
+            </div>
+            
+
+
+
+             
+              <div class="row">               
+                
+                <div class="disflex">
+                  <button mat-flat-button color="warn" [routerLink]="['/cel-case/list']">{{'Discard' | uppercase}}</button> 
+                    
+                  <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+        
+                  </div>
+  
+              </div>
+              
+            </form>
+  
+          </div>
+        
+    </div>
+  </div>
+

@@ -1,0 +1,208 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/emp-pay/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+
+
+  <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Pay Fixation'}}</h1>
+
+  <div>
+   
+        <div class="card">
+         
+
+          <form [formGroup]="payfixFrmGrp">
+
+
+            <div class="row">
+              <div class="section-b col-6">
+                <mat-label>Employee Id<span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="employeeId" maxlength="50"
+                  style="width: calc(95.5% - 5px);" >
+                  
+               </div>
+               
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('employeeId')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+            </div>
+
+             
+
+              <div class= "container-box1" >
+                <h5 class="green-text">* Value Auto - populated</h5>
+
+
+
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Employee Name <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="employeeName" readonly>
+                      </div>
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && payfixFrmGrp.get('employeeName')?.errors?.required">
+                        {{'Employee Name is required'}}</mat-error>
+                    </div> 
+                  <div class="section-b col">
+                      <mat-label > Cadre Category <span class="required">*</span></mat-label>
+                      <input class="input" type="text" name="Search" matInput formControlName="category" maxlength="50" readonly>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && payfixFrmGrp.get('category')?.errors?.required">{{' Cadre Category is
+                        required'}}</mat-error>
+                    </div>
+    
+                </div>
+
+
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="cadreCode" readonly>
+                    </div>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && payfixFrmGrp.get('cadreCode')?.errors?.required">
+                      {{'Cadre Code is required'}}</mat-error>
+                  </div> 
+                <div class="section-b col">
+                    <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50" readonly>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && payfixFrmGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                      required'}}</mat-error>
+                  </div>
+  
+              </div>
+             
+
+
+           </div>
+
+           <br>
+
+
+
+
+            <div class="row">
+             
+
+              <div class="section-b col">
+                <mat-label>Mode of Pay Fixation<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="modeofpayFixation" maxlength="50">
+                
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('modeofpayFixation')?.errors?.required">
+                  {{'Mode of Pay Fixation is required'}}</mat-error>
+              </div>
+
+               
+              <div class="section-b col">
+                <mat-label> Scale of Pay <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="scaleOfpay" maxlength="50">
+                
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('scaleOfpay')?.errors?.required">
+                  {{'Scale of Pay is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Gender <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="gender" maxlength="50">
+               
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('gender')?.errors?.required">
+                  {{'Gender is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Basic Pay<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="basicPay" maxlength="50">
+                
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('basicPay')?.errors?.required">
+                  {{'Basic Pay is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              
+              <div class="section-b col">
+                <mat-label>Level in Pay Matrix<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="levelpaymatrix" maxlength="50">
+                
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('levelpaymatrix')?.errors?.required">
+                  {{'Level in Pay Matrix is required'}}</mat-error>
+              </div>  
+           
+              
+              <div class="section-b col">
+                <mat-label>Cell in Pay Matrix<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="cellInPayMatrix" maxlength="50">
+                
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('cellInPayMatrix')?.errors?.required">
+                  {{'Level in Pay Matrix is required'}}</mat-error>
+              </div>  
+            </div>
+            
+            
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Order Date <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="dat" name="dat" matInput formControlName="orderdate">
+                
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('orderdate')?.errors?.required">
+                  {{'Present Office Code is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label for = "date">Due Date of next Increment<span class="required">*</span></mat-label>
+                <input class="input" type="date" id="dat" name="dat" matInput formControlName="incrementduedate">
+                
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('incrementduedate')?.errors?.required">
+                  {{'Date of Relived  is required'}}</mat-error>
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+
+              <div class="section-b col">
+                <mat-label for = "date">Date of Effect<span class="required">*</span></mat-label>
+                <input class="input" type="date" id="dat" name="dat" matInput formControlName="witheffectfrom">
+               
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('witheffectfrom')?.errors?.required">
+                  {{'Posted Office Name is required'}}</mat-error>
+              </div>
+
+
+
+              <div class="section-b col">
+                <mat-label>Remarks <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="remarkspayfixation" maxlength="50"
+                  required>
+                
+                <mat-error *ngIf="submitted && payfixFrmGrp.get('remarkspayfixation')?.errors?.required">
+                  {{'Present Office Name is required'}}</mat-error>
+              </div>
+              
+              <div class="disflex">
+                <div class="button-container">
+                <button mat-flat-button color="warn" [routerLink]="['/emp-pay/list']">{{'Discard' | uppercase}}</button> 
+              
+                  <button mat-flat-button color="primary" (click)="onUpdate(id)">Save</button>
+                </div>
+                </div>
+
+            </div>
+            
+          </form>
+
+        </div>
+      
+  </div>
+</div>
+

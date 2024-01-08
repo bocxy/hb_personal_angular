@@ -1,0 +1,68 @@
+
+
+// .grid-container {
+//   // display: flex;
+//   justify-content: center;
+//   /* Center horizontally */
+//   align-items: center;
+//   /* Center vertically */
+//   height: 100vh;
+//   /* Set the container height to occupy the full viewport height */
+//   background-color: #f4f4f4;
+//   width: 100%;
+
+
+// }
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #fff; /* Set the background color to white */
+}
+
+.login-container {
+  width: 75%;
+  height: 75%;
+  display: flex;
+}
+
+.login-image {
+  flex: 1;
+  padding: 20px;
+}
+
+.login-form {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center text vertically */
+}
+
+/* Additional styling for form elements */
+h3 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+button {
+  width: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+
+
+

@@ -1,0 +1,31 @@
+<div *ngIf="data&&data.from === 'delete'">
+  <!-- <ng-container > -->
+    <mat-dialog-content>
+      <p class="fs_14 text-center mb-3 ">{{'Are you sure want to delete?'}}</p>
+      <div class="row w-100 mx-0 justify-content-center">
+        <button mat-raised-button color="primary" (click)="confirmDelete()" class="mr-2">
+          {{'Yes' }}
+        </button>
+        <button mat-raised-button color="accent" (click)="cancelDelete()">
+          {{'No'}}
+        </button>
+      </div>
+    </mat-dialog-content>
+  <!-- </ng-container> -->
+</div>
+<!-- <div *ngIf="data && data.from==='orderStatus'">
+
+<ng-container >
+  <mat-dialog-content>
+    <p class="fs_14 text-center mb-3 ">{{data.data.orderStatus!=='dispatch' ? 'Is this product ready for Delivery ?':'Isthis product is Delivered Successfully ?'}} </p>
+    <div class="row w-100 mx-0 justify-content-center">
+      <button mat-raised-button color="primary" (click)="confirmDelete()" class="mr-2">
+        {{'Yes' }}
+      </button>
+      <button mat-raised-button color="accent" (click)="cancelDelete()">
+        {{'No'}}
+      </button>
+    </div>
+  </mat-dialog-content>
+</ng-container>
+</div> -->

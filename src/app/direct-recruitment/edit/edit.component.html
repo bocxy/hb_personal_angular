@@ -1,0 +1,235 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/direct-recruitment/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+
+  <br>
+
+  <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Direct Recruitment'}}</h2>
+
+  <br>
+
+  <div>
+  
+        <div class="card">
+          
+          <form [formGroup]="directRecrutmntFrmGrp">
+
+
+            <div class="row">
+              
+             
+              <div class="section-b col-6">
+                <mat-label>Cadre Code<span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="cadreCode" maxlength="50"
+                  style="width: calc(95.5% - 5px);" >
+                  
+               </div>
+               
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('cadreCode')?.errors?.required">
+                  {{ 'Cadre Code is required' }}
+                </mat-error>
+              </div>
+              </div>
+
+
+
+              <div class= "container-box1" >
+                <h5 class="green-text">* Value Auto - populated</h5>
+
+
+                <div class="row">
+                
+                  <div class="section-b col">
+                <mat-label>Cadre Category<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="cadreCategory" maxlength="50"
+                  required>
+               
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('cadreCategory')?.errors?.required">
+                  {{'Cadre Category is required'}}</mat-error>
+              </div>
+              <div class="section-b col-6">
+                <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50"
+                  required>
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('cadreName')?.errors?.required">{{'Cadre Name  is
+                  required'}}</mat-error>
+              </div>
+
+
+
+
+
+
+
+                </div>
+
+            
+
+           </div>
+
+
+
+
+          
+            <div class="row">
+              
+              <div class="section-b col-6">
+                <mat-label> No of Post Approved <span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="noOfPostApproved" maxlength="50"
+                style="width: calc(95.5% - 5px);">
+               
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('noOfPostApproved')?.errors?.required">
+                  {{'No of Post Approved is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> BD Res Number <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="bdResReference" maxlength="50">
+                
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('bdResReference')?.errors?.required">
+                  {{'BD Res Number is required'}}</mat-error>
+              </div>
+              <div class="section-b col-6">
+                  <mat-label for ="date"> BD Res Date<span class="required">*</span></mat-label>
+                  <input class="input" type="date" name="Search" matInput formControlName="bdResDate" maxlength="50">
+                  
+                  <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('bdResDate')?.errors?.required">{{'BD Res Date is
+                    required'}}</mat-error>
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Prop sent to govt on <span class="required">*</span></mat-label>
+                <input class="input" type="date" name="Search" matInput formControlName="propSentToGovtOn" maxlength="50"
+                  required>
+               
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('propSentToGovtOn')?.errors?.required">
+                  {{'Prop sent to govt on is required'}}</mat-error>
+              </div>
+              
+             
+
+                <div class="section-b col-6">
+                  <mat-label>BD Res Reference<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="bdResReference" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('bdResReference')?.errors?.required">
+                    {{ 'BDS Res Reference is required' }}
+                  </mat-error>
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Go Obtained<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="goObtained" maxlength="50"
+                  required>
+               
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('goObtained')?.errors?.required">
+                  {{'Go Obtained is required'}}</mat-error>
+              </div>
+              <div class="section-b col-6">
+                <mat-label > Prop Status<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="propStatus" maxlength="50"
+                  required>
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('propStatus')?.errors?.required">{{'Prop Status is
+                  required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label >Prop Sent to TNPSC on <span class="required">*</span></mat-label>
+                <input class="input" type="date" name="Search" matInput formControlName="propSentToTnpscOn" maxlength="50"
+                  required>
+               
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('propSentToTnpscOn')?.errors?.required">
+                  {{'Prop Sent to TNPSC on is required'}}</mat-error>
+              </div>
+               
+                             
+               
+
+              <div class="section-b col-6">
+                <mat-label>Go Reference<span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="goReference" maxlength="50">
+                  <button class="browse-button" (click)="fileInput.click()">Browse
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </button>
+                </div>
+               
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('goReference')?.errors?.required">
+                  {{ 'Go Reference is required' }}
+                </mat-error>
+              </div>
+
+
+            </div>
+           
+
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Cand sent to board on<span class="required">*</span></mat-label>
+                <input class="input" type="date" name="Search" matInput formControlName="candSentToBoardOn" maxlength="50"
+                  required>
+               
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('candSentToBoardOn')?.errors?.required">
+                  {{'Cand sent to board on is required'}}</mat-error>
+              </div>
+              <div class="section-b col-6">
+                <mat-label > TNPSC Status<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="tnpscStatus" maxlength="50"
+                  required>
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('tnpscStatus')?.errors?.required">{{'TNPSC Status is
+                  required'}}</mat-error>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>No of Persons Joined<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="noOfPersonsJoined" maxlength="50"
+                  required>
+              
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('noOfPersonsJoined')?.errors?.required">
+                  {{'No of Persons Joined is required'}}</mat-error>
+              </div>
+              <div class="section-b col-6">
+                <mat-label for ="date"> Date of Appoinment<span class="required">*</span></mat-label>
+                <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfAppointment">
+                <mat-error *ngIf="submitted && directRecrutmntFrmGrp.get('dateOfAppointment')?.errors?.required">{{'Date of Appoinment is
+                  required'}}</mat-error>
+              </div>
+
+            </div>
+
+            <div class="row">               
+              
+              <div class="disflex">
+                <button mat-flat-button color="warn" [routerLink]="['/direc-recruitment/list']">{{'Discard' | uppercase}}</button> 
+              
+                  <button mat-flat-button color="primary" (click)="onUpdate(id)">Save</button>
+              </div>
+
+            </div>
+            
+          </form>
+
+        </div>
+      
+  </div>
+</div>
+

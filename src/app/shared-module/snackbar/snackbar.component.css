@@ -1,0 +1,19 @@
+.snack_content{
+  color: white!important;
+}
+/* ::ng-deep.mat-snack-bar-container {
+    color: black !important;
+    background: whitesmoke;
+    background: linear-gradient(to left, whitesmoke 50%, rgb(65, 252, 134) 50%);
+  animation: bg-animation 10s infinite linear;
+    background-size: 200% 100%;
+  }
+  @keyframes bg-animation {
+    from { 
+      background-position: left bottom;
+    }
+    to {
+      background-position: right bottom;
+    }
+  }
+ */

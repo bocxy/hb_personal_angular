@@ -1,0 +1,164 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/cga-details/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+  <br>
+
+  <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Compassionate Grounds Appointment Details'}}</h2>
+
+  <br>
+  <div>
+    
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <!-- <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Compassionate Ground Appoinment Details'|
+              uppercase}}</h2> -->
+          </div> 
+
+          <form [formGroup]="cgaDetailsFrmGrp">
+
+            <div class="row">
+              
+             
+            <div class="section-b col-6">
+              <mat-label>Cadre Code<span class="required">*</span></mat-label>
+              <div class="input-container">
+                <input class="input" type="text" name="Search" matInput formControlName="cadreCode" maxlength="50"
+                style="width: calc(95.5% - 5px);" >
+               
+             </div>
+             
+              <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('cadreCode')?.errors?.required">
+                {{ 'Cadre Code is required' }}
+              </mat-error>
+            </div>
+            </div>
+
+
+
+            <div class= "container-box1" >
+              <h5 class="green-text">* Value Auto - populated</h5>
+
+
+              <div class="row">
+               
+
+            
+
+
+
+
+            <div class="section-b col">
+                  <mat-label> Cadre Category<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="cadreCategory" readonly>
+                  </div>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('cadreCategory')?.errors?.required">
+                    {{'Cadre Category is required'}}</mat-error>
+                </div> 
+              <div class="section-b col">
+                  <mat-label > Cadre Name  <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50" readonly>
+                  <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                  <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                    required'}}</mat-error>
+                </div>
+
+
+
+              </div>
+
+          
+
+         </div>
+
+
+            
+            <div class="row">
+
+
+
+
+              <div class="section-b col">
+                  <mat-label> Date of Appoinment<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="dateOfAppointment" >
+                  </div>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('dateOfAppointment')?.errors?.required">
+                    {{'Date of Appoinment is required'}}</mat-error>
+                </div> 
+              <div class="section-b col">
+                  <mat-label > No of Post Approved <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="noOfPostApproved" maxlength="50" >
+                  <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                  <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('noOfPostApproved')?.errors?.required">{{' No of Post Approved is
+                    required'}}</mat-error>
+                </div>
+
+             
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> BD Res Number <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="bdResDate" maxlength="50">
+               
+                <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('bdResDate')?.errors?.required">
+                  {{'BD Res Number is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                  <mat-label for ="date"> BD Res Date<span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dat" name="dat" matInput formControlName="bdResNumber">
+                  <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                  <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('bdResNumber')?.errors?.required">{{'BD Res Date is
+                    required'}}</mat-error>
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col-6">
+                  <mat-label> BDS Res Reference <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="bdResReference" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </div>
+                  <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('bdResReference')?.errors?.required">
+                    {{'Upload NOC/Permission Order is required'}}
+                  </mat-error>
+                </div>
+              
+
+                <div class="section-b col">
+                  <mat-label>No Of Persons Joined<span class="required">*</span></mat-label>
+                  <input class="input" type="number" name="Search" matInput formControlName="noOfPersonsJoined" maxlength="50"
+                    required>
+                  
+                  <mat-error *ngIf="submitted && cgaDetailsFrmGrp.get('noOfPersonsJoined')?.errors?.required">
+                    {{'No Of Persons Joined is required'}}</mat-error>
+                </div>
+            </div>
+      
+
+
+            <div class="row">               
+              
+              <div class="disflex">
+                <button mat-flat-button color="warn" [routerLink]="['/cell-details/list']">{{'Discard' | uppercase}}</button> 
+                 
+                  <button mat-flat-button color="primary" (click)="onUpdate(id)">Save</button>
+                     
+                </div>
+
+            </div>
+            
+          </form>
+
+        </div>
+     
+  </div>
+</div>
+

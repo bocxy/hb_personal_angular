@@ -1,0 +1,227 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/asset-details/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+
+  <br>
+  <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Movable Assets'}}</h1>
+<br>
+
+
+  <div>
+   
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <!-- <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Direct Recruitment'|
+              uppercase}}</h2> -->
+          </div>
+
+          <form [formGroup]="movableFormGrp">
+
+            <div class="row">
+              <div class="section-b col-md-6">
+                <mat-label>Employee Id<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="empId" maxlength="50" required>
+               
+                <mat-error *ngIf="submitted && movableFormGrp.get('empId')?.errors?.required">
+                  {{'Employee Id is required'}}</mat-error>
+              </div>
+              
+
+            </div>
+            <div class="row">
+              <div class="section-b col-md-6">
+                <mat-label > Employee Name <span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="empName" >
+                </div>
+                  <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>                
+                <mat-error *ngIf="submitted && movableFormGrp.get('empName')?.errors?.required">
+                  {{'Employee Name is required'}}</mat-error>
+              </div>
+              
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                  <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="cadreCode" >
+                  </div>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && movableFormGrp.get('cadreCode')?.errors?.required">
+                    {{'Cadre Code is required'}}</mat-error>
+                </div> 
+              <div class="section-b col">
+                  <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50">
+                  <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                  <mat-error *ngIf="submitted && movableFormGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                    required'}}</mat-error>
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Date of Birth <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfBirth">
+                
+                <mat-error *ngIf="submitted && movableFormGrp.get('dateOfBirth')?.errors?.required">
+                  {{'Date of Birth is required'}}</mat-error>
+              </div>
+             
+
+              <div class="section-b col">
+                  <mat-label> Date of Joining <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="dateOfJointService" maxlength="50">
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && movableFormGrp.get('dateOfJointService')?.errors?.required">
+                    {{'Applicant Age is required'}}
+                  </mat-error>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="section-b col">
+                  <mat-label> Source Of Income <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                  <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+                      <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+                    placeholder="Source"  matInput formControlName="sourceOfIncome">
+                      <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+                    </mat-select>
+                  </div>
+                 
+                  <mat-error *ngIf="submitted && movableFormGrp.get('sourceOfIncome')?.errors?.required">
+                    {{'Source Of Income is required'}}
+                  </mat-error>
+                </div>
+
+               <div class="section-b col">
+                  <mat-label> Value of Property <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="valueOfProperty" maxlength="50">
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && movableFormGrp.get('valueOfProperty')?.errors?.required">
+                    {{'Value of Property is required'}}
+                  </mat-error>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+              <div class="section-b col">
+                  <mat-label> Property Registered Name <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                  <mat-select multiple [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+                      <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+                    placeholder="Source"  matInput formControlName="propRegisteredName">
+                      <mat-option *ngFor="let row of status" [value]="row.value">{{row.status}}</mat-option>
+                    </mat-select>
+                  </div>
+                 
+                  <mat-error *ngIf="submitted && movableFormGrp.get('propRegisteredName')?.errors?.required">
+                    {{' Property Registered Name is required'}}
+                  </mat-error>
+                </div>
+
+             
+
+                <div class="section-b col">
+                  <mat-label for="date">Date Of Purchase <span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dob" name="dob" matInput formControlName="dateOfPurchase">
+                  <mat-error *ngIf="submitted && movableFormGrp.get('dateOfPurchase')?.errors?.required">{{'Date Of Purchase is
+                    required'}}</mat-error>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="section-b col">
+                  <mat-label> Property Description <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="descOfProperty" maxlength="50">
+                    <mat-error *ngIf="submitted && movableFormGrp.get('descOfProperty')?.errors?.required">
+                    {{'Property Description is required'}}
+                  </mat-error>
+                </div>
+              </div>
+
+                <div class="section-b col">
+                  <mat-label> Yearly Income from Property <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="incomeFromProp" maxlength="50">
+                    <mat-error *ngIf="submitted && movableFormGrp.get('incomeFromProp')?.errors?.required">
+                    {{'Property Description is required'}}
+                  </mat-error>
+                </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="section-b col">
+                  <mat-label> Upload Document Name <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="propertyDocumentName" maxlength="50">
+                   
+                  </div>
+                  <mat-error *ngIf="submitted && movableFormGrp.get('propertyDocumentName')?.errors?.required">
+                    {{'Upload Document Name is required'}}
+                  </mat-error>
+                </div>
+
+
+              <div class="section-b col">
+                  <mat-label> Upload Document <span class="required">*</span></mat-label>
+                  
+                  <div class="input-container">
+                    <!-- <input class="input" type="text" name="Search" matInput formControlName="propertyDocumentfile" maxlength="50"> -->
+                    <ng-container *ngFor="let document of
+                  [
+                  { name: 'Document View', path: movableFormGrp.value.propertyDocumentPath }
+                  ]">
+                
+                  <button mat-button style="background-color: #f3eef3; color: #ffffff;">
+                    <a [href]="openFileInNewTab(document.path)" target="_blank">View Document</a>
+                  </button>
+                  
+                  </ng-container>
+                    <!-- <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)"> -->
+                  </div>
+                  <mat-error *ngIf="submitted && movableFormGrp.get('propertyDocumentfile')?.errors?.required">
+                    {{'Upload Document is required'}}
+                  </mat-error>
+                </div>
+
+          </div>
+
+
+           
+            <div class="row">               
+              
+              <div class="disflex">
+                <button mat-flat-button color="warn" [routerLink]="['/asset-details/list']">{{'Back' | uppercase}}</button> 
+                     
+      
+                </div>
+
+            </div>
+            
+          </form>
+
+        </div>
+     
+  </div>
+</div>
+

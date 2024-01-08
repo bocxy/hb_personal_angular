@@ -1,0 +1,289 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/emp-promotion/list"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+    </div>
+
+    <br>
+    <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee Promotion'}}
+    </h2>
+    <br>
+    <div>
+     
+          <div class="card">
+            
+  
+            <form [formGroup]="promotionFrmGrp">
+
+
+
+              <div class="row">
+              <div class="section-b col-6">
+                <mat-label>Employee Id<span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <input class="input" type="text" name="Search" matInput formControlName="employeeId" maxlength="50"
+                  style="width: calc(95.5% - 5px);" >
+                  <button class="browse-button" (click)="onButtonClicked()">Fetch
+                    <input type="input" #fileInput style="display: none;">
+                  </button>
+               </div>
+               
+                <mat-error *ngIf="submitted && promotionFrmGrp.get('employeeId')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+            </div>
+
+             
+
+              <div class= "container-box1" >
+                <h5 class="green-text">* Value Auto - populated</h5>
+
+
+
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Employee Name <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="employeeName" readonly>
+                      </div>
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && promotionFrmGrp.get('employeeName')?.errors?.required">
+                        {{'Employee Name is required'}}</mat-error>
+                    </div> 
+                  <div class="section-b col">
+                      <mat-label > Cadre Category <span class="required">*</span></mat-label>
+                      <input class="input" type="text" name="Search" matInput formControlName="category" maxlength="50" readonly>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && promotionFrmGrp.get('category')?.errors?.required">{{' Cadre Category is
+                        required'}}</mat-error>
+                    </div>
+    
+                </div>
+
+
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="cadreCode" readonly>
+                    </div>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && promotionFrmGrp.get('cadreCode')?.errors?.required">
+                      {{'Cadre Code is required'}}</mat-error>
+                  </div> 
+                <div class="section-b col">
+                    <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50" readonly>
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && promotionFrmGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                      required'}}</mat-error>
+                  </div>
+  
+              </div>
+             
+
+
+           </div>
+
+           <br>
+            
+
+
+
+
+  
+              <div class="row">
+
+
+                <div class="section-b col">
+                  <mat-label> Gender <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="gender" maxlength="50">
+                 
+                  <mat-error *ngIf="submitted && promotionFrmGrp.get('gender')?.errors?.required">
+                    {{'Gender is required'}}</mat-error>
+                </div>
+             
+                
+                <div class="section-b col">
+                  <mat-label>Promotion Cadre Name <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="promotedCadreName" maxlength="50" readonly>
+                 
+                  <mat-error *ngIf="submitted && promotionFrmGrp.get('promotedCadreName')?.errors?.required">
+                    {{'Promotion Cadre Name is required'}}</mat-error>
+                </div>
+  
+              </div>
+              <div class="row">
+
+              <div class="section-b col">
+                <mat-label>Promotion Cadre Code<span class="required">*</span></mat-label>
+                <div class="input-container">
+                
+                  <mat-select formControlName="promotedCadreCode">
+                    <mat-option *ngFor="let code of cadreCodes" [value]="code">{{ code }}</mat-option>
+                  </mat-select>
+
+                  <button class="browse-button" (click)="getCadreNameCategory()">Fetch
+                    <input type="input" #fileInput style="display: none;">
+                  </button>
+               </div>
+                <mat-error *ngIf="submitted && promotionFrmGrp.get('promotedCadreCode')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+
+
+
+
+               
+                <div class="section-b col">
+                  <mat-label>Promotion Cadre Category<span class="promotedCadreCategory">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="promotedCadreCategory" maxlength="50" readonly>
+                 
+                  <mat-error *ngIf="submitted && promotionFrmGrp.get('promotedCadreCategory')?.errors?.required">
+                    {{'Promotion Cadre Category is required'}}</mat-error>
+                </div>
+  
+              </div>
+              <div class="row">
+                
+                
+
+
+
+                  <div class="section-b col">
+                <mat-label>Posted Office Code<span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <mat-select formControlName="postOfficeCode">
+                    <mat-option *ngFor="let code of officeCodes" [value]="code">{{ code }}</mat-option>
+                  </mat-select>
+
+                  <button class="browse-button" (click)="getOfficeName1()">Fetch
+                    <input type="input" #fileInput style="display: none;">
+                  </button>
+               </div>
+                <mat-error *ngIf="submitted && promotionFrmGrp.get('postOfficeCode')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+
+
+                  <div class="section-b col">
+                  <mat-label>Date Of Promotion <span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfPromotion">
+                 
+                  <mat-error *ngIf="submitted && promotionFrmGrp.get('dateOfPromotion')?.errors?.required">
+                    {{'Date Of Promotion is required'}}</mat-error>
+                </div>
+
+
+              </div>
+              <div class="row">
+               
+
+                <div class="section-b col">
+                    <mat-label>Posted Office Name<span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="postOfficeName" maxlength="50" readonly>
+                   
+                    <mat-error *ngIf="submitted && promotionFrmGrp.get('postOfficeName')?.errors?.required">
+                      {{'Posted Office Name is required'}}</mat-error>
+                  </div>
+                
+                
+                <div class="section-b col">
+                    <mat-label for = "date">Date of Relived <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfRelieved">
+                    
+                    <mat-error *ngIf="submitted && promotionFrmGrp.get('dateOfRelieved')?.errors?.required">
+                      {{'Date of Relived  is required'}}</mat-error>
+                  </div>
+  
+              </div>
+              
+              <div class="row">
+               
+                <div class="section-b col">
+                <mat-label>Present Office Code <span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <mat-select formControlName="officeCode">
+                    <mat-option *ngFor="let code of officeCodes" [value]="code">{{ code }}</mat-option>
+                  </mat-select>
+
+                  <button class="browse-button" (click)="getOfficeName()">Fetch
+                    <input type="input" #fileInput style="display: none;">
+                  </button>
+               </div>
+                <mat-error *ngIf="submitted && promotionFrmGrp.get('officeCode')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+
+
+
+               
+
+                <div class="section-b col">
+                    <mat-label>Date of Joining at posted Place <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfJoinPostPlace">
+                    
+                    <mat-error *ngIf="submitted && promotionFrmGrp.get('dateOfJoinPostPlace')?.errors?.required">
+                      {{'Date of Joining at posted Place is required'}}</mat-error>
+                  </div>
+  
+              </div>
+
+
+
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>Present Office Name <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="officeName" maxlength="50"
+                    readonly>
+                  
+                  <mat-error *ngIf="submitted && promotionFrmGrp.get('officeName')?.errors?.required">
+                    {{'Present Office Name is required'}}</mat-error>
+                </div>
+               
+  
+                <div class="section-b col">
+                    <mat-label> Joining Time EL Credit <span class="required">*</span></mat-label>
+                    <input class="input" type="number" name="Search" matInput formControlName="joinTimeELCredit" maxlength="50">
+                   
+                    <mat-error *ngIf="submitted && promotionFrmGrp.get('joinTimeELCredit')?.errors?.required">
+                      {{'Joining Time EL Credit is required'}}</mat-error>
+                  </div>
+
+              </div>
+
+
+              <div class="row">
+               
+                
+                <div class="section-b col">
+                    <mat-label>Remarks Tenure <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="remarks" maxlength="50"
+                      required>
+                    
+                    <mat-error *ngIf="submitted && promotionFrmGrp.get('remarks')?.errors?.required">
+                      {{'Remarks Tenure is required'}}</mat-error>
+                  </div>
+  
+              </div>
+
+              <div class="disflex">
+                <button mat-flat-button color="warn" [routerLink]="['/emp-promotion/list']">{{'Discard' | uppercase}}</button> 
+                
+                <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+    
+              </div>
+
+              
+            </form>
+  
+          </div>
+        
+    </div>
+  </div>
+

@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Export to Excel</h2>
+<div mat-dialog-content>
+  <table mat-table [dataSource]="data.dataSource">
+    <ng-container [matColumnDef]="column" *ngFor="let column of data.headers">
+      <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <mat-form-field appearance="fill">
+          <mat-label>Custom Column Header</mat-label>
+          <input matInput [(ngModel)]="headerMap[i]">
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="data.headers"></tr>
+    <tr mat-row *matRowDef="let row; columns: data.headers;"></tr>
+  </table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="headerMap" cdkFocusInitial>Export</button>
+</div>

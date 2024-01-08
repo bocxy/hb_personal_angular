@@ -1,0 +1,140 @@
+<div class="container">
+    <div class="card">
+      <div class="row" style="display:flex;flex-direction: row;align-items: center;gap: 2rem;">
+        <div class="section-b col-md-3">
+          <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+            placeholder="Search...">
+        </div>
+
+
+          <div class="section-b col-md-6">
+            <!-- <label for="divisionSelect">Division:</label> -->
+            <select class="form-select m-3" (change)="applyFilter($event.target.value)" id="divisionSelect" name="Division">
+              <option value="">Select Division</option>
+              <option value="division1">Division 1</option>
+              <option value="division2">Division 2</option>
+              <option value="division3">Division 3</option>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+
+        <form style="display: flex;gap:15px">
+
+            <div class="add-coupon col-md-3">
+              <a routerLink="/office-data/create">+&nbsp;{{'Add New Office' }}</a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <table mat-table matSort dataSource="dataSource">
+          <ng-container matColumnDef="sno">
+            <th class="first" style="border-top-left-radius:10px;border-bottom-left-radius: 10px" mat-header-cell
+              *matHeaderCellDef>
+              <span>S.No</span>
+            </th>
+            <td mat-cell *matCellDef="let request"> </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="offcode">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Office Code</span>
+            </th>
+            <td mat-cell *matCellDef="let request"></td>
+          </ng-container>
+          <ng-container matColumnDef="offceName">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Office Name</span>
+            </th>
+            <td mat-cell *matCellDef="let request"></td>
+          </ng-container>
+          <ng-container matColumnDef="headOfOff">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Head of Office</span>
+            </th>
+            <td mat-cell *matCellDef="let request"></td>
+          </ng-container>
+
+
+
+          <ng-container matColumnDef="OffcLoc">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Office Location</span>
+
+            </th>
+            <td mat-cell *matCellDef="let request"></td>
+          </ng-container>
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Address</span>
+
+            </th>
+            <td mat-cell *matCellDef="let request"></td>
+          </ng-container>
+          <ng-container matColumnDef="pincode">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Pin Code</span>
+
+            </th>
+            <td mat-cell *matCellDef="let request"> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Phone</span>
+
+            </th>
+            <td mat-cell *matCellDef="let request"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Email</span>
+
+            </th>
+            <td mat-cell *matCellDef="let request"></td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="action">
+            <th class="last" style="border-top-right-radius:10px;border-bottom-right-radius: 10px" mat-header-cell
+              *matHeaderCellDef>
+              <span>Action</span>
+            </th>
+            <td mat-cell *matCellDef="let request">
+              <!-- <div class="displayicon">
+                <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit"
+                  (click)="edit('edit',request._id)">edit</mat-icon>
+                <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Delete"
+                  (click)="delete(request._id)">delete</mat-icon>
+                <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="View"
+                  (click)="edit('view',request._id)">visibility</mat-icon>
+              </div> -->
+            </td>
+          </ng-container>
+
+          <!-- <ng-container matRowDef="let row; columns: columnsToDisplay"></ng-container>
+<tr mat-row *matRowDef="let request; columns: columnsToDisplay"></tr> -->
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+           <tr mat-row *matRowDef="let request; columns: columnsToDisplay"></tr>
+          <!-- <ng-container matHeaderRowDef="columnsToDisplay"></ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr> -->
+
+        </table>
+        <!-- <div class="spinner-container" *ngIf="(dataSource.data?.length ===0 || filteredData?.length===0) && !noData">
+          <mat-spinner [diameter]="50"></mat-spinner>
+        </div>
+        <div class="no_data mt-2" *ngIf="(dataSource.data?.length ===0 || filteredData?.length===0)  && noData">
+          <p>{{'No data available'}}</p>
+        </div> -->
+      </div>
+
+    </div>
+
+
+
+
+

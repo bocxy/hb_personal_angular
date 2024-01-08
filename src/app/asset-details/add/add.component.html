@@ -1,0 +1,227 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/asset-details/list"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+    </div>
+
+    
+    <br>
+    <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Movable Assets'}}</h1>
+  <br>
+  
+    <div>
+      
+          <div class="card">
+            <div class="card-title" style="display: flex;justify-content: center;">
+              <!-- <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Direct Recruitment'|
+                uppercase}}</h2> -->
+            </div>
+  
+            <form [formGroup]="movableFormGrp">
+  
+              <div class="row">
+               
+
+                <div class="section-b col-6">
+                  <mat-label>Employee Id<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="empId" maxlength="50"
+                    style="width: calc(95.5% - 5px);" >
+                    <button class="browse-button" (click)="onButtonClicked()">Fetch
+                      <input type="input" #fileInput style="display: none;">
+                    </button>
+                 </div>
+                  <mat-hint class="hintalign">{{ movableFormGrp.get('empId').value?.length || 0 }}/50</mat-hint>
+                  <mat-error *ngIf="submitted && movableFormGrp.get('empId')?.errors?.required">
+                    {{ 'Employee Id is required' }}
+                  </mat-error>
+                </div>
+              </div>
+  
+               
+  
+                <div class= "container-box1" >
+                  <h5 class="green-text">* Value Auto - populated</h5>
+  
+  
+                  <div class="row">
+                    <div class="section-b col-md-6">
+                      <mat-label > Employee Name <span class="required">*</span></mat-label>
+                      
+                        <input class="input" type="text" name="Search" matInput formControlName="empName"
+                        style="width: calc(96.5% - 5px);" readonly>
+                     
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>                
+                      <mat-error *ngIf="submitted && movableFormGrp.get('empName')?.errors?.required">
+                        {{'Employee Name is required'}}</mat-error>
+                    </div>
+                    
+      
+                  </div>
+                <div class="row">
+                  <div class="section-b col">
+                      <mat-label> Cadre Code <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="cadreCode" readonly>
+                      </div>
+                        <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                        <mat-error *ngIf="submitted && movableFormGrp.get('cadreCode')?.errors?.required">
+                        {{'Cadre Code is required'}}</mat-error>
+                    </div> 
+                  <div class="section-b col">
+                      <mat-label > Cadre Name <span class="required">*</span></mat-label>
+                      <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50" readonly>
+                      <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                      <mat-error *ngIf="submitted && movableFormGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                        required'}}</mat-error>
+                    </div>
+    
+                </div>
+                <div class="row">
+                  <div class="section-b col">
+                    <mat-label> Date of Birth <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfBirth" readonly>
+                    
+                    <mat-error *ngIf="submitted && movableFormGrp.get('dateOfBirth')?.errors?.required">
+                      {{'Date of Birth is required'}}</mat-error>
+                  </div>
+                 
+  
+                  <div class="section-b col">
+                      <mat-label> Date of Joining <span class="required">*</span></mat-label>
+                      <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfJointService" readonly>
+                      
+                      <mat-error *ngIf="submitted && movableFormGrp.get('dateOfJointService')?.errors?.required">
+                        {{'Date of Joining is required'}}</mat-error>
+                    </div>
+                   
+                </div>
+  
+  
+             </div>
+  
+             <br>
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label> Source Of Income <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                    <mat-select [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+                        <input class="input m-3" (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+                      placeholder="Source"  matInput formControlName="sourceOfIncome">
+                        <mat-option *ngFor="let row of status" [value]="row.status">{{row.status}}</mat-option>
+                      </mat-select>
+                    </div>
+                   
+                    <mat-error *ngIf="submitted && movableFormGrp.get('sourceOfIncome')?.errors?.required">
+                      {{'Source Of Income is required'}}
+                    </mat-error>
+                  </div>
+
+                 <div class="section-b col">
+                    <mat-label> Value of Property <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="valueOfProperty" maxlength="50">
+                     
+                    </div>
+                    
+                    <mat-error *ngIf="submitted && movableFormGrp.get('valueOfProperty')?.errors?.required">
+                      {{'Value of Property is required'}}
+                    </mat-error>
+                  </div>
+
+  
+              </div>
+
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label> Property Registered Name <span class="required">*</span></mat-label>
+                      <div class="input-container">
+                    <mat-select [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()">
+                        <input class="input " (keyup)="applyFilter($event.target.value)" type="text" name="Search"
+                      placeholder="Source"  matInput formControlName="propRegisteredName">
+                        <mat-option *ngFor="let row of status" [value]="row.status">{{row.status}}</mat-option>
+                      </mat-select>
+                    </div>
+                   
+                    <mat-error *ngIf="submitted && movableFormGrp.get('propRegisteredName')?.errors?.required">
+                      {{' Property Registered Name is required'}}
+                    </mat-error>
+                  </div>
+
+               
+
+                  <div class="section-b col">
+                    <mat-label for="date">Date Of Purchase <span class="required">*</span></mat-label>
+                    <input class="input" type="date" id="dob" name="dob" matInput formControlName="dateOfPurchase">
+                    <mat-error *ngIf="submitted && movableFormGrp.get('dateOfPurchase')?.errors?.required">{{'Date Of Purchase is
+                      required'}}</mat-error>
+                  </div>
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                    <mat-label> Property Description <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="descOfProperty" maxlength="50">
+                      <mat-error *ngIf="submitted && movableFormGrp.get('descOfProperty')?.errors?.required">
+                      {{'Property Description is required'}}
+                    </mat-error>
+                  </div>
+                </div>
+
+                  <div class="section-b col">
+                    <mat-label> Yearly Income from Property <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="incomeFromProp" maxlength="50">
+                      <mat-error *ngIf="submitted && movableFormGrp.get('incomeFromProp')?.errors?.required">
+                      {{'Property Description is required'}}
+                    </mat-error>
+                  </div>
+                  </div>
+
+
+              </div>
+
+
+              <div class="row">
+
+                <div class="section-b col">
+                    <mat-label> Upload Document Name <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="propertyDocumentName" maxlength="50">
+                    
+                    </div>
+                    <mat-error *ngIf="submitted && movableFormGrp.get('propertyDocumentName')?.errors?.required">
+                      {{'Upload Document Name is required'}}
+                    </mat-error>
+                  </div>
+
+                  <div class="section-b col">
+                    <mat-label>Upload Document  <span class="required">*</span></mat-label>
+                    <input class="input"  accept=".pdf"  type="file" name="Search" formControlName="propertyDocument" (change)="onFileSelected($event)">
+                  </div>
+
+                 
+
+            </div>
+  
+              <div class="row">               
+                
+                <div class="disflex">
+                  <button mat-flat-button color="warn" [routerLink]="['/asset-details/list']">{{'Discard' | uppercase}}</button> 
+                     
+                    <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+        
+                  </div>
+  
+              </div>
+              
+            </form>
+  
+          </div>
+        
+    </div>
+  </div>
+

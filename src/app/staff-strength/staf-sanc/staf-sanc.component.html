@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/staff-strength/list" ></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+
+  <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Staff Strength'}}</h1>
+  
+
+  <div>
+    
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <!-- <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Direct Recruitment'|
+              uppercase}}</h2> -->
+          </div>
+
+          <form [formGroup]="staffSancFormGrp">
+           
+            
+         
+             <div class="row">
+              <div class="section-b col">
+                  <mat-label> Designation Code <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input"  type="text" name="Search" matInput formControlName="cadreCode" (keyup)="uniqueCadreCode($event)">
+                  </div>
+                    <!-- <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option> -->
+                    <mat-error *ngIf="submitted && staffSancFormGrp.get('cadreCode')?.errors?.required">
+                    {{'Cadre Code is required'}}</mat-error>
+                </div> 
+              <div class="section-b col">
+                  <mat-label > Designation Name <span class="required">*</span></mat-label>
+                  <input class="input"   type="text" name="Search" matInput formControlName="cadreName" >
+                  <!-- <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option> -->
+                  <mat-error *ngIf="submitted && staffSancFormGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+                    required'}}</mat-error>
+                </div>
+
+            </div>
+            <div class="row">
+             
+              <div class="section-b col">
+                  <mat-label> Service Category <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input"  type="text" name="Search" matInput formControlName="cadreCategory" >
+                  </div>
+                    <!-- <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option> -->
+                    <mat-error *ngIf="submitted && staffSancFormGrp.get('cadreCategory')?.errors?.required">
+                    {{'Cadre Category is required'}}</mat-error>
+                </div> 
+              <div class="section-b col">
+                  <mat-label > Sanctioned <span class="required">*</span></mat-label>
+                  <input class="input"   type="text" name="Search" matInput formControlName="sanctioned" >
+                  <!-- <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option> -->
+                  <mat-error *ngIf="submitted && staffSancFormGrp.get('sanctioned')?.errors?.required">{{' Sanctioned is
+                    required'}}</mat-error>
+                </div>
+                
+            </div>
+
+          
+
+            <div class="row">
+             
+             <div class="section-b col">
+                 <mat-label> Present <span class="required">*</span></mat-label>
+                 <div class="input-container">
+                  <input class="input"   type="text" name="Search" matInput formControlName="present" >
+                 </div>
+                   <mat-error *ngIf="submitted && staffSancFormGrp.get('present')?.errors?.required">
+                   {{'Present is required'}}</mat-error>
+               </div> 
+             <div class="section-b col">
+                 <mat-label > Vacant <span class="required">*</span></mat-label>
+                 <input class="input"   type="text" name="Search" matInput formControlName="vacant" [value]="(staffSancFormGrp.get('sanctioned').value || 0) - (staffSancFormGrp.get('present').value || 0)" readonly>
+                 <mat-error *ngIf="submitted && staffSancFormGrp.get('vacant')?.hasError('required')">
+        Vacant is required
+    </mat-error>
+               </div>
+               
+           </div>
+
+           
+           
+
+            <div class="row">               
+              
+              <div class="disflex">
+                  
+                 
+                        <button mat-flat-button color="warn" [routerLink]="['/staff-strength/list']">{{'Discard' | uppercase}}</button> 
+                     
+                     <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+               
+                    </div>
+
+            </div>
+            
+          </form>
+
+        </div>
+     
+  </div>
+</div>
+

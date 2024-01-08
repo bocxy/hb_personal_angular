@@ -1,0 +1,991 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/employee/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+
+  <div>
+    <mat-tab-group class="remove-border-bottom" [selectedIndex]="selectedTabIndex">
+      <mat-tab label="Personal">
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Personal
+              Information'|
+              uppercase}}</h2>
+          </div>
+
+          <div class="Upload_Photo">
+            <input type="file" id="imageUpload" style="display: none;" accept="image/*" />
+                                  <img src="../../../assets/uploadphoto.PNG"  width="100" height="100"
+             alt="Upload your Photo" style="float: right;" onclick="document.getElementById('imageUpload').click();" />
+
+
+          </div>
+
+          <form [formGroup]="personalForm">
+
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Employee ID <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="employeeId" >
+               
+                <mat-error *ngIf="submitted && personalForm.get('employeeId')?.errors?.required">
+                  {{'Employee ID is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Employee Name <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="employeeName" maxlength="50" required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('employeeName')?.errors?.required">
+                  {{'Employee Name is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Date of Birth <span class="required">*</span></mat-label>
+                <input class="input" type="date" name="Search" matInput formControlName="dateOfBirth" (change)="getRetirementDate()">
+                <mat-error *ngIf="submitted && personalForm.get('dateOfBirth')?.errors?.required">
+                  {{'Date of Birth is required'}}
+                </mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label> Place of Birth <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="placeOfBirth" maxlength="50" required >
+              
+                <mat-error *ngIf="submitted && personalForm.get('placeOfBirth')?.errors?.required">
+                  {{'Office code is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Father's Name <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="fatherName" maxlength="50" required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('fatherName')?.errors?.required">
+                  {{'Father Name is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label>Mother's Name <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="motherCode" maxlength="50" required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('motherCode')?.errors?.required">
+                  {{'Mother Name is required'}}</mat-error>
+             </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Spouse Name<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="spouseName" maxlength="50"
+                required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('spouseName')?.errors?.required">
+                  {{'Spouce Name is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Religion <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="religion" maxlength="50" required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('religion')?.errors?.required">
+                  {{'Religion is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label>Group <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="group"  required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('group')?.errors?.required">
+                  {{'Group is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Community <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="community" maxlength="50"
+                required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('community')?.errors?.required">
+                  {{'Community is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label> Sub Caste <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="subCaste" maxlength="50"
+                required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('subCaste')?.errors?.required">
+                  {{'Caste is required'}}</mat-error>
+              </div>
+
+
+              <div class="section-b col">
+                <mat-label> Mother Tongue <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="motherTongue" maxlength="50" required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('motherTongue')?.errors?.required">
+                  {{'Mother Tongue is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Identification Mark 1 <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="identificationMark1" maxlength="50"
+                required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('identificationMark1')?.errors?.required">
+                  {{'Identification Mark 1 is required'}}</mat-error>
+              </div>
+
+             
+                <div class="section-b col">
+                  <mat-label> Identification Mark 2 <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="identificationMark2" maxlength="50"
+                  required >
+                 
+                  <mat-error *ngIf="submitted && personalForm.get('identificationMark2')?.errors?.required">
+                    {{'Identification Mark 2 is required'}}</mat-error>
+                </div>
+
+              <div class="section-b col">
+                <mat-label> Blood Group <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="bloodGroup" maxlength="50" required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('bloodGroup')?.errors?.required">
+                  {{'Mother Tongue is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Permanant Address <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="permanentAddress" 
+                required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('permanentAddress')?.errors?.required">
+                  {{'Sub Caste is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label> Present Address <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="presentAddress"  required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('presentAddress')?.errors?.required">
+                  {{'Present Address is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Mobile Number <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="mobileNumber" maxlength="10"
+                required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('mobileNumber')?.errors?.required">
+                  {{'Mobile Number is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label> Aadhar Number <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="aadhaarNumber" maxlength="12"
+                required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('aadhaarNumber')?.errors?.required">
+                  {{'Aadhar Number is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label> PAN Number <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="panNumber" maxlength="20" required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('panNumber')?.errors?.required">
+                  {{'PAN Number is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Qualification <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="qualification" maxlength="50"
+                required >
+               
+                <mat-error *ngIf="submitted && personalForm.get('qualification')?.errors?.required">
+                  {{'Qualification is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label> Email Id <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="emailId" maxlength="50" required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('emailId')?.errors?.required">
+                  {{'Permanent Address is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+            
+
+
+              <div class="section-b col">
+                <mat-label>Office Code<span class="required">*</span></mat-label>
+                <div class="input-container">
+                  <mat-select formControlName="officeCode">
+                    <mat-option *ngFor="let code of officeCodes" [value]="code">{{ code }}</mat-option>
+                  </mat-select>
+
+                  <button class="browse-button" (click)="getOfficeName()">Fetch
+                    <input type="input" #fileInput style="display: none;">
+                  </button>
+               </div>
+                <mat-error *ngIf="submitted && personalForm.get('officeCode')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+
+
+
+
+              <div class="section-b col">
+                <mat-label> Office Name <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="officeName" maxlength="50" readonly >
+                
+                <mat-error *ngIf="submitted && personalForm.get('officeName')?.errors?.required">
+                  {{'Pan Number is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+             
+              <div class="section-b col">
+                <mat-label>Designation Code<span class="required">*</span></mat-label>
+                <div class="input-container">
+                
+                  <mat-select formControlName="cadreCode">
+                    <mat-option *ngFor="let code of cadreCodes" [value]="code">{{ code }}</mat-option>
+                  </mat-select>
+
+                  <button class="browse-button" (click)="getCadreNameCategory()">Fetch
+                    <input type="input" #fileInput style="display: none;">
+                  </button>
+               </div>
+                <mat-error *ngIf="submitted && personalForm.get('cadreCode')?.errors?.required">
+                  {{ 'Employee Id is required' }}
+                </mat-error>
+              </div>
+
+
+
+
+
+
+              <div class="section-b col">
+                <mat-label> Gender <span class="required">*</span></mat-label>
+                
+                <mat-select class="input" type="text" name="Search" formControlName="gender" >
+                  <mat-option value="Select">Select</mat-option>
+                        <mat-option value="Male">Male</mat-option>
+                        <mat-option value="Female">Female</mat-option>
+                        <mat-option value="Others">Others</mat-option>
+                        
+                </mat-select>
+                <mat-error *ngIf="submitted && personalForm.get('gender')?.errors?.required">
+                  {{'Email is required'}}</mat-error>
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Service Category <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="cadreCategory" maxlength="50"
+                readonly >
+               
+                <mat-error *ngIf="submitted && personalForm.get('cadreCategory')?.errors?.required">
+                  {{' Cadre Category is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label> Designation Name <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50" readonly >
+                
+                <mat-error *ngIf="submitted && personalForm.get('cadreName')?.errors?.required">
+                  {{'Email is required'}}</mat-error>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Differently Abled <span class="required">*</span></mat-label>
+                <mat-select formControlName="differentlyAbled"  >
+                  <mat-option [value]="'Yes'">Yes</mat-option>
+                  <mat-option [value]="'No'">No</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && personalForm.get('differentlyAbled')?.errors?.required">
+                  {{ 'Differently Abled is required' }}
+                </mat-error>
+              </div>
+
+
+              <div class="section-b col">
+                <mat-label> Charges Pending <span class="required">*</span></mat-label>
+                <mat-select formControlName="chargesPending"  >
+                  <mat-option [value]="'Yes'">Yes</mat-option>
+                  <mat-option [value]="'No'">No</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && personalForm.get('chargesPending')?.errors?.required">
+                  {{ 'Charges Pending  is required' }}
+                </mat-error>
+              </div>
+             
+            </div>
+
+            <div class="row" *ngIf="personalForm.controls['differentlyAbled'].value === 'Yes'">
+              <div class="section-b col">
+                <mat-label>Differently Abled Category <span class="required">*</span></mat-label>
+                <mat-select formControlName="differentlyAbledCategory"  >
+                  <mat-option value="A">Category A</mat-option>
+                  <mat-option value="B">Category B</mat-option>
+                  <mat-option value="C">Category C</mat-option>
+                  <mat-option value="D">Category D</mat-option>
+                  <mat-option value="E">Category E</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && personalForm.get('differentlyAbledCategory')?.errors?.required">
+                  {{'Differntly Abled is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Disability Percentage<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="disabilityPercentage" maxlength="50" required
+                 >
+                
+                <mat-error *ngIf="submitted && personalForm.get('disabilityPercentage')?.errors?.required">
+                  {{'Max Qualification is required'}}</mat-error>
+              </div>
+
+              
+
+            </div>
+
+           
+           
+
+            <!-- <div class="row">
+              <div class="section-b col-6">
+                <mat-label> Employee Unblemished Service <span class="required">*</span></mat-label>
+                <mat-select formControlName="employeeUnblemishedService"  style="width: calc(97.5% - 5px);">
+                  <mat-option [value]="'Yes'">Yes</mat-option>
+                  <mat-option [value]="'No'">No</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && personalForm.get('employeeUnblemishedService')?.errors?.required">
+                  {{ 'Employee Unblemished Service is required' }}
+                </mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label> Unblemished Order Date <span class="required">*</span></mat-label>
+                <input class="input" type="date" name="Search" matInput formControlName="unblemishedOrderDate" maxlength="50" required >
+                
+                <mat-error *ngIf="submitted && personalForm.get('unblemishedOrderDate')?.errors?.required">
+                  {{'Unblemished Order Date is required'}}</mat-error>
+              </div>
+
+
+
+            </div> -->
+
+
+
+
+            <div class="row">
+              <h2>{{'Documents'}}</h2>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>Min Education Qualification <span class="required">*</span></mat-label>
+                  <input class="input" type="file" name="Search" formControlName="minQualification"  required>
+                
+                  <mat-error *ngIf="submitted && personalForm.get('minQualification')?.errors?.required">
+                    {{'Min Qualification is required'}}</mat-error>
+                </div>
+
+
+
+  
+
+                <div class="section-b col">
+                  <mat-label>Employee Signature <span class="required">*</span></mat-label>
+                  <input class="input" type="file" name="Search" formControlName="empSignature" maxlength="50"  required >
+                
+                  <mat-error *ngIf="submitted && personalForm.get('empSignature')?.errors?.required">
+                    {{'Employee Signature  is required'}}</mat-error>
+                </div>
+  
+
+                </div>
+
+              </div>
+           
+            <div class="disflex" *ngIf="!view">
+              <button mat-flat-button color="warn">{{'Discard' | uppercase}}</button>
+              <button mat-flat-button color="primary" type="submit" *ngIf="!edit" (click)="navigateToAppointmentTab()">{{'Next' |
+                uppercase}}</button>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+      <mat-tab label="Appointment">
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Appointment
+              Information'|
+              uppercase}}</h2>
+          </div>
+          <form [formGroup]="appointFormGroup">
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Mode of Appointment <span class="required">*</span></mat-label>
+                
+
+                  <mat-select formControlName="modeOfAppointment">
+                    <mat-option value="Direct">Direct</mat-option>
+                    <mat-option value="Compassionate">Compassionate</mat-option>
+                  </mat-select>
+                <mat-hint class="hintalign">{{appointFormGroup.get('modeOfAppointment').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && appointFormGroup.get('modeOfAppointment')?.errors?.required">
+                  {{'Mode of appointment is required'}}</mat-error>
+              </div>
+              <div class="section-b col-6">
+                <mat-label for="date">Initial Appointment Cadre <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="initialAppointmentCadre" maxlength="50"
+                  required>
+                 <mat-error *ngIf="submitted && appointFormGroup.get('initialAppointmentCadre')?.errors?.required">{{'Appointment Date is
+                  required'}}</mat-error>
+              </div>
+            </div>
+            <div class="row">
+              <div class="section-b col-2">
+                <mat-label> Date of Joining <span class="required">*</span></mat-label>
+                <input class="input" type="date" name="Search" matInput formControlName="dateOfJoiningService" maxlength="50"
+                  required>
+               
+                <mat-error *ngIf="submitted && appointFormGroup.get('dateOfJoiningService')?.errors?.required">
+                  {{'Date of Joining is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col-3">
+                <mat-label> Session <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="session" maxlength="50"
+                  required >
+               
+                <mat-error *ngIf="submitted && appointFormGroup.get('session')?.errors?.required">
+                  {{'Session is required'}}</mat-error>
+              </div>
+
+
+              <div class="section-b col">
+                <mat-label for="date">Date of Appoinment <span class="required">*</span></mat-label>
+                <input class="input" type="date" name="Search" matInput formControlName="dateOfAppointment" maxlength="50"
+                  required  style="width: calc(97.5% - 5px);" (change)="getMLAndEL()">
+                 <mat-error *ngIf="submitted && appointFormGroup.get('dateOfAppointment')?.errors?.required">{{'Date of Appoinment  is
+                  required'}}</mat-error>
+              </div>
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Whether Regularized <span class="required">*</span></mat-label>
+                <mat-select formControlName="whetherRegularized">
+                  <mat-option value="Yes">Yes</mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && appointFormGroup.get('whetherRegularized')?.errors?.required">
+                  {{ 'Regularized is required' }}
+                </mat-error>
+              </div>
+              <div class="section-b col-6">
+                <mat-label for="date"> Date of Regularization <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="DatReg" name="DatReg" matInput formControlName="dateOfRegularization"
+                       [ngModel]="appointFormGroup.get('dateOfRegularization').value | date:'yyyy-MM-dd'"  >
+                <mat-error *ngIf="submitted && appointFormGroup.get('dateOfRegularization')?.errors?.required">
+                  {{'Increment Due is required'}}
+                </mat-error>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="section-b col-6">
+                <mat-label for="date">Date of Probation declaration <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="probDec" name="probDec" matInput formControlName="dateOfProbationDeclaration"
+                       [ngModel]="appointFormGroup.get('dateOfProbationDeclaration').value | date:'yyyy-MM-dd'"  style="width: calc(95.5% - 5px);">
+                <mat-error *ngIf="submitted && appointFormGroup.get('dateOfProbationDeclaration')?.errors?.required">
+                  {{'Increment Due is required'}}
+                </mat-error>
+              </div>
+
+            <div class="row">
+              <h2>{{'Document'}}</h2>
+
+                <div class="section-b col">
+                  <mat-label>Appointment Order <span class="required">*</span></mat-label>
+                  <input class="input" type="file" name="Search" formControlName="appointmentOrderPath">
+                </div>
+
+             <div class="section-b col-6">
+                  <mat-label>Joining Letter<span class="required">*</span></mat-label>
+                  <input class="input" type="file" name="Search" formControlName="joiningLetter">
+                </div>
+           </div>
+          </div>
+
+            <div class="disflex" *ngIf="!view">
+              <button mat-flat-button color="warn">{{'Discard' | uppercase}}</button>
+              <button mat-flat-button color="primary" type="submit" (click)="navigateToCurrencyPayTab()">{{'Next' |
+                uppercase}}</button>
+             </div>
+
+
+
+          </form>
+        </div>
+      </mat-tab>
+      <mat-tab label="Currency Pay">
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Current Pay
+              Information'|
+              uppercase}}</h2>
+          </div>
+          <form [formGroup]="consumerPayForm">
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Scale of Pay <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="scaleOfPay" maxlength="50" required>
+                
+                <mat-error *ngIf="submitted && consumerPayForm.get('scaleOfPay')?.errors?.required">
+                  {{'Scale of pay is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Basic Pay <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="basicPay" maxlength="50">
+               
+                <mat-error *ngIf="submitted && consumerPayForm.get('basicPay')?.errors?.required">
+                  {{'Baic Pay is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Level as per pay matrix <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="levelAsPerPayMatrix" maxlength="50" required>
+               
+                <mat-error *ngIf="submitted && consumerPayForm.get('levelAsPerPayMatrix')?.errors?.required">
+                  {{'Level is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Cell as per pay matrix <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="cellAsPerPayMatrix" maxlength="50">
+               
+                <mat-error *ngIf="submitted && consumerPayForm.get('cellAsPerPayMatrix')?.errors?.required">
+                  {{'Baic Pay is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col-6">
+                <mat-label for="date">Increment Due Date <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="increDueDate" name="incrementDueDate" matInput formControlName="incrementDueDate"
+                       [ngModel]="consumerPayForm.get('incrementDueDate').value | date:'yyyy-MM-dd'" style="width: calc(97% - 5px);">
+                <mat-error *ngIf="submitted && consumerPayForm.get('incrementDueDate')?.errors?.required">
+                  {{'Increment Due is required'}}
+                </mat-error>
+              </div>
+
+            </div>
+            <div class="disflex" *ngIf="!view">
+              <button mat-flat-button color="warn" (click)="discard()">{{'Discard' | uppercase}}</button>
+              <button mat-flat-button color="primary" type="submit" *ngIf="!edit" (click)="navigateToRetirementTab()">{{'Next' |
+                uppercase}}</button>
+              <!-- <button mat-flat-button color="primary" type="submit" (click)="saveCoupons()" *ngIf="edit">{{'Update' |
+                uppercase}}</button> -->
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Retirement">
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Retirement
+              Information'|
+              uppercase}}</h2>
+          </div>
+          <form [formGroup]="retireFormGroup">
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Mode of Retirement <span class="required">*</span></mat-label>
+                <mat-select formControlName="modeOfRetirement">
+                  <mat-option value="Select">Select</mat-option>
+                  <mat-option value="VRS">VRS</mat-option>
+                  <mat-option value="CRS">CRS</mat-option>
+                  <mat-option value="Resignation">Resignation</mat-option>
+                  <mat-option value="Dismissed">Dismissed</mat-option>
+                  <mat-option value="Superannuation">Superannuation</mat-option>
+                  <mat-option value="Removed">Removed</mat-option>
+                  <mat-option value="Terminated">Terminated</mat-option>
+                  <mat-option value="Expired">Expired</mat-option>
+                  </mat-select>
+                <mat-error *ngIf="submitted && retireFormGroup.get('modeOfRetirement')?.errors?.required">
+                  {{ 'Mode of Retirement is required' }}
+                </mat-error>
+              </div>
+
+              <div class="section-b col-6">
+  <mat-label for="date">Date Of Retirement <span class="required">*</span></mat-label>
+  <input class="input" type="date" id="RetDate" name="RetDate" matInput formControlName="dateOfRetirement"
+         [ngModel]="retireFormGroup.get('dateOfRetirement').value | date:'yyyy-MM-dd'">
+  <mat-error *ngIf="submitted && retireFormGroup.get('dateOfRetirement')?.errors?.required">
+    {{'Retirement Date is required'}}
+  </mat-error>
+</div>
+
+            </div>
+
+            <div class="row">
+              <div class="section-b col-6">
+                <mat-label>Retirement of Permitted Status <span class="required">*</span></mat-label>
+                <mat-select formControlName="retirementPermittedStatus" style="width: calc(95% - 5px);">
+                  <mat-option value="Select">Select</mat-option>
+                  <mat-option value="Permitted">Permitted</mat-option>
+                  <mat-option value="Not Permitted">Not Permitted</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && retireFormGroup.get('retirementPermittedStatus')?.errors?.required">
+                  {{ 'Retirement of Permitted Status is required' }}
+                </mat-error>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>FBF sanctioned Date <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="dteAllSer" name="dteAllSer" matInput formControlName="fbfSanctionedDate"
+                       [ngModel]="retireFormGroup.get('fbfSanctionedDate').value | date:'yyyy-MM-dd'">
+                <mat-error *ngIf="submitted && retireFormGroup.get('fbfSanctionedDate')?.errors?.required">
+                  {{'All Service date is required'}}
+                </mat-error>
+              </div>
+
+
+              <div class="section-b col-6">
+                <mat-label for="date"> FBF sanctioned Amount<span class="required">*</span></mat-label>
+
+                <input class="input" type="number" name="Search" matInput formControlName="fbfSanctionedAmount" maxlength="50"
+                  required>
+                <mat-hint class="hintalign">{{retireFormGroup.get('fbfSanctionedAmount').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && retireFormGroup.get('fbfSanctionedAmount')?.errors?.required">
+                  {{'FBF Amount is required'}}</mat-error>
+
+              </div>
+
+            </div>
+
+            <div class="card-title" style="display: flex;justify-content: center;">
+              <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Admin
+                Approval
+                Information'|
+                uppercase}}</h2>
+            </div>
+
+              <div class="row" >
+                <div class="section-b col">
+                  <mat-label for="date">Regular Retirement Admin Approval Date <span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dteAllSer" name="rgrRtreAdm" matInput formControlName="regularRetirementAdminApprovalDate"
+                         [ngModel]="retireFormGroup.get('regularRetirementAdminApprovalDate').value | date:'yyyy-MM-dd'">
+                  <mat-error *ngIf="submitted && retireFormGroup.get('regularRetirementAdminApprovalDate')?.errors?.required">
+                    {{'Admin Approval is required'}}
+                  </mat-error>
+                </div>
+
+                <div class="section-b col">
+                  <mat-label for="date">Regular Retirement Pension Sanction Date <span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="penSancDte" name="penSancDte" matInput formControlName="regularRetirementPensionSanctionDate"
+                         [ngModel]="retireFormGroup.get('regularRetirementPensionSanctionDate').value | date:'yyyy-MM-dd'">
+                  <mat-error *ngIf="submitted && retireFormGroup.get('regularRetirementPensionSanctionDate')?.errors?.required">
+                    {{'Pension Sanction is required'}}
+                  </mat-error>
+                </div>
+
+              </div>
+
+             <div class="row" *ngIf="retireFormGroup.get('retirementPermittedStatus').value === 'Not Permitted'">
+              <div class="section-b col">
+                <mat-label for="date">Regular Admin Approval Date <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="penRtreAdm" name="penRtreAdm" matInput formControlName="provisionalAdminApprovalDate"
+                       [ngModel]="retireFormGroup.get('provisionalAdminApprovalDate').value | date:'yyyy-MM-dd'">
+                <mat-error *ngIf="submitted && retireFormGroup.get('provisionalAdminApprovalDate')?.errors?.required">
+                  {{'Admin Approval is required'}}
+                </mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label for="date">Regular Sanction Date <span class="required">*</span></mat-label>
+                <input class="input" type="date" id="propenSancDte" name="propenSancDte" matInput formControlName="provisionalPensionSanctionDate"
+                       [ngModel]="retireFormGroup.get('provisionalPensionSanctionDate').value | date:'yyyy-MM-dd'">
+                <mat-error *ngIf="submitted && retireFormGroup.get('provisionalPensionSanctionDate')?.errors?.required">
+                  {{'Pension Sanction is required'}}
+                </mat-error>
+              </div>
+
+            </div>
+            <div class="disflex">
+              <button mat-flat-button color="warn">{{'Discard' | uppercase}}</button>
+              <button mat-flat-button color="primary" type="submit" (click)="navigateToLeaveAccountTab()">{{'Next' |
+                uppercase}}</button>
+
+            </div>
+          </form>
+
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Leave Account">
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Leave
+              Account Information'|
+              uppercase}}</h2>
+          </div>
+          <form [formGroup]="leaveForm">
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Earned Leave Credit Days <span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="earnedLeaveCredit" maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('earnedLeaveCredit')?.errors?.required">
+                  {{'Leave Credit Days is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Earned Leave Availed Days <span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="earnedLeaveAvailed" maxlength="50">
+               
+                <mat-error *ngIf="submitted && leaveForm.get('earnedLeaveAvailed')?.errors?.required">
+                  {{'Leave Availed Days is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label>Earned Leave Balance Days <span class="required">*</span></mat-label>
+               
+                <input class="input"   type="text" name="Search" matInput formControlName="earnedLeaveBalance" [value]="(leaveForm.get('earnedLeaveCredit').value || 0) - (leaveForm.get('earnedLeaveAvailed').value || 0)" readonly>
+                 
+                <mat-error *ngIf="submitted && leaveForm.get('earnedLeaveBalance')?.errors?.required">
+                  {{'Leave Balance Days is required'}}</mat-error>
+              </div>
+            </div>
+            <div class="row">
+             
+              <div class="section-b col">
+                <mat-label>Medical Leave Credit Days <span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="medicalLeaveCredit" maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('medicalLeaveCredit')?.errors?.required">
+                  {{'Medical Credit Days is required'}}</mat-error>
+              </div>
+           
+              <div class="section-b col">
+                <mat-label>Medical Leave Availed Days <span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="medicalLeaveAvailed" maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('medicalLeaveAvailed')?.errors?.required">
+                  {{'Medical Avail Days is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Medical Leave Balance Days <span class="required">*</span></mat-label>
+               
+                <input class="input"   type="text" name="Search" matInput formControlName="medicalLeaveBalance" [value]="(leaveForm.get('medicalLeaveCredit').value || 0) - (leaveForm.get('medicalLeaveAvailed').value || 0)" readonly>
+                
+                <mat-error *ngIf="submitted && leaveForm.get('medicalLeaveBalance')?.errors?.required">
+                  {{'Medical Balance Days is required'}}</mat-error>
+              </div>
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Unearned Leave on Personal Affairs Credit Days<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="unearnedLeavePrivateCredit"
+                  maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('unearnedLeavePrivateCredit')?.errors?.required">
+                  {{'Unearned Credit Days is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Unearned Leave on Private Availed Days<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="unearnedLeavePrivateAvailed"
+                  maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('unearnedLeavePrivateAvailed')?.errors?.required">
+                  {{'Unearned Availed Days is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label>Unearned Leave on Private Balance Days<span class="required">*</span></mat-label>
+                
+                  <input class="input"   type="text" name="Search" matInput formControlName="unearnedLeavePersonalBalance" [value]="(leaveForm.get('unearnedLeavePrivateCredit').value || 0) - (leaveForm.get('unearnedLeavePrivateAvailed').value || 0)" readonly>
+                
+                <mat-error *ngIf="submitted && leaveForm.get('unearnedLeavePersonalBalance')?.errors?.required">
+                  {{'Unearned Balance Days is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+             
+              <div class="section-b col">
+                <mat-label>Loss of Pay with  Medical Certificates<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="lossOfPayWithMedicalCertificate"
+                  maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('lossOfPayWithMedicalCertificate')?.errors?.required">
+                  {{'LOP with medical Certificate is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label>Loss of Pay without  Medical Certificates<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="lossOfPayWithoutMedicalCertificate"
+                  maxlength="50">
+               
+                <mat-error *ngIf="submitted && leaveForm.get('lossOfPayWithoutMedicalCertificate')?.errors?.required">
+                  {{'LOP without medical Certificate is required'}}</mat-error>
+              </div>
+            </div>
+            <div class="row">
+              
+              <div class="section-b col">
+                <mat-label>Casual leave<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="casualLeaveCredit"
+                  maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('casualLeaveCredit')?.errors?.required">
+                  {{'Casual Leave is required'}}</mat-error>
+              </div>
+           
+              <div class="section-b col">
+                <mat-label>Special Casual Leave<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="specialCasualLeaveTotal"
+                  maxlength="50">
+              
+                <mat-error *ngIf="submitted && leaveForm.get('specialCasualLeaveTotal')?.errors?.required">
+                  {{'Special Casual Leave is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label>Restricted Holidays<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="restrictedHolidaysTotal"
+                  maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('restrictedHolidaysTotal')?.errors?.required">
+                  {{'Restricted Leave is required'}}</mat-error>
+              </div>
+
+              </div>
+              <div class="row">
+
+                <div class="section-b col">
+                <mat-label>Maternity Leave<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="maternityLeaveTotal"
+                  maxlength="50">
+               
+                <mat-error *ngIf="submitted && leaveForm.get('maternityLeaveTotal')?.errors?.required">
+                  {{'Maternity Leave is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label>Abortion Leave<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="abortionLeaveTotal"
+                  maxlength="50">
+               
+                <mat-error *ngIf="submitted && leaveForm.get('abortionLeaveTotal')?.errors?.required">
+                  {{'Abortion Leave is required'}}</mat-error>
+              </div>
+
+              <div class="section-b col">
+                <mat-label>Availed Days for Adopting Child<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="adoptionOfChildAvailed"
+                  maxlength="50">
+               
+                <mat-error *ngIf="submitted && leaveForm.get('adoptionOfChildAvailed')?.errors?.required">
+                  {{'Restricted Leave is required'}}</mat-error>
+              </div>
+            </div>
+            <div class="row">
+              
+              <div class="section-b col">
+                <mat-label>Study Leave<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="studyLeaveTotal"
+                  maxlength="50">
+               
+                <mat-error *ngIf="submitted && leaveForm.get('studyLeaveTotal')?.errors?.required">
+                  {{'Study Leave is required'}}</mat-error>
+              </div>
+           
+              <div class="section-b col">
+                <mat-label>Abroad Employment Leave<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="abroadEmploymentLeaveTotal"
+                  maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('abroadEmploymentLeaveTotal')?.errors?.required">
+                  {{'Abroad Employee Leave is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Family Planning Leave<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="familyPlanningLeaveTotal"
+                  maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('familyPlanningLeaveTotal')?.errors?.required">
+                  {{'Family Planning Leave is required'}}</mat-error>
+              </div>
+            </div>
+            <div class="row">
+             
+              <div class="section-b col">
+                <mat-label>Disability Leave<span class="required">*</span></mat-label>
+                <input class="input" type="number" name="Search" matInput formControlName="disabilityLeaveTotal"
+                  maxlength="50">
+                
+                <mat-error *ngIf="submitted && leaveForm.get('disabilityLeaveTotal')?.errors?.required">
+                  {{'Disability Leave is required'}}</mat-error>
+              </div>
+            
+              
+              
+           
+              <div class="section-b col">
+                <mat-label>Unauthorised Absence <span class="required">*</span></mat-label>
+                <mat-select formControlName="unauthorisedAbsence" >
+                  <mat-option [value]="'Yes'">Yes</mat-option>
+                  <mat-option [value]="'No'">No</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted && personalForm.get('unauthorisedAbsence')?.errors?.required">
+                  {{'Unauthorised Absence is required'}}</mat-error>
+              </div>
+
+            </div>
+         
+          <div class="disflex">
+            <button mat-flat-button color="warn" [routerLink]="['/employee/list']">{{'Discard' | uppercase}}</button>
+                           
+            <button mat-flat-button color="primary" (click)="saveData()">Save</button>
+               
+          </div>
+          </form>
+
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+</div>

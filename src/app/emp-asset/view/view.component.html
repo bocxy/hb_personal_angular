@@ -1,0 +1,150 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/emp-asset/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+
+  <br>
+    <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee File Detils'}}</h1>
+  
+    <br>
+  
+
+  <div>
+    
+        <div class="card">
+          <div class="card-title" style="display: flex;justify-content: center;">
+            <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Employee File Details'|
+              uppercase}}</h2>
+          </div>
+
+          <form [formGroup]="empAssetFrmGrp">
+
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Employee ID <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="employeeId" maxlength="50" readonly>
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('employeeId').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('employeeId')?.errors?.required">
+                  {{'Employee ID is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Employee Office Code<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="officeCode" maxlength="50" readonly>
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('officeCode').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('officeCode')?.errors?.required">
+                  {{'Employee Office Code is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Employee Office Name <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="officeName" maxlength="50" readonly>
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('officeName').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('officeName')?.errors?.required">
+                  {{'Employee Office Name is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label> Employee Name <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="employeeName" maxlength="50" readonly>
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('employeeName').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('employeeName')?.errors?.required">
+                  {{'Employee Name is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label> Employee Cadre Code <span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="cadreCode" maxlength="50" readonly>
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('cadreCode').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('cadreCode')?.errors?.required">
+                  {{'Employee Cadre Code is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Employee Seat No.<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="seatNo" maxlength="50" readonly>
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('seatNo').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('seatNo')?.errors?.required">
+                  {{'Employee Seat No. is required'}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>Employee File Number<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="fileNo" maxlength="50" readonly
+                  >
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('fileNo').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('fileNo')?.errors?.required">
+                  {{'Employee File Number is required'}}</mat-error>
+              </div>
+              <div class="section-b col">
+                <mat-label>Employee File Gist<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="fileGist" maxlength="50" readonly>
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('fileGist').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('fileGist')?.errors?.required">
+                  {{'Employee File Gist is required'}}</mat-error>
+              </div>  
+            </div>
+            <div class="row">
+              <div class="section-b col">
+                <mat-label>File Status<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="fileStatus" maxlength="50" readonly
+                  >
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('fileStatus').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('fileStatus')?.errors?.required">
+                  {{'Cadre Name is required'}}</mat-error>
+              </div>
+              <div class="section-b col-6">
+                <mat-label > Type of Disposal<span class="required">*</span></mat-label>
+                <input class="input" type="text" name="Search" matInput formControlName="typeOfDisposal" maxlength="50" readonly
+                  required>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('typeOfDisposal')?.errors?.required">{{'Type of Disposal is
+                  '}}</mat-error>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="section-b col-6">
+                <mat-label >File Disposal date <span class="required">*</span></mat-label>
+                <input class="input" type="date" name="Search" matInput formControlName="fileDisposalDate" maxlength="50"
+                readonly>
+                <mat-hint class="hintalign">{{empAssetFrmGrp.get('fileDisposalDate').value?.length || 0}}/50
+                </mat-hint>
+                <mat-error *ngIf="submitted && empAssetFrmGrp.get('fileDisposalDate')?.errors?.required">
+                  {{'File Disposal date is required'}}</mat-error>
+              </div>
+               
+            </div>
+           
+
+            <div class="row">               
+              
+              <div class="disflex">
+                 
+                <button mat-flat-button color="warn" [routerLink]="['/emp-asset/list']">{{'Back' | uppercase}}</button> 
+                     
+                   
+      
+                </div>
+
+            </div>
+            
+          </form>
+
+        </div>
+      
+  </div>
+</div>
+

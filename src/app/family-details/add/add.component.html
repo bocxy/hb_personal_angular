@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="card-title">
+    <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;"
+      routerLink="/family-details/list"></i>&nbsp;&nbsp;
+    <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+  </div>
+
+  <h1 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee Family Details'}}</h1>
+
+  <div [formGroup]="familyDetailFrmGrp">
+
+  <div class="row">
+   <div class="section-b col-6">
+      <mat-label>Employee Id<span class="required">*</span></mat-label>
+      <div class="input-container">
+        <input class="input" type="text" name="Search" matInput formControlName="empId" maxlength="50"
+        style="width: calc(95.5% - 5px);" >
+        <button class="browse-button" (click)="onButtonClicked()">Fetch
+          <input type="input" #fileInput style="display: none;">
+        </button>
+     </div>
+     
+      <mat-error *ngIf="submitted && familyDetailFrmGrp.get('empId')?.errors?.required">
+        {{ 'Employee Id is required' }}
+      </mat-error>
+    </div>
+  </div>
+
+   
+
+ <div class= "container-box1" >
+      <h5 class="green-text">* Value Auto - populated</h5>
+
+
+      <div class="row">
+        <div class="section-b col-md-6">
+          <mat-label > Employee Name <span class="required">*</span></mat-label>
+          
+            <input class="input" type="text" name="Search" matInput formControlName="empName"
+            style="width: calc(96.5% - 5px);" readonly>
+         
+                          
+          <mat-error *ngIf="submitted && familyDetailFrmGrp.get('empName')?.errors?.required">
+            {{'Employee Name is required'}}</mat-error>
+        </div>
+        
+
+      </div>
+    <div class="row">
+      <div class="section-b col">
+          <mat-label> Cadre Code <span class="required">*</span></mat-label>
+          <div class="input-container">
+          <input class="input" type="text" name="Search" matInput formControlName="cadreCode" readonly>
+          </div>
+            
+            <mat-error *ngIf="submitted && familyDetailFrmGrp.get('cadreCode')?.errors?.required">
+            {{'Cadre Code is required'}}</mat-error>
+        </div> 
+      <div class="section-b col">
+          <mat-label > Cadre Name <span class="required">*</span></mat-label>
+          <input class="input" type="text" name="Search" matInput formControlName="cadreName" maxlength="50" readonly>
+          
+          <mat-error *ngIf="submitted && familyDetailFrmGrp.get('cadreName')?.errors?.required">{{' Cadre Name is
+            required'}}</mat-error>
+        </div>
+
+    </div>
+    <div class="row">
+      <div class="section-b col">
+        <mat-label> Date of Birth <span class="required">*</span></mat-label>
+        <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfBirth" readonly>
+        
+        <mat-error *ngIf="submitted && familyDetailFrmGrp.get('dateOfBirth')?.errors?.required">
+          {{'Date of Birth is required'}}</mat-error>
+      </div>
+     
+
+      <div class="section-b col">
+          <mat-label> Date of Joining <span class="required">*</span></mat-label>
+          <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfJointService" readonly>
+          
+          <mat-error *ngIf="submitted && familyDetailFrmGrp.get('dateOfJointService')?.errors?.required">
+            {{'Date of Joining is required'}}</mat-error>
+        </div>
+       
+    </div>
+
+
+ </div>
+
+ </div>
+
+ <div [formGroup]="orderForm">
+
+ 
+<div class="row" formArrayName="items">
+  <div class="section-b col-md-6" *ngFor="let item of items; let i = index" [formGroupName]="i">
+   
+    <div class="section-b col">
+    <mat-label> Name of Family Member </mat-label>
+    <div class="input-container">
+      <!-- Update formControlName -->
+      <input class="input" type="text" name="Search" matInput formControlName="nameOfFamilyMembers" placeholder="Name of the Family Member">
+    </div>
+   
+  </div>
+
+  <div class="section-b col">
+    <mat-label> Relationship with employee <span class="required">*</span></mat-label>
+    <mat-select class="input" type="text" name="Search" formControlName="relationWithEmp" placeholder="Relationship with employee">
+      <mat-option value="Select">Select</mat-option>
+            <mat-option value="Mother">Mother</mat-option>
+            <mat-option value="Father">Father</mat-option>
+            <mat-option value="Son">Son</mat-option>
+            <mat-option value="Daughter">Daughter</mat-option>
+            <mat-option value="Spouse">Spouse</mat-option>
+    </mat-select>
+    <mat-error *ngIf="submitted && item.get('relationWithEmp')?.errors?.required">
+      {{ 'Relationship with employee is required' }}
+    </mat-error>
+  </div>
+
+
+  <div class="section-b col">
+    <mat-label> Family Member DOB <span class="required">*</span></mat-label>
+    <input class="input" type="date" name="Search" matInput formControlName="familyMemDob" maxlength="50" placeholder="Family Member DOB">
+    <mat-error *ngIf="submitted && item.get('familyMemDob')?.errors?.required">
+      {{ 'Family Member DOB is required' }}
+    </mat-error>
+  </div>
+  </div>
+</div>
+
+<!-- Add button to add more family members -->
+<button mat-raised-button color="primary" (click)="addItem()">Add Family Member</button>
+
+
+    <div class="disflex">
+                <button mat-flat-button color="warn" [routerLink]="['/emp-promotion/list']">{{'Discard' | uppercase}}</button> 
+                
+                <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+    
+              </div>
+ 
+</div>
+</div>
+
+<br>
+

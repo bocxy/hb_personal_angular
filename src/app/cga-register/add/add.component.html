@@ -1,0 +1,360 @@
+<div class="container">
+    <div class="card-title">
+      <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/cga-register/list"></i>&nbsp;&nbsp;
+      <h4 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Go Back'| uppercase}}</h4>
+    </div>
+
+    <br>
+
+    <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Compassionate Grounds Appointment Register'}}</h2>
+  
+    <br>
+  
+    <div>
+     
+          <div class="card">
+            <div class="card-title" style="display: flex;justify-content: center;">
+              <!-- <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600;color: #a29b9b;">{{'Direct Recruitment'|
+                uppercase}}</h2> -->
+            </div>
+  
+            <form [formGroup]="cgaRegFormGrp">
+  
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>Reg Serial No<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="regSerialNo" maxlength="50" required>
+                 
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('regSerialNo')?.errors?.required">
+                    {{'Cadre Code is required'}}</mat-error>
+                </div>
+                <div class="section-b col">
+                  <mat-label>Name of the Deceased staff<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="nameOfTheStaff" maxlength="50">
+                 
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('nameOfTheStaff')?.errors?.required">
+                    {{'Cadre Name is required'}}</mat-error>
+                </div>
+  
+              </div>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label for = "date">Date of Death<span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfDeath">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>                
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('dateOfDeath')?.errors?.required">
+                    {{'Date of Death is required'}}</mat-error>
+                </div>
+                <div class="section-b col">
+                  <mat-label> Date of Application  <span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dat" name="dat" matInput formControlName="dateOfApplication">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cgaRegFormGrp.get('dateOfApplication')?.errors?.required">
+                    {{'Date of Application is required'}}</mat-error>
+                </div>
+  
+              </div>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label> Applicant Name  <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="applCertificateFilePath" >
+                     </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('applCertificateFilePath')?.errors?.required">
+                    {{ 'Applicant Name is required' }}
+                  </mat-error>
+                </div> 
+                <div class="section-b col">
+                    <mat-label for ="date"> Relationship <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="relationship" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cgaRegFormGrp.get('relationship')?.errors?.required">{{'Relationship is
+                      required'}}</mat-error>
+                  </div>
+  
+              </div>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>Applicant Date of Birth <span class="required">*</span></mat-label>
+                  <input class="input" type="date" id="dat" name="dat" matInput formControlName="appDob">
+                  
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('appDob')?.errors?.required">
+                    {{'Applicant Date of Birth is required'}}</mat-error>
+                </div>
+               
+
+                <div class="section-b col">
+                    <mat-label> Applicant Age <span class="required">*</span></mat-label>
+                    <div class="input-container">
+                      <input class="input" type="text" name="Search" matInput formControlName="appAge" maxlength="50">
+                      <button class="browse-button" (click)="fileInput.click()">Browse</button>
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </div>
+                    
+                    <mat-error *ngIf="submitted && cgaRegFormGrp.get('appAge')?.errors?.required">
+                      {{'Applicant Age is required'}}
+                    </mat-error>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>Applicant Education Qualification<span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="appEduQualification" maxlength="50"
+                    required>
+                  
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('appEduQualification')?.errors?.required">
+                    {{'Applicant Education Qualification is required'}}</mat-error>
+                </div>
+
+  
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label > <h3><U>CERTIFICATES</U></h3> </mat-label>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label>Application<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="applCertificateFilePath" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('applCertificateFilePath')?.errors?.required">
+                    {{ 'Application is required' }}
+                  </mat-error>
+                </div>                
+               
+                   
+                <div class="section-b col">
+                  <mat-label>Death<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="deathCertificateFilePath" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('deathCertificateFilePath')?.errors?.required">
+                    {{ 'Application is required' }}
+                  </mat-error>
+                </div>  
+
+
+              </div>
+             
+
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label> Legal Heir<span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="legalHeirCertificateFilePath" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('legalHeirCertificateFilePath')?.errors?.required">
+                    {{ 'Legal Heir is required' }}
+                  </mat-error>
+                </div>  
+
+                <div class="section-b col">
+                  <mat-label> Educational Qualification <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="eqCertificate" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('eqCertificate')?.errors?.required">
+                    {{ 'Educational Qualification  is required' }}
+                  </mat-error>
+                </div>  
+
+  
+          </div>
+
+              <div class="row">
+               
+                <div class="section-b col">
+                  <mat-label> Transfer (TC) <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="transferCertificateFilePath" maxlength="50">
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                  
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('transferCertificateFilePath')?.errors?.required">
+                    {{ 'Transfer  is required' }}
+                  </mat-error>
+                </div> 
+
+                <div class="section-b col">
+                  <mat-label> NOC <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="nocCertificateFilePathFilePath" >
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('nocCertificateFilePath')?.errors?.required">
+                    {{ 'NOC  is required' }}
+                  </mat-error>
+                </div> 
+  
+              </div>
+
+
+              <div class="row">
+               
+                <div class="section-b col">
+                  <mat-label> Community <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="communityCertificateFileName" >
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('communityCertificateFileName')?.errors?.required">
+                    {{ 'Community  is required' }}
+                  </mat-error>
+                </div> 
+  
+
+                <div class="section-b col">
+                  <mat-label> Proform <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="proformaCertificateFilePath" >
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('proformaCertificateFilePath')?.errors?.required">
+                    {{ 'Proforma  is required' }}
+                  </mat-error>
+                </div> 
+  
+              </div>
+
+
+              <div class="row">
+               
+                <div class="section-b col">
+                  <mat-label> Indigent <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="indigentCertificateFilePath" >
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('indigentCertificateFilePath')?.errors?.required">
+                    {{ 'Indigent  is required' }}
+                  </mat-error>
+                </div> 
+
+                <div class="section-b col">
+                  <mat-label> Driving <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="drivingCertificateFilePath" >
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('drivingCertificateFilePath')?.errors?.required">
+                    {{ 'Driving  is required' }}
+                  </mat-error>
+                </div> 
+  
+              </div>
+
+
+              <div class="row">
+               
+                <div class="section-b col">
+                  <mat-label> Driving Experience <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="driExpCertificateFilePath" >
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('driExpCertificateFilePath')?.errors?.required">
+                    {{ 'Driving Experience is required' }}
+                  </mat-error>
+                </div> 
+
+                <div class="section-b col">
+                  <mat-label> Typing <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="typingCertificateFilePath" >
+                    <button class="browse-button" (click)="fileInput.click()">Browse
+                      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    </button>
+                  </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('typingCertificateFilePath')?.errors?.required">
+                    {{ 'Typing  is required' }}
+                  </mat-error>
+                </div> 
+  
+              </div>
+
+              <div class="row">
+               
+                <div class="section-b col">
+                  <mat-label> Eligible Status  <span class="required">*</span></mat-label>
+                  <div class="input-container">
+                    <input class="input" type="text" name="Search" matInput formControlName="eligibleStatus" >
+                     </div>
+                 <mat-error *ngIf="submitted && cgaRegFormGrp.get('eligibleStatus')?.errors?.required">
+                    {{ 'Eligible Status  is required' }}
+                  </mat-error>
+                </div> 
+                <div class="section-b col">
+                    <mat-label for ="date"> Appoinment Status <span class="required">*</span></mat-label>
+                    <input class="input" type="text" name="Search" matInput formControlName="appointmentStatus" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                    <mat-error *ngIf="submitted && cgaRegFormGrp.get('appointmentStatus')?.errors?.required">{{'Appoinment Status is
+                      required'}}</mat-error>
+                  </div>
+  
+              </div>
+
+              <div class="row">
+                <div class="section-b col">
+                  <mat-label> Remarks <span class="required">*</span></mat-label>
+                  <input class="input" type="text" name="Search" matInput formControlName="remarks" maxlength="50">
+                    <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
+                  <mat-error *ngIf="submitted && cgaRegFormGrp.get('remarks')?.errors?.required">
+                    {{'Remarks is required'}}</mat-error>
+                </div>
+              </div>
+
+              <div class="row">               
+                
+                <div class="disflex">
+
+                  <button mat-flat-button color="warn" [routerLink]="['/cell-register/list']">{{'Discard' | uppercase}}</button> 
+                  
+                    <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+        
+                  </div>
+  
+              </div>
+              
+            </form>
+  
+          </div>
+        
+    </div>
+  </div>
+

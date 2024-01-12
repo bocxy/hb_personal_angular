@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DialogComponent } from 'src/app/asset-details/dialog/dialog.component';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -80,7 +79,9 @@ export class AddComponent implements OnInit {
       nameOfFamilyMembers: [''],
       relationWithEmp: [''],
       familyMemDob: [''],
-      empId:[this.familyDetailFrmGrp.value.empId || '']
+      empId:[this.familyDetailFrmGrp.value.empId || ''],
+      nid : [''],
+      mid : ['']
 
     });
   }
@@ -88,7 +89,7 @@ export class AddComponent implements OnInit {
   addItem() {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
   
-    if (itemsFormArray.length < 5) {
+    if (true) {
       const newItem = this.createItem();
       itemsFormArray.push(newItem);
     } else {
@@ -112,6 +113,24 @@ export class AddComponent implements OnInit {
       (response) => {
         console.log('id',this.id);
          this.data=response.data;
+         const familyMembersList : any[]= this.data.familyMemberList; // map this value to form array -- KarthiChanges
+
+         
+         if (familyMembersList.length > 0) {
+
+          this.items.length =0;
+
+          familyMembersList.forEach((fam, i) => {
+            this.addItem();
+            const expansionPanel = this.items.at(i) as FormGroup;
+            expansionPanel.patchValue({
+              empId: familyMembersList[i].empId,
+              nameOfFamilyMembers: familyMembersList[i].nameOfFamilyMembers,
+              familyMemDob: familyMembersList[i].familyMemDob,
+              relationWithEmp: familyMembersList[i].relationWithEmp,
+            });
+          })
+        }
          this.familyDetailFrmGrp.patchValue({
             // empId: this.data.empId,
             empName :this.data.employeeName,

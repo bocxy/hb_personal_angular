@@ -13,7 +13,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class AddComponent implements OnInit {
 
 
-  familyDetailFrmGrp:FormGroup;
+  familyDetailFrmGrp: FormGroup;
   orderForm: FormGroup;
   types: string[] = [];
   submitted = false;
@@ -21,8 +21,11 @@ export class AddComponent implements OnInit {
   couponId: string;
   showAdditionalContainer = false;
 
-  id:number;
-  data:any;
+  id: number;
+  data: any;
+
+  mid = "";
+  empId = "";
 
   status = [
     { 'status': "Mother", 'value': true },
@@ -33,7 +36,7 @@ export class AddComponent implements OnInit {
 
   ]
 
-  
+
 
   selectedValue: string;
   selectedStatus: string;
@@ -45,23 +48,23 @@ export class AddComponent implements OnInit {
 
   formBuilder: any;
   showContainerBox = true;
-  employeeId:any
+  employeeId: any
 
 
 
-  constructor(private cb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute,  private employeeService:EmployeeService,private http: HttpClient, ) { }
+  constructor(private cb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute, private employeeService: EmployeeService, private http: HttpClient,) { }
 
 
   ngOnInit(): void {
 
     this.familyDetailFrmGrp = this.cb.group({
-      empId:[''],
-      empName:[''],
-      cadreCode:[''],
-      cadreName:[''],
-      dateOfBirth:[''],
-      dateOfJointService:[''],
-      remarks:[''],
+      empId: [''],
+      empName: [''],
+      cadreCode: [''],
+      cadreName: [''],
+      dateOfBirth: [''],
+      dateOfJointService: [''],
+      remarks: [''],
 
     })
 
@@ -69,7 +72,7 @@ export class AddComponent implements OnInit {
       items: this.cb.array([])
     });
 
-   this.addItem();
+    this.addItem();
 
   }
 
@@ -79,16 +82,15 @@ export class AddComponent implements OnInit {
       nameOfFamilyMembers: [''],
       relationWithEmp: [''],
       familyMemDob: [''],
-      empId:[this.familyDetailFrmGrp.value.empId || ''],
-      nid : [''],
-      mid : ['']
+      empId: [this.empId],
+      nid: [''],
+      mid: [this.mid]
 
     });
   }
 
   addItem() {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
-  
     if (true) {
       const newItem = this.createItem();
       itemsFormArray.push(newItem);
@@ -96,29 +98,29 @@ export class AddComponent implements OnInit {
       console.log('You cannot add more than 5 items.');
     }
   }
-  
+
 
   get items() {
     return (this.orderForm.get('items') as FormArray).controls;
   }
 
-  onButtonClicked(){
+  onButtonClicked() {
 
 
-    let empId=this.familyDetailFrmGrp.value.empId ?JSON.parse(this.familyDetailFrmGrp.value.empId):''
+    let empId = this.familyDetailFrmGrp.value.empId ? JSON.parse(this.familyDetailFrmGrp.value.empId) : ''
 
- this.employeeId=this.familyDetailFrmGrp.value.empId ?JSON.parse(this.familyDetailFrmGrp.value.empId):''
+    this.employeeId = this.familyDetailFrmGrp.value.empId ? JSON.parse(this.familyDetailFrmGrp.value.empId) : ''
 
     this.employeeService.getCommonDetails(empId).subscribe(
       (response) => {
-        console.log('id',this.id);
-         this.data=response.data;
-         const familyMembersList : any[]= this.data.familyMemberList; // map this value to form array -- KarthiChanges
+        console.log('id', this.id);
+        this.data = response.data;
+        const familyMembersList: any[] = this.data.familyMemberList; // map this value to form array -- KarthiChanges
 
-         
-         if (familyMembersList.length > 0) {
 
-          this.items.length =0;
+        if (familyMembersList.length > 0) {
+
+          this.items.length = 0;
 
           familyMembersList.forEach((fam, i) => {
             this.addItem();
@@ -128,20 +130,25 @@ export class AddComponent implements OnInit {
               nameOfFamilyMembers: familyMembersList[i].nameOfFamilyMembers,
               familyMemDob: familyMembersList[i].familyMemDob,
               relationWithEmp: familyMembersList[i].relationWithEmp,
+              nid: familyMembersList[i].nid,
+              mid: familyMembersList[i].mid
             });
           })
         }
-         this.familyDetailFrmGrp.patchValue({
-            // empId: this.data.empId,
-            empName :this.data.employeeName,
-            cadreCode:this.data.cadreCode,
-            cadreName:this.data.cadreName,
-            dateOfBirth:this.data.dateOfBirth,
-            dateOfJointService:this.data.dateOfJointService,
+        this.familyDetailFrmGrp.patchValue({
+          empId: this.data.empId,
+          empName: this.data.employeeName,
+          cadreCode: this.data.cadreCode,
+          cadreName: this.data.cadreName,
+          dateOfBirth: this.data.dateOfBirth,
+          dateOfJointService: this.data.dateOfJointService,
 
-          });
-           console.log('Response:', response);
-          },
+        });
+
+        this.empId = this.data.empId;
+        this.mid = this.data.mid;
+        console.log('Response:', response);
+      },
       (error) => {
 
         console.error('Error:', error);
@@ -155,9 +162,9 @@ export class AddComponent implements OnInit {
 
 
   onSubmit() {
-   
-    if (this.familyDetailFrmGrp.valid ) {
-     
+
+    if (this.familyDetailFrmGrp.valid) {
+
       const familyDetailValues = this.familyDetailFrmGrp.value;
       const familyMembers = this.orderForm.value.items;
       console.log(familyMembers)
@@ -173,11 +180,12 @@ export class AddComponent implements OnInit {
             "remarks": familyDetailValues.remarks
           }
         ],
-        "members":familyMembers
-       
+        "members": familyMembers
+
       };
-  console.log(data)
+      console.log(data)
       // Call the service to save data
+      // return;
       this.employeeService.saveEmpFamilyDetails(data).subscribe(
         (response) => {
           console.log('Data saved:', response);
@@ -185,20 +193,24 @@ export class AddComponent implements OnInit {
         },
         (error) => {
           console.error('Error saving data:', error);
- 
+
         }
       );
     } else {
       console.error('Form is not valid');
-    
+
     }
   }
-  
+
   deleteContainerBox(index: number) {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
     itemsFormArray.removeAt(index);
   }
+
+  routeToFamilyList(){
+    this.router.navigate(['/family-details/list']);
   }
+}
 
 
 

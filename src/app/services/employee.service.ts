@@ -795,5 +795,11 @@ uniqueDivisionCode(id: number): Observable<any> {
   return this.http.post<any>(url, requestBody);
 }
 
+  deleteFamilyData(nid: number) {
+    const url = `${this.baseUrl}/deleteFamilyData`;
+    const requestBody = { nid : nid };
+    return this.http.post<any>(url, requestBody);
+  }
+
 
 }

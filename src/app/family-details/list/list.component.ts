@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs';
 import { DialogComponent } from 'src/app/asset-details/dialog/dialog.component';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { ConfirmDialogComponent } from 'src/app/shared-module/confirm-dialog/confirm-dialog.component';
@@ -85,6 +84,8 @@ row: any;
 
 
   ngOnInit(): void {
+    this.getAllEmpFamilyDetails();
+
     this.dataSource.data = [];
     this.dataSource.data = this.couponsListData;
     this.filteredData = [];
@@ -111,7 +112,6 @@ row: any;
       console.log(this.id)
     });
 
-    this.getAllEmpFamilyDetails();
 
 
   }

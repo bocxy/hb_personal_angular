@@ -204,7 +204,20 @@ export class AddComponent implements OnInit {
 
   deleteContainerBox(index: number) {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
-    itemsFormArray.removeAt(index);
+    const nid = itemsFormArray.value[index].nid;
+    if (nid) {
+      this.employeeService.deleteFamilyData(nid).subscribe({
+        next: (response: any) => {
+          console.log("delete response", response);
+          if (response?.message && (response?.message === "Family Data Details deleted successfully.")) {
+            itemsFormArray.removeAt(index);
+          }
+        }
+      })
+    }
+    else{
+      itemsFormArray.removeAt(index);
+    }
   }
 
   routeToFamilyList(){

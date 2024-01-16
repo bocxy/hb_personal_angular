@@ -96,6 +96,12 @@
     <div class="row" formArrayName="items">
       <div class="section-b col-md-6" *ngFor="let item of items; let i = index" [formGroupName]="i">
 
+        <br>
+          <div class="delete-icon-container">
+            <mat-icon style="font-size: 25px; cursor: pointer; color: red;  justify-content: flex-end; display: flex;"
+              matTooltip="Delete" (click)="deleteContainerBox(i)">delete</mat-icon>
+          </div>
+          
         <div class="section-b col">
           <mat-label> Name of Family Member </mat-label>
           <div class="input-container">

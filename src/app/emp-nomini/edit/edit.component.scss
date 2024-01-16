@@ -3,21 +3,24 @@
 }
 
 
-::ng-deep .mat-tab-label .mat-tab-label-content{
+::ng-deep .mat-tab-label .mat-tab-label-content {
   padding-left: 55px;
   padding-right: 45px;
   margin-right: -25px;
   margin-left: -15px
 }
 
-.container{
+.container {
   overflow-x: auto;
 }
 
 .container-box1 {
-  border: 1px solid #ccc; /* Add a border */
-  padding: 20px; /* Add some padding inside the container */
-  border-radius: 10px; /* Add rounded corners */
+  border: 1px solid #ccc;
+  /* Add a border */
+  padding: 20px;
+  /* Add some padding inside the container */
+  border-radius: 10px;
+  /* Add rounded corners */
   // box-shadow: 0 0 10px rgba(114, 110, 110, 0.1); /* Add a subtle shadow */
   // background-color: rgb(232, 232, 235)
   border: 1px dotted #000;
@@ -28,11 +31,11 @@ h5 {
 }
 
 .green-text {
-color: green;
+  color: green;
 }
 
 .Upload_Photo {
-   padding: 5px;
+  padding: 5px;
   // background-color: #fff;
   border-radius: 5px;
   // box-shadow: 0 2px 4px #fff;
@@ -40,8 +43,9 @@ color: green;
   align-items: Right;
   justify-content: right;
   // .Upload_Photo img {
-    float: right; /* Float the image to the right */
-    margin-left: 10px;
+  float: right;
+  /* Float the image to the right */
+  margin-left: 10px;
 }
 
 ::ng-deep .mat-tab-label .mat-tab-label-content {
@@ -54,13 +58,16 @@ h5 {
 }
 
 .green-text {
-color: green;
+  color: green;
 }
 
 .container-box1 {
-  border: 1px solid #ccc; /* Add a border */
-  padding: 20px; /* Add some padding inside the container */
-  border-radius: 10px; /* Add rounded corners */
+  border: 1px solid #ccc;
+  /* Add a border */
+  padding: 20px;
+  /* Add some padding inside the container */
+  border-radius: 10px;
+  /* Add rounded corners */
   // box-shadow: 0 0 10px rgba(114, 110, 110, 0.1); /* Add a subtle shadow */
   // background-color: rgb(232, 232, 235)
   border: 1px dotted #000;
@@ -89,7 +96,8 @@ color: green;
   padding: 1rem;
   // text-align: center;
 }
-::ng-deep .mat-ink-bar{
+
+::ng-deep .mat-ink-bar {
   display: none;
 }
 
@@ -129,7 +137,7 @@ mat-label .required {
     border-radius: 5px;
     cursor: pointer;
     position: absolute;
-    right: 0; 
+    right: 0;
     // top: 0;
     // bottom: 0;
   }
@@ -137,8 +145,8 @@ mat-label .required {
   .input-container {
     display: flex;
     align-items: center;
-    position:relative; 
-}
+    position: relative;
+  }
 
   ::ng-deep .mat-select {
     // border-radius: 10px;
@@ -213,9 +221,26 @@ input[type="date"]::-webkit-datetime-edit {
 }
 
 .container-box {
-  border: 1px solid #ccc; /* Add a border */
-  padding: 20px; /* Add some padding inside the container */
-  border-radius: 10px; /* Add rounded corners */
-  box-shadow: 0 0 10px rgba(114, 110, 110, 0.1); /* Add a subtle shadow */
+  border: 1px solid #ccc;
+  /* Add a border */
+  padding: 20px;
+  /* Add some padding inside the container */
+  border-radius: 10px;
+  /* Add rounded corners */
+  box-shadow: 0 0 10px rgba(114, 110, 110, 0.1);
+  /* Add a subtle shadow */
   background-color: rgb(232, 232, 235)
+}
+
+
+.delete-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  right: 5;
+}
+
+.add-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  right: 5;
 }

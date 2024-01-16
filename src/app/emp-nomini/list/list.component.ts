@@ -15,8 +15,8 @@ export interface AdditionalRows {
   empId: string;
   empName: string;
   cadreCode: string;
-  cadreName : string;
-  nameOfNominee:string;
+  cadreName: string;
+  nameOfNominee: string;
   action: string;
 
 }
@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
 
   columnsToDisplay = ['sno', 'empId', 'empName', 'cadreCode', 'cadreName', 'nameOfNominee', 'action'];
 
-   status = [
+  status = [
     { 'status': "Pending", 'value': true },
     { 'status': "Approved", 'value': false },
     { 'status': "Rejected", 'value': false }
@@ -43,11 +43,11 @@ export class ListComponent implements OnInit {
   selectedStatus: string;
   noData = false;
   couponsListData: any;
-  filteredData: any[]=[];
+  filteredData: any[] = [];
   id: any;
   data: any;
   selectedFilter: string = '';
-  empNmniFormGrp:FormGroup;
+  empNmniFormGrp: FormGroup;
 
 
   // columns = [
@@ -62,7 +62,7 @@ export class ListComponent implements OnInit {
   // ];
 
 
-  constructor(private fb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute,  private employeeService:EmployeeService,private http: HttpClient, private dialog: MatDialog,) { }
+  constructor(private fb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute, private employeeService: EmployeeService, private http: HttpClient, private dialog: MatDialog,) { }
 
 
   additionalRows: AdditionalRows[] = [
@@ -80,18 +80,18 @@ export class ListComponent implements OnInit {
 
     this.getAllEmpNomination();
     this.empNmniFormGrp = this.fb.group({
-      empId:[''],
-      empName:[''],
-      cadreCode:[''],
-      cadreName:[''],
-      dateOfBirth:[''],
-      dateOfJointService:[''],
-      modeOfNominee:[''],
-      nameOfNominee:[''],
-      relatinshipWithEmp:[''],
-      ageOfNominee:[''],
-      shareOfDcrg:[''],
-      addressOfNominee:[''],
+      empId: [''],
+      empName: [''],
+      cadreCode: [''],
+      cadreName: [''],
+      dateOfBirth: [''],
+      dateOfJointService: [''],
+      modeOfNominee: [''],
+      nameOfNominee: [''],
+      relatinshipWithEmp: [''],
+      ageOfNominee: [''],
+      shareOfDcrg: [''],
+      addressOfNominee: [''],
 
     })
 
@@ -150,35 +150,35 @@ export class ListComponent implements OnInit {
   }
   getNominationBynId(empId: number) {
     console.log(this.id);
-        this.employeeService.getNominationBynId(empId).subscribe(
-          (response) => {
-      this.data=response.data.employee[0];
-      this.empNmniFormGrp.patchValue({
+    this.employeeService.getNominationBynId(empId).subscribe(
+      (response) => {
+        this.data = response.data.employee[0];
+        this.empNmniFormGrp.patchValue({
 
-                empId:this.data.empId,
-                empName:this.data.empName,
-                cadreCode:this.data.cadreCode,
-                cadreName:this.data.cadreName,
-                dateOfBirth:this.data.dateOfBirth,
-                dateOfJointService:this.data.dateOfJointService,
-                modeOfNominee:this.data.modeOfNominee,
-                nameOfNominee:this.data.nameOfNominee,
-                relatinshipWithEmp:this.data.relatinshipWithEmp,
-                ageOfNominee:this.data.ageOfNominee,
-                shareOfDcrg:this.data.shareOfDcrg,
-                addressOfNominee:this.data.addressOfNominee
-              });
+          empId: this.data.empId,
+          empName: this.data.empName,
+          cadreCode: this.data.cadreCode,
+          cadreName: this.data.cadreName,
+          dateOfBirth: this.data.dateOfBirth,
+          dateOfJointService: this.data.dateOfJointService,
+          modeOfNominee: this.data.modeOfNominee,
+          nameOfNominee: this.data.nameOfNominee,
+          relatinshipWithEmp: this.data.relatinshipWithEmp,
+          ageOfNominee: this.data.ageOfNominee,
+          shareOfDcrg: this.data.shareOfDcrg,
+          addressOfNominee: this.data.addressOfNominee
+        });
 
-            console.log('Response:', response);
+        console.log('Response:', response);
 
-          },
-          (error) => {
+      },
+      (error) => {
 
-            console.error('Error:', error);
+        console.error('Error:', error);
 
-          }
-        );
       }
+    );
+  }
 
   delete(id: string): void {
     const dialog = this.dialog.open(ConfirmDialogComponent, {
@@ -225,17 +225,24 @@ export class ListComponent implements OnInit {
 
   getAllEmpNomination(): void {
     const id = 123; // Replace with the actual employee ID
-    this.employeeService.getAllEmpNomination(id).subscribe(
-      (response) => {
-        // Handle the response here, e.g., update your component's data
-        console.log(response);
-        this.dataSource.data = response.data.employee;
+    this.employeeService.getAllEmpNomination(id).subscribe({
+      next: (response: any) => {
+        if (response?.data) {
+          const employeeData: any[] = response.data.employee;
+          const nomineeData: any[] = response.data.nominee;
+          const modifiedData = employeeData?.map((x) => {
+            if (x) {
+              x.nominee = nomineeData.filter((y) => x.empId === y.empId);
+              return x;
+            }
+          });
+          this.dataSource.data = [...modifiedData];
+        } else {
 
-      },
-      (error) => {
-        // Handle any errors here
-        console.error(error);
+        }
       }
+    }
+
     );
   }
 
@@ -244,7 +251,7 @@ export class ListComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '500px',
       data: {
-        message: 'Are you sure to delete this exam history data?',
+        message: 'Are you sure to delete this Nominee data?',
         confirmBackgroundColor: 'red',
         cancelBackgroundColor: 'white',
         confirmTextColor: 'white',
@@ -258,19 +265,16 @@ export class ListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         // Call the delete service
-        this.employeeService.deleteEmpNomination(id).subscribe(
-          () => {
-            // Data successfully deleted, no specific 'success' property
-            this.openDialog(true, 'Exam data deleted successfully!');
+        this.employeeService.deleteEmpNominationInView(id).subscribe({
+          next: (response: any) => {
+            this.openDialog(true, 'Nominee data deleted successfully!');
             this.getAllEmpNomination(); // Refresh the data after successful deletion
-
           },
-          (error) => {
-            console.error('An error occurred:', error);
+          error: (err: any) => {
+            console.error('An error occurred:', err);
             this.openDialog(false, 'Error in deleting scheme data. Please try again later.');
-            // Handle error (if needed)
-          }
-        );
+          },
+        });
       }
     });
   }

@@ -1,10 +1,9 @@
-
 <div class="container">
-    <div class="card-title">
-      <!-- <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/leave/list"></i>&nbsp;&nbsp; -->
-      <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee Nomination'}}
-      </h2>
-    </div>
+  <div class="card-title">
+    <!-- <i class="fa fa-arrow-left" style="font-size:20px;cursor: pointer;" routerLink="/leave/list"></i>&nbsp;&nbsp; -->
+    <h2 style="padding:0px !important ;margin:0px !important;font-weight: 600">{{'Employee Nomination'}}
+    </h2>
+  </div>
 
 
 
@@ -15,15 +14,16 @@
       <div class="filter-container">
         <label for="filter-select" class="label">Filter</label>
         <mat-form-field appearance="outline">
-          <mat-select id="filter-select" [(value)]="selectedFilter" (selectionChange)="applyFilter($event)" placeholder="Search">
+          <mat-select id="filter-select" [(value)]="selectedFilter" (selectionChange)="applyFilter($event)"
+            placeholder="Search">
             <mat-option value="empId">Employee ID</mat-option>
             <mat-option value="empName">Employee Name</mat-option>
           </mat-select>
         </mat-form-field>
         <div class="search-container">
           <div>
-            <input matInput #input (keyup)="applyFilter($event)" type="text" id="search-input"
-              class="search-input" placeholder="Search">
+            <input matInput #input (keyup)="applyFilter($event)" type="text" id="search-input" class="search-input"
+              placeholder="Search">
             <div class="search-icon">
               <mat-icon>search</mat-icon>
             </div>
@@ -32,59 +32,60 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button class="btn btn-light" (click)="clearFilter()">Clear Filter</button>
       </div>
-  <div>
-  <div>
-      <button class="btn btn-light add-dataBtn" routerLink="/emp-nomini/add">
-        Add Employee Nominee Details</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <button class="btn btn-light" (click)="printScreen()">Print</button>
-  </div>
-  </div>
-  </div>
+      <div>
+        <div>
+          <button class="btn btn-light add-dataBtn" routerLink="/emp-nomini/add">
+            Add Employee Nominee Details</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="btn btn-light" (click)="printScreen()">Print</button>
+        </div>
+      </div>
+    </div>
 
 
 
     <div class="card">
       <table>
-      <table mat-table matSort [dataSource]="filteredData?.length? filteredData:dataSource">
+        <table mat-table matSort [dataSource]="filteredData?.length? filteredData:dataSource">
 
-        <!-- <mat-table #table [dataSource]="dataSource"> -->
+          <!-- <mat-table #table [dataSource]="dataSource"> -->
           <ng-container matColumnDef="sno">
-            <th class="first" style="border-top-left-radius:20px;border-bottom-left-radius: 20px; text-align: center" mat-header-cell *matHeaderCellDef>
-             <span>S.No</span>
+            <th class="first" style="border-top-left-radius:20px;border-bottom-left-radius: 20px; text-align: center"
+              mat-header-cell *matHeaderCellDef>
+              <span>S.No</span>
             </th>
             <td mat-cell *matCellDef="let request index as i"> {{ i + 1 }} </td>
           </ng-container>
 
-        <ng-container matColumnDef="empId">
-          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
-           <span>Employee Id</span>
-          </th>
-          <td mat-cell *matCellDef="let request">{{ request?.empId }}</td>
-        </ng-container>
+          <ng-container matColumnDef="empId">
+            <th style="text-align: center" mat-header-cell *matHeaderCellDef>
+              <span>Employee Id</span>
+            </th>
+            <td mat-cell *matCellDef="let request">{{ request?.empId }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="empName">
-          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
-            <span>Employee Name</span>
-          </th>
-          <td mat-cell *matCellDef="let request">{{ request?.empName }}</td>
-        </ng-container>
+          <ng-container matColumnDef="empName">
+            <th style="text-align: center" mat-header-cell *matHeaderCellDef>
+              <span>Employee Name</span>
+            </th>
+            <td mat-cell *matCellDef="let request">{{ request?.empName }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="cadreCode">
-          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
-            <span>Cadre Code</span>
-          </th>
-          <td mat-cell *matCellDef="let request">{{ request?.cadreCode }}</td>
-        </ng-container>
-        <ng-container matColumnDef="cadreName">
-          <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
-            <span>Cadre Name</span>
-          </th>
-          <td mat-cell *matCellDef="let request">{{ request?.cadreName }}</td>
-        </ng-container>
+          <ng-container matColumnDef="cadreCode">
+            <th style="text-align: center" mat-header-cell *matHeaderCellDef>
+              <span>Cadre Code</span>
+            </th>
+            <td mat-cell *matCellDef="let request">{{ request?.cadreCode }}</td>
+          </ng-container>
+          <ng-container matColumnDef="cadreName">
+            <th style="text-align: center" mat-header-cell *matHeaderCellDef>
+              <span>Cadre Name</span>
+            </th>
+            <td mat-cell *matCellDef="let request">{{ request?.cadreName }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="nameOfNominee">
-            <th style= "text-align: center" mat-header-cell *matHeaderCellDef>
+          <ng-container matColumnDef="nameOfNominee">
+            <th style="text-align: center" mat-header-cell *matHeaderCellDef>
               <span>Name of Nominee</span>
             </th>
             <td mat-cell *matCellDef="let request">{{ request?.nameOfNominee }}</td>
@@ -92,16 +93,19 @@
 
 
           <ng-container matColumnDef="action">
-            <th  mat-header-cell *matHeaderCellDef>
+            <th mat-header-cell *matHeaderCellDef>
               <span>Action</span>
             </th>
             <td mat-cell *matCellDef="let request">
               <div class="add-coupon row-md-3">
                 <!-- <a [routerLink]="['/exam-history/view', request.nid]">{{'View' | uppercase}}</a> -->
-                <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View" [routerLink]="['/emp-nomini/view', request.nid]">visibility</mat-icon>
+                <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View"
+                  [routerLink]="['/emp-nomini/view', request.nid]">visibility</mat-icon>
 
-                <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit" [routerLink]="['/emp-nomini/edit', request.nid]"  >edit</mat-icon>
-                <mat-icon style="font-size: 18px; cursor: pointer; color: red" matTooltip="Delete" (click)="deleteEmpNomination(request.nid)">delete</mat-icon>
+                <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit"
+                  [routerLink]="['/emp-nomini/edit', request.nid]">edit</mat-icon>
+                <mat-icon style="font-size: 18px; cursor: pointer; color: red" matTooltip="Delete"
+                  (click)="deleteEmpNomination(request.nid)">delete</mat-icon>
 
                 <!-- <mat-icon style="font-size: 18px;cursor:pointer;color:red" matTooltip="Delete" (click)="Delete( request.nid )">delete</mat-icon> -->
 
@@ -112,39 +116,44 @@
           </ng-container>
 
           <!-- Add other columns as needed -->
-      <ng-container matColumnDef="expansionPanel">
-        <th mat-header-cell *matHeaderCellDef>
-      Family
-        </th>
-        <td mat-cell *matCellDef="let request">
+          <ng-container matColumnDef="expansionPanel">
+            <th mat-header-cell *matHeaderCellDef>
+              Nominee
+            </th>
+            <td mat-cell *matCellDef="let request">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Nominee Details
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
 
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Family Details
-              </mat-panel-title>
-            </mat-expansion-panel-header>
+                <div class="panel-content">
+                  <ng-container *ngFor="let nominee of request?.nominee">
+                    <p style="text-align: left;">
+                      Name of Nominee:
+                      <span style="color: red;">{{ nominee?.nameOfNominee }}</span> ;
+                      RelationShip With Employee:
+                      <span style="color: deepskyblue;">{{ nominee?.relationWithEmployee }}</span>
+                      Age Of Nominee:
+                      <span style="color: deepskyblue;">{{ nominee?.ageOfNominee }}</span>
+                    </p>
+                  </ng-container>
 
-            <div class="panel-content">
-              <!-- Display employee details here -->
-              <p>Employee ID: {{ request?.empId }}</p>
-              <p>Employee Name: {{ request?.empName }}</p>
-       
-              <ng-container>
-                <p>Nominee Name: {{ request?.nameOfNominee }}</p>
-                <p>Relation with Employee: {{ request?.relatinshipWithEmp }}</p>
-                <!-- Add other nominee details as needed -->
-              </ng-container>
-            </div>
-          </mat-expansion-panel>
-        </td>
-      </ng-container>
+                </div>
+              </mat-expansion-panel>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="['sno', 'empId', 'empName', 'cadreCode', 'cadreName', 'nameOfNominee', 'action','expansionPanel']"></tr>
-        <tr mat-row *matRowDef="let request; columns: ['sno', 'empId', 'empName', 'cadreCode', 'cadreName', 'nameOfNominee', 'action','expansionPanel']"></tr>
+          <tr mat-header-row
+            *matHeaderRowDef="['sno', 'empId', 'empName', 'cadreCode', 'cadreName', 'nameOfNominee', 'action','expansionPanel']">
+          </tr>
+          <tr mat-row
+            *matRowDef="let request; columns: ['sno', 'empId', 'empName', 'cadreCode', 'cadreName', 'nameOfNominee', 'action','expansionPanel']">
+          </tr>
+
+        </table>
 
       </table>
-
-    </table>
     </div>
   </div>

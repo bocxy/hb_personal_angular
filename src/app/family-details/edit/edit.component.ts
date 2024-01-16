@@ -109,26 +109,10 @@ export class EditComponent implements OnInit {
     });
   }
 
-  // this.familyDetailFrmGrp = this.cb.group({
-  //   empId:[''],
-  //   empName:[''],
-  //   cadreCode:[''],
-  //   cadreName:[''],
-  //   dateOfBirth:[''],
-  //   dateOfJointService:[''],
-  //   remarks:[''],
-
-  // })
-
-  // addItem() {
-  //   const newItem = this.createItem();
-  //   (this.orderForm.get('items') as FormArray).push(newItem);
-  // }
-
   addItem() {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
 
-    if (itemsFormArray.length < 5) {
+    if (true) {
       const newItem = this.createItem();
       itemsFormArray.push(newItem);
     } else {
@@ -140,41 +124,6 @@ export class EditComponent implements OnInit {
   get items() {
     return (this.orderForm.get('items') as FormArray).controls;
   }
-
-  // onButtonClicked() {
-
-  //   // console.log(id);
-
-  //   let empId = this.familyDetailFrmGrp.value.empId ? JSON.parse(this.familyDetailFrmGrp.value.empId) : ''
-  //   this.employeeService.getCommonDetails(empId).subscribe(
-  //     (response) => {
-  //       console.log('id', this.id);
-
-  //       this.data = response.data;
-  //       this.familyDetailFrmGrp.patchValue({
-
-
-
-  //         empName: this.data.employeeName,
-  //         cadreCode: this.data.cadreCode,
-  //         cadreName: this.data.cadreName,
-  //         dateOfBirth: this.data.dateOfBirth,
-  //         dateOfJointService: this.data.dateOfJointService,
-  //         nid: this.data.nid,
-  //         mid: this.id
-  //       });
-
-  //       console.log('Response:', response);
-
-  //     },
-  //     (error) => {
-
-  //       console.error('Error:', error);
-
-  //     }
-  //   );
-  // }
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -247,11 +196,7 @@ export class EditComponent implements OnInit {
           remarks: this.data.remarks,
           nid: this.data.nid,
           mid: this.data.mid
-          // nameOfFamilyMembers: this.dataFamily.nameOfFamilyMembers,
-          // relationWithEmp: this.dataFamily.relationWithEmp,
-          // familyMemDob: this.dataFamily.familyMemDob,
         });
-        // this.cdr.detectChanges();
         console.log('Response:', response);
 
       },
@@ -335,6 +280,9 @@ export class EditComponent implements OnInit {
           }
         }
       })
+    }
+    else{
+      itemsFormArray.removeAt(index);
     }
   }
 

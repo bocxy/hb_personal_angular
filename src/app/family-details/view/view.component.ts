@@ -89,8 +89,6 @@ export class ViewComponent implements OnInit {
           dateOfBirth: this.data.dateOfBirth,
           dateOfJointService: this.data.dateOfJointService,
           remarks: this.data.remarks,
-
-
         });
 
         const membersFormArray = this.familyDetailFrmGrp.get('members') as FormArray;

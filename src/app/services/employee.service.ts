@@ -635,17 +635,27 @@ getNominationBynId(id: number): Observable<any> {
   return this.http.post<any>(url, requestBody);
 }
 
-getAllEmpNomination(id: number): Observable<any> {
-  const url = `${this.baseUrl}/getAllEmpNomination`;
-  const requestBody = { id: id };
-  return this.http.post(url, requestBody);
-}
+  getAllEmpNomination(id: number): Observable<any> {
+    const url = `${this.baseUrl}/getAllEmpNomination`;
+    const requestBody = { id: id };
+    return this.http.post(url, requestBody);
+  }
 
-deleteEmpNomination(id: number): Observable<any> {
-  const url = `${this.baseUrl}/deleteEmpNomination`;
-  const requestBody = { id: id };
-  return this.http.post<any>(url, requestBody);
-}
+  // Delete Employee Nomination Details Edit/Add
+
+  deleteEmpNomination(id: number): Observable<any> {
+    const url = `${this.baseUrl}/deleteEmpNomination`;
+    const requestBody = { id: id };
+    return this.http.post<any>(url, requestBody);
+  }
+
+  // Delete Employee Nomination Details Edit/Add
+
+  deleteEmpNominationInView(id: number): Observable<any> {
+    const url = `${this.baseUrl}/deleteEmpNominationInView`;
+    const requestBody = { id: id };
+    return this.http.post<any>(url, requestBody);
+  }
 
 
 saveCellCase(data: any): Observable<any> {
@@ -795,9 +805,17 @@ uniqueDivisionCode(id: number): Observable<any> {
   return this.http.post<any>(url, requestBody);
 }
 
+  // delete family details in edit
   deleteFamilyData(nid: number) {
     const url = `${this.baseUrl}/deleteFamilyData`;
     const requestBody = { nid : nid };
+    return this.http.post<any>(url, requestBody);
+  };
+
+  // get nominee details by employee id
+  getNomineeDetailsByEmpId(empId : string){
+    const url = `${this.baseUrl}/getNominationDetailsByEmpId`;
+    const requestBody = { empId : empId };
     return this.http.post<any>(url, requestBody);
   }
 

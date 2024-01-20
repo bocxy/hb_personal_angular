@@ -115,39 +115,53 @@ export class AddComponent implements OnInit {
       (response) => {
         console.log('id', this.id);
         this.data = response.data;
-        const familyMembersList: any[] = this.data.familyMemberList; // map this value to form array -- KarthiChanges
 
+        if (this.data) {
 
-        if (familyMembersList.length > 0) {
-
-          this.items.length = 0;
-
-          familyMembersList.forEach((fam, i) => {
-            this.addItem();
-            const expansionPanel = this.items.at(i) as FormGroup;
-            expansionPanel.patchValue({
-              empId: familyMembersList[i].empId,
-              nameOfFamilyMembers: familyMembersList[i].nameOfFamilyMembers,
-              familyMemDob: familyMembersList[i].familyMemDob,
-              relationWithEmp: familyMembersList[i].relationWithEmp,
-              nid: familyMembersList[i].nid,
-              mid: familyMembersList[i].mid
+          const familyMembersList: any[] = this.data.familyMemberList; // map this value to form array --
+          const familyDataCount = this.data.familyDataCount;
+          if (familyDataCount > 0) {
+            this.familyDetailFrmGrp.reset();
+            this.snackbar.open('Employee Family Details Already Exist', 'Dismiss', {
+              duration: 5000, // Adjust the duration as needed
             });
-          })
+          } else {
+            this.familyDetailFrmGrp.patchValue({
+              empId: this.data.empId,
+              empName: this.data.employeeName,
+              cadreCode: this.data.cadreCode,
+              cadreName: this.data.cadreName,
+              dateOfBirth: this.data.dateOfBirth,
+              dateOfJointService: this.data.dateOfJointService,
+
+            });
+
+            this.empId = this.data.empId;
+            this.mid = this.data.mid;
+            console.log('Response:', response);
+          }
+
+
+          if (false && familyMembersList?.length > 0) {
+
+            this.items.length = 0;
+
+            familyMembersList.forEach((fam, i) => {
+              this.addItem();
+              const expansionPanel = this.items.at(i) as FormGroup;
+              expansionPanel.patchValue({
+                empId: familyMembersList[i].empId,
+                nameOfFamilyMembers: familyMembersList[i].nameOfFamilyMembers,
+                familyMemDob: familyMembersList[i].familyMemDob,
+                relationWithEmp: familyMembersList[i].relationWithEmp,
+                nid: familyMembersList[i].nid,
+                mid: familyMembersList[i].mid
+              });
+            })
+          }
         }
-        this.familyDetailFrmGrp.patchValue({
-          empId: this.data.empId,
-          empName: this.data.employeeName,
-          cadreCode: this.data.cadreCode,
-          cadreName: this.data.cadreName,
-          dateOfBirth: this.data.dateOfBirth,
-          dateOfJointService: this.data.dateOfJointService,
 
-        });
 
-        this.empId = this.data.empId;
-        this.mid = this.data.mid;
-        console.log('Response:', response);
       },
       (error) => {
 
@@ -215,12 +229,12 @@ export class AddComponent implements OnInit {
         }
       })
     }
-    else{
+    else {
       itemsFormArray.removeAt(index);
     }
   }
 
-  routeToFamilyList(){
+  routeToFamilyList() {
     this.router.navigate(['/family-details/list']);
   }
 }

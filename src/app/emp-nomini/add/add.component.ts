@@ -54,7 +54,7 @@ export class AddComponent implements OnInit {
 
     this.empNmniFormGrp = this.cb.group({
       empId: [''],
-      empName: [''],
+      employeeName: [''],
       cadreCode: [''],
       cadreName: [''],
       dateOfBirth: [''],
@@ -170,42 +170,58 @@ export class AddComponent implements OnInit {
     // console.log(id);
 
     let empId = this.empNmniFormGrp.value.empId ? JSON.parse(this.empNmniFormGrp.value.empId) : ''
-    this.employeeService.getNomineeDetailsByEmpId(empId).subscribe(
+    this.employeeService.getCommonDetails(empId).subscribe(
       (response) => {
         console.log('Response:', response);
 
-        const employeeData = response?.data?.employee[0];
-        if (employeeData) {
-          this.employeeId = employeeData.empId;
-          this.mappingId = employeeData.mid;
-          this.empNmniFormGrp.patchValue(employeeData);
-        } else {
-          console.warn(`Employee data not found for this employee Id ${empId}`)
-        }
-
-        const nomineeDetailsList: any[] = response.data.nominee; // map this value to form array -- KarthiChanges
-
-
-        if (nomineeDetailsList.length > 0) {
-
-          this.items.length = 0;
-
-          nomineeDetailsList.forEach((fam, i) => {
-            this.addItem();
-            const expansionPanel = this.items.at(i) as FormGroup;
-            expansionPanel.patchValue({
-              modeOfNominee: nomineeDetailsList[i].modeOfNominee,
-              nameOfNominee: nomineeDetailsList[i].nameOfNominee,
-              relationWithEmployee: nomineeDetailsList[i].relationWithEmployee,
-              ageOfNominee: nomineeDetailsList[i].ageOfNominee,
-              perOfDcrg: nomineeDetailsList[i].perOfDcrg,
-              addressOfNominee: nomineeDetailsList[i].addressOfNominee,
-              nid: nomineeDetailsList[i].nid,
-              mid: nomineeDetailsList[i].mid,
-              empId: nomineeDetailsList[i].empId
+        if (response?.data) {
+          const nomineeDataCount =response.data.nomineeDataCount;
+          if (nomineeDataCount > 0) {
+            this.empNmniFormGrp.reset();
+            this.snackbar.open('Employee Nominee Details Already Exist', 'Dismiss', {
+              duration: 5000, // Adjust the duration as needed
             });
-          })
+          } else {
+            const employeeData = response?.data;
+            if (employeeData) {
+              this.employeeId = employeeData.empId;
+              this.mappingId = employeeData.mid;
+              this.empNmniFormGrp.patchValue(employeeData);
+              this.items.length = 0;
+              this.addItem();
+
+            } else {
+              console.warn(`Employee data not found for this employee Id ${empId}`)
+            }
+
+            const nomineeDetailsList: any[] = response.data.nominee; // map this value to form array -- KarthiChanges
+
+
+            if (false && nomineeDetailsList.length > 0) {
+
+              this.items.length = 0;
+
+              nomineeDetailsList.forEach((fam, i) => {
+                this.addItem();
+                const expansionPanel = this.items.at(i) as FormGroup;
+                expansionPanel.patchValue({
+                  modeOfNominee: nomineeDetailsList[i].modeOfNominee,
+                  nameOfNominee: nomineeDetailsList[i].nameOfNominee,
+                  relationWithEmployee: nomineeDetailsList[i].relationWithEmployee,
+                  ageOfNominee: nomineeDetailsList[i].ageOfNominee,
+                  perOfDcrg: nomineeDetailsList[i].perOfDcrg,
+                  addressOfNominee: nomineeDetailsList[i].addressOfNominee,
+                  nid: nomineeDetailsList[i].nid,
+                  mid: nomineeDetailsList[i].mid,
+                  empId: nomineeDetailsList[i].empId
+                });
+              })
+            }
+
+          }
+
         }
+
 
 
       },

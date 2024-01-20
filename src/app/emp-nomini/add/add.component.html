@@ -46,11 +46,11 @@
             <div class="section-b col-md-6">
               <mat-label> Employee Name <span class="required">*</span></mat-label>
 
-              <input class="input" type="text" name="Search" matInput formControlName="empName"
+              <input class="input" type="text" name="Search" matInput formControlName="employeeName"
                 style="width: calc(96.5% - 5px);" readonly>
 
               <mat-option *ngFor="let row of types" [value]="row">{{row}}</mat-option>
-              <mat-error *ngIf="submitted && empNmniFormGrp.get('empName')?.errors?.required">
+              <mat-error *ngIf="submitted && empNmniFormGrp.get('employeeName')?.errors?.required">
                 {{'Employee Name is required'}}</mat-error>
             </div>
 

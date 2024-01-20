@@ -16,7 +16,7 @@ export interface AdditionalRows {
   empName: string;
   cadreCode: string;
   cadreName: string;
-  nameOfNominee: string;
+  nameOfNominee ?: string;
   action: string;
 
 }
@@ -32,7 +32,9 @@ export class ListComponent implements OnInit {
 
   dataSource = new MatTableDataSource<any>([]);
 
-  columnsToDisplay = ['sno', 'empId', 'empName', 'cadreCode', 'cadreName', 'nameOfNominee', 'action'];
+  columnsToDisplay = ['sno', 'empId', 'empName', 'cadreCode', 'cadreName',
+  //  'nameOfNominee', 
+   'action'];
 
   status = [
     { 'status': "Pending", 'value': true },
@@ -87,7 +89,7 @@ export class ListComponent implements OnInit {
       dateOfBirth: [''],
       dateOfJointService: [''],
       modeOfNominee: [''],
-      nameOfNominee: [''],
+      // nameOfNominee: [''],
       relatinshipWithEmp: [''],
       ageOfNominee: [''],
       shareOfDcrg: [''],
@@ -162,7 +164,7 @@ export class ListComponent implements OnInit {
           dateOfBirth: this.data.dateOfBirth,
           dateOfJointService: this.data.dateOfJointService,
           modeOfNominee: this.data.modeOfNominee,
-          nameOfNominee: this.data.nameOfNominee,
+          // nameOfNominee: this.data.nameOfNominee,
           relatinshipWithEmp: this.data.relatinshipWithEmp,
           ageOfNominee: this.data.ageOfNominee,
           shareOfDcrg: this.data.shareOfDcrg,

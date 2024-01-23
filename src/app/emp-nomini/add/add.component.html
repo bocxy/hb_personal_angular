@@ -132,7 +132,7 @@
                   <div class="section-b col">
                     <mat-label> Mode of Nominee <span class="required">*</span></mat-label>
                     <div class="input-container">
-                      <mat-select [(value)]="selectedStatus" (selectionChange)="applyTypeFilter()" matInput
+                      <mat-select  matInput
                         formControlName="modeOfNominee">
 
                         <mat-option *ngFor="let row of modeOfNominee"
@@ -167,7 +167,7 @@
                     <mat-label> Relationship with Employee <span class="required">*</span></mat-label>
                     <div class="input-container">
 
-                      <mat-select [(value)]="SelectedValue" (selectionChange)="applyTypeFilter()" matInput
+                      <mat-select  matInput
                         formControlName="relationWithEmployee">
                         <mat-option *ngFor="let row of relationWithEmployee"
                           [value]="row.relationWithEmployee">{{row.relationWithEmployee}}</mat-option>

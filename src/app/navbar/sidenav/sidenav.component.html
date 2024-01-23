@@ -1,38 +1,32 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
   <div class="logo-container">
-    <mat-icon style="color:#fff;margin-right:18px" (click)="toggleCollapse()">menu</mat-icon>
-    <div class="logo-text" *ngIf="collapsed"><h3><B>Welcome Admin </B></h3>  </div>
+    <mat-icon style="color:#fff;margin-right:18px;margin-left:7px" (click)="toggleCollapse()">menu</mat-icon>
+    <div class="logo-text" *ngIf="collapsed">
+      <h3 style="margin: 12px;">Dashboard</h3>
+    </div>
     <!-- <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()"> -->
-      <!-- <mat-icon style="position: relative;right: 20px;" class="iconsmat">menu_open</mat-icon>
+    <!-- <mat-icon style="position: relative;right: 20px;" class="iconsmat">menu_open</mat-icon>
     </button> -->
   </div>
   <hr>
   <ul class="sidenav-nav">
     <li class="sidenav-nav-item parent-menu" *ngFor="let data of navData">
-      <ng-container *ngIf="!data.subItems; else dropdown">
-        <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">
-          <mat-icon class="sidenav-link-icon" matTooltip="{{!collapsed ? data.label : ''}}"
-            matTooltipPosition="right">{{ data.icon }}</mat-icon>
-          <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
-        </a>
-      </ng-container>
-      <ng-template #dropdown>
-        <div class="dropdown-container">
-          <a class="sidenav-nav-link">
-            <mat-icon class="sidenav-link-icon">{{ data.icon }}</mat-icon>
-            <span class="sidenav-link-text">{{ data.label }}</span>
-            <mat-icon>arrow_drop_down</mat-icon>
-          </a>
-          <div class="sub-menu" *ngIf="data.subItems">
-            <a *ngFor="let subItem of data.subItems" [routerLink]="[subItem.routeLink]" routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }">
-              <mat-icon>{{ subItem.icon }}</mat-icon>
-              {{ subItem.label }}
-            </a>
-          </div>
-        </div>
-      </ng-template>
+      <a class="sidenav-nav-link"   [routerLink]="[data.routeLink]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="handleClick(data)" *ngIf="data.subItems && data.subItems.length > 0">
+        <mat-icon class="sidenav-link-icon" matTooltip="{{!collapsed ? data.label : ''}}" matTooltipPosition="right">{{
+          data.icon }}</mat-icon>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
+        <mat-icon *ngIf="data.subItems && collapsed" class="menu-collapse-icon">{{!data.expanded? 'chevron_right': 'expand_more'}}</mat-icon>
+      </a>
+      <a class="sidenav-nav-link" *ngIf="!data.subItems || (data.subItems && data.subItems.length === 0)"
+        [routerLink]="[data.routeLink]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon class="sidenav-link-icon" matTooltip="{{!collapsed ? data.label : ''}}" matTooltipPosition="right">{{
+          data.icon }}</mat-icon>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
+
+      </a>
+      <div *ngIf="collapsed && data.subItems && data.subItems.length > 0">
+        <app-sublevel-menu [collapsed]="collapsed" [data]="data" [multiple]="multiple" [expanded]="data.expanded"></app-sublevel-menu>
+      </div>
     </li>
   </ul>
 </div>

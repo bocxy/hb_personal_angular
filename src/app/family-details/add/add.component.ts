@@ -14,7 +14,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class AddComponent implements OnInit {
 
 
-  familyDetailFrmGrp:FormGroup;
+  familyDetailFrmGrp: FormGroup;
   orderForm: FormGroup;
   types: string[] = [];
   submitted = false;
@@ -22,8 +22,8 @@ export class AddComponent implements OnInit {
   couponId: string;
   showAdditionalContainer = false;
 
-  id:number;
-  data:any;
+  id: number;
+  data: any;
 
   status = [
     { 'status': "Mother", 'value': true },
@@ -34,7 +34,7 @@ export class AddComponent implements OnInit {
 
   ]
 
-  
+
 
   selectedValue: string;
   selectedStatus: string;
@@ -46,23 +46,23 @@ export class AddComponent implements OnInit {
 
   formBuilder: any;
   showContainerBox = true;
-  employeeId:any
+  employeeId: any
 
 
 
-  constructor(private cb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute,  private employeeService:EmployeeService,private http: HttpClient, ) { }
+  constructor(private cb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute, private employeeService: EmployeeService, private http: HttpClient,) { }
 
 
   ngOnInit(): void {
 
     this.familyDetailFrmGrp = this.cb.group({
-      empId:[''],
-      empName:[''],
-      cadreCode:[''],
-      cadreName:[''],
-      dateOfBirth:[''],
-      dateOfJointService:[''],
-      remarks:[''],
+      empId: [''],
+      empName: [''],
+      cadreCode: [''],
+      cadreName: [''],
+      dateOfBirth: [''],
+      dateOfJointService: [''],
+      remarks: [''],
 
     })
 
@@ -70,7 +70,7 @@ export class AddComponent implements OnInit {
       items: this.cb.array([])
     });
 
-   this.addItem();
+    this.addItem();
 
   }
 
@@ -80,14 +80,16 @@ export class AddComponent implements OnInit {
       nameOfFamilyMembers: [''],
       relationWithEmp: [''],
       familyMemDob: [''],
-      empId:[this.familyDetailFrmGrp.value.empId || '']
+      empId: [this.familyDetailFrmGrp.value.empId || ''],
+      nid: [''],
+      mid: ['']
 
     });
   }
 
   addItem() {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
-  
+
     if (itemsFormArray.length < 5) {
       const newItem = this.createItem();
       itemsFormArray.push(newItem);
@@ -95,34 +97,146 @@ export class AddComponent implements OnInit {
       console.log('You cannot add more than 5 items.');
     }
   }
-  
+
 
   get items() {
     return (this.orderForm.get('items') as FormArray).controls;
   }
 
-  onButtonClicked(){
+  onButtonClicked() {
 
 
-    let empId=this.familyDetailFrmGrp.value.empId ?JSON.parse(this.familyDetailFrmGrp.value.empId):''
+    let empId = this.familyDetailFrmGrp.value.empId ? JSON.parse(this.familyDetailFrmGrp.value.empId) : ''
 
- this.employeeId=this.familyDetailFrmGrp.value.empId ?JSON.parse(this.familyDetailFrmGrp.value.empId):''
+    this.employeeId = this.familyDetailFrmGrp.value.empId ? JSON.parse(this.familyDetailFrmGrp.value.empId) : ''
 
     this.employeeService.getCommonDetails(empId).subscribe(
       (response) => {
-        console.log('id',this.id);
-         this.data=response.data;
-         this.familyDetailFrmGrp.patchValue({
-            // empId: this.data.empId,
-            empName :this.data.employeeName,
-            cadreCode:this.data.cadreCode,
-            cadreName:this.data.cadreName,
-            dateOfBirth:this.data.dateOfBirth,
-            dateOfJointService:this.data.dateOfJointService,
-
-          });
-           console.log('Response:', response);
+        console.log('id', this.id);
+        this.data = response.data;
+        const familyMembersList = [
+          {
+            "empId": "789",
+            "nameOfFamilyMembers": "amma",
+            "familyMemDob": "2026-06-12",
+            "relationWithEmp": "Son",
+            "mid": 3,
+            "nid": 1
           },
+          {
+            "empId": "",
+            "nameOfFamilyMembers": "Name of Family Member",
+            "familyMemDob": "2024-01-10",
+            "relationWithEmp": "Mother",
+            "mid": 3,
+            "nid": 247
+          },
+          {
+            "empId": "",
+            "nameOfFamilyMembers": "Name of Family Member",
+            "familyMemDob": "2024-01-11",
+            "relationWithEmp": "Father",
+            "mid": 3,
+            "nid": 249
+          },
+          {
+            "empId": "789",
+            "nameOfFamilyMembers": "Name of Family Member 2",
+            "familyMemDob": "2024-01-12",
+            "relationWithEmp": "Daughter",
+            "mid": 3,
+            "nid": 250
+          },
+          {
+            "empId": "",
+            "nameOfFamilyMembers": "",
+            "familyMemDob": null,
+            "relationWithEmp": "",
+            "mid": 3,
+            "nid": 252
+          },
+          {
+            "empId": "789",
+            "nameOfFamilyMembers": "",
+            "familyMemDob": null,
+            "relationWithEmp": "",
+            "mid": 3,
+            "nid": 253
+          },
+          {
+            "empId": "",
+            "nameOfFamilyMembers": "",
+            "familyMemDob": null,
+            "relationWithEmp": "",
+            "mid": 3,
+            "nid": 255
+          },
+          {
+            "empId": "",
+            "nameOfFamilyMembers": "Abc",
+            "familyMemDob": "2024-01-11",
+            "relationWithEmp": "Father",
+            "mid": 3,
+            "nid": 257
+          },
+          {
+            "empId": "",
+            "nameOfFamilyMembers": "Family Gokul",
+            "familyMemDob": "2024-01-11",
+            "relationWithEmp": "Son",
+            "mid": 3,
+            "nid": 259
+          },
+          {
+            "empId": "789",
+            "nameOfFamilyMembers": "amma",
+            "familyMemDob": "2023-10-12",
+            "relationWithEmp": "Spouse",
+            "mid": 3,
+            "nid": 261
+          },
+          {
+            "empId": "789",
+            "nameOfFamilyMembers": "amma",
+            "familyMemDob": "2027-06-02",
+            "relationWithEmp": "Mother",
+            "mid": 3,
+            "nid": 263
+          },
+          {
+            "empId": "789",
+            "nameOfFamilyMembers": "Karthi",
+            "familyMemDob": "2024-01-27",
+            "relationWithEmp": "Spouse",
+            "mid": 3,
+            "nid": 267
+          }
+        ]
+        // this.data.familyMemberList; // map this value to form array -- KarthiChanges
+        if (familyMembersList.length > 0) {
+          familyMembersList.forEach((fam, i) => {
+            this.addItem();
+            const expansionPanel = this.items.at(i) as FormGroup;
+            expansionPanel.patchValue({
+              empId: familyMembersList[i].empId,
+              nameOfFamilyMembers: familyMembersList[i].nameOfFamilyMembers,
+              familyMemDob: familyMembersList[i].familyMemDob,
+              relationWithEmp: familyMembersList[i].relationWithEmp,
+            });
+          })
+          this.orderForm.controls['items'].patchValue(familyMembersList); // need to assign all values it is working only for 1 object and relationship with employee lov values not assigning -- KarthiChanges
+        }
+        this.familyDetailFrmGrp.patchValue({
+          // empId: this.data.empId,
+          empName: this.data.employeeName,
+          cadreCode: this.data.cadreCode,
+          cadreName: this.data.cadreName,
+          dateOfBirth: this.data.dateOfBirth,
+          dateOfJointService: this.data.dateOfJointService,
+
+        });
+        console.log('Response:', response);
+      },
       (error) => {
 
         console.error('Error:', error);
@@ -134,11 +248,10 @@ export class AddComponent implements OnInit {
 
 
 
-
   onSubmit() {
-   
-    if (this.familyDetailFrmGrp.valid ) {
-     
+
+    if (this.familyDetailFrmGrp.valid) {
+
       const familyDetailValues = this.familyDetailFrmGrp.value;
       const familyMembers = this.orderForm.value.items;
       console.log(familyMembers)
@@ -154,10 +267,11 @@ export class AddComponent implements OnInit {
             "remarks": familyDetailValues.remarks
           }
         ],
-        "members":familyMembers
-       
+        "members": familyMembers
+
       };
-  console.log(data)
+      console.log(data)
+      return
       // Call the service to save data
       this.employeeService.saveEmpFamilyDetails(data).subscribe(
         (response) => {
@@ -166,20 +280,20 @@ export class AddComponent implements OnInit {
         },
         (error) => {
           console.error('Error saving data:', error);
- 
+
         }
       );
     } else {
       console.error('Form is not valid');
-    
+
     }
   }
-  
+
   deleteContainerBox(index: number) {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
     itemsFormArray.removeAt(index);
   }
-  }
+}
 
 
 

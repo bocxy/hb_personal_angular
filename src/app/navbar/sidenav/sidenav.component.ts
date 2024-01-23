@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { navMenuBar } from '../navdata';
+import { navModel } from './helper';
 interface SideNavToggle {
   screenWidth: number;
   collapsed: boolean;
@@ -15,21 +16,21 @@ export class SidenavComponent implements OnInit {
   collapsed = false;
   navData = navMenuBar;
   currentSubMenu: any;
-
+  multiple: boolean = false;
   isSubMenuVisible: boolean = false;
 
-@HostListener('window:resize',['$event'])
-onResize(event:any){
-  this.screenWidth=window.innerWidth;
-  if(this.screenWidth <= 768){
-    this.collapsed = false;
-    this.onToogleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth })
-   }
-}
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth <= 768) {
+      this.collapsed = false;
+      this.onToogleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth })
+    }
+  }
 
   ngOnInit(): void {
-  this.screenWidth=window.innerWidth;
-}
+    this.screenWidth = window.innerWidth;
+  }
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;
     this.onToogleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth })
@@ -43,5 +44,14 @@ onResize(event:any){
     this.isSubMenuVisible = !this.isSubMenuVisible;
     this.currentSubMenu = data;
   }
-
+  handleClick(item: navModel): void {
+    if (!this.multiple) {
+      for (let modelItem of this.navData) {
+        if (item !== modelItem && modelItem.expanded) {
+          modelItem.expanded = false;
+        }
+      }
+    }
+    item.expanded = !item.expanded
+  }
 }

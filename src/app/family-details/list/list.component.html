@@ -2,144 +2,135 @@
   <div class="card-title">
     <h2 style="padding:0px !important;margin:0px !important;font-weight: 600">{{'Employee Family Details'}}</h2>
   </div>
-
-
-
   <div class="container">
-
     <div class="filter-row mb-4 no-print">
       <div class="filter-container">
         <label for="filter-select" class="label">Filter</label>
         <mat-form-field appearance="outline">
-          <mat-select id="filter-select" [(value)]="selectedFilter" (selectionChange)="applyFilter($event)" placeholder="Search">
+          <mat-select id="filter-select" [(value)]="selectedFilter" (selectionChange)="applyFilter($event)"
+            placeholder="Search">
             <mat-option value="empId">Employee ID</mat-option>
             <mat-option value="empName">Employee Name</mat-option>
           </mat-select>
         </mat-form-field>
         <div class="search-container">
-          <div>
-            <input matInput #input (keyup)="applyFilter($event)" type="text" id="search-input"
-              class="search-input" placeholder="Search">
-            <div class="search-icon">
-              <mat-icon>search</mat-icon>
-            </div>
+          <input matInput #input (keyup)="applyFilter($event)" type="text" id="search-input" class="search-input"
+            placeholder="Search">
+          <div class="search-icon">
+            <mat-icon>search</mat-icon>
           </div>
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button class="btn btn-light" (click)="clearFilter()">Clear Filter</button>
       </div>
 
-    <div>
-  <div>
-      <button class="btn btn-light add-dataBtn" routerLink="/family-details/add">
-        Add Employee Family Deatils</button>
+      <div>
+        <div>
+          <button class="btn btn-light add-dataBtn" routerLink="/family-details/add">
+            Add Employee Family Deatils</button>
 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button class="btn btn-light" (click)="printScreen()">Print</button>
-
-
-  </div>
-  </div>
-  </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="btn btn-light" (click)="printScreen()">Print</button>
 
 
-  <div class="card">
-    <table mat-table matSort [dataSource]="dataSource">
-      <ng-container matColumnDef="sno">
-        <th mat-header-cell *matHeaderCellDef>
-          <span>S.No</span>
-        </th>
-        <td mat-cell *matCellDef="let request index as i"> {{ i + 1 }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="empId">
-        <th style=" text-align: center" mat-header-cell *matHeaderCellDef>
-          <span>Employee Id</span>
-        </th>
-        <td mat-cell *matCellDef="let request">{{ request?.empId }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="empName">
-        <th style=" text-align: center" mat-header-cell *matHeaderCellDef>
-          <span>Employee Name</span>
-        </th>
-        <td mat-cell *matCellDef="let request">{{ request?.empName }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="cadreCode">
-        <th style=" text-align: center" mat-header-cell *matHeaderCellDef>
-          <span>Cadre Code</span>
-        </th>
-        <td mat-cell *matCellDef="let request">{{ request?.cadreCode }}</td>
-      </ng-container>
-      <ng-container matColumnDef="cadreName">
-        <th style=" text-align: center" mat-header-cell *matHeaderCellDef>
-          <span>Cadre Name</span>
-        </th>
-        <td mat-cell *matCellDef="let request"> {{ request?.cadreName }} </td>
-      </ng-container>
+        </div>
+      </div>
+    </div>
 
 
-      <ng-container matColumnDef="action">
-        <th  mat-header-cell *matHeaderCellDef>
-          <span>Action</span>
-        </th>
-        <td mat-cell *matCellDef="let request">
-          <div class="add-coupon row-md-3">
+    <div class="card">
+      <table mat-table matSort [dataSource]="dataSource">
+        <ng-container matColumnDef="sno">
+          <th mat-header-cell *matHeaderCellDef>
+            <span>S.No</span>
+          </th>
+          <td mat-cell *matCellDef="let request index as i"> {{ i + 1 }} </td>
+        </ng-container>
+        <ng-container matColumnDef="empId">
+          <th style=" text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Employee Id</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{ request?.empId }}</td>
+        </ng-container>
 
-            <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View" [routerLink]="['/family-details/view', request?.nid]">visibility</mat-icon>
+        <ng-container matColumnDef="empName">
+          <th style=" text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Employee Name</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{ request?.empName }}</td>
+        </ng-container>
 
-            <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit" [routerLink]="['/family-details/edit', request?.nid]"  >edit</mat-icon>
-            <mat-icon style="font-size: 18px; cursor: pointer; color: red" matTooltip="Delete" (click)="deleteEmpFamilyDetails(request.nid)">delete</mat-icon>
-
-
-          </div>
-        </td>
-
-      </ng-container>
-
-
-      <ng-container matColumnDef="expansionPanel">
-        <th mat-header-cell *matHeaderCellDef>
-      Family
-        </th>
-        <td mat-cell *matCellDef="let request">
-
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Family Details
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div class="panel-content">
-              <!-- Display employee details here -->
-
-              <!-- Add other details as needed -->
-              <ng-container *ngFor="let member of request?.members">
-                <p style="text-align: left;">
-                  Family Member Name:
-                  <span style="color: red;">{{ member?.nameOfFamilyMembers }}</span> ;
-                  Relation:
-                  <span style="color: deepskyblue;">{{ member?.relationWithEmp }}</span>
-                </p>
-              </ng-container>
+        <ng-container matColumnDef="cadreCode">
+          <th style=" text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Cadre Code</span>
+          </th>
+          <td mat-cell *matCellDef="let request">{{ request?.cadreCode }}</td>
+        </ng-container>
+        <ng-container matColumnDef="cadreName">
+          <th style=" text-align: center" mat-header-cell *matHeaderCellDef>
+            <span>Cadre Name</span>
+          </th>
+          <td mat-cell *matCellDef="let request"> {{ request?.cadreName }} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>
+            <span>Action</span>
+          </th>
+          <td mat-cell *matCellDef="let request">
+            <div class="add-coupon row-md-3">
+              <mat-icon style="font-size: 18px;cursor:pointer;color:peru" matTooltip="View"
+                [routerLink]="['/family-details/view', request?.nid]">visibility</mat-icon>
+              <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit"
+                [routerLink]="['/family-details/edit', request?.nid]">edit</mat-icon>
+              <mat-icon style="font-size: 18px; cursor: pointer; color: red" matTooltip="Delete"
+                (click)="deleteEmpFamilyDetails(request.nid)">delete</mat-icon>
             </div>
-          </mat-expansion-panel>
-        </td>
-      </ng-container>
+          </td>
+        </ng-container>
+|<ng-container matColumnDef="expansionPanel">
+          <th mat-header-cell *matHeaderCellDef>
+            Family
+          </th>
+          <td mat-cell *matCellDef="let request">
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Family Details
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="panel-content">
+                <!-- Display employee details here -->
+
+                <!-- Add other details as needed -->
+                <ng-container *ngFor="let member of request?.members">
+                  <p style="text-align: left;">
+                    Family Member Name:
+                    <span style="color: red;">{{ member?.nameOfFamilyMembers }}</span> ;
+                    Relation:
+                    <span style="color: deepskyblue;">{{ member?.relationWithEmp }}</span>
+                  </p>
+                </ng-container>
+              </div>
+            </mat-expansion-panel>
+          </td>
+        </ng-container>
 
 
-      <tr mat-header-row *matHeaderRowDef="['sno', 'empId','empName', 'cadreCode', 'cadreName', 'action','expansionPanel']"></tr>
-      <tr mat-row *matRowDef="let request; columns: [ 'sno','empId','empName', 'cadreCode', 'cadreName', 'action','expansionPanel']"></tr>
+        <tr mat-header-row
+          *matHeaderRowDef="['sno', 'empId','empName', 'cadreCode', 'cadreName', 'action','expansionPanel']"></tr>
+        <tr mat-row
+          *matRowDef="let request; columns: [ 'sno','empId','empName', 'cadreCode', 'cadreName', 'action','expansionPanel']">
+        </tr>
 
-    </table>
-  </div>
+      </table>
+    </div>
 
 
 
 
-   <!-- <div class="card">
+    <!-- <div class="card">
    <table mat-table matSort [dataSource]="dataSource">
 
       <ng-container matColumnDef="sno">
@@ -208,4 +199,4 @@
     </table>
   </div> -->
 
-</div>
+  </div>

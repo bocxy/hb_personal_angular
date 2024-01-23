@@ -251,8 +251,11 @@ expandRow(row: any): void {
     const id = 123;
     this.employeeService.getAllEmpFamilyDetails(id).subscribe(
       (response: any) => {
-        console.log(response);
-
+        const mergedArray = response.data.employee.map(item1 => {
+          const correspondingItem = response.data.members.find(item2 => item2.empId === item1.empId);
+          return { ...item1, ...correspondingItem };
+        });
+        console.log(mergedArray)
         this.dataSource.data = response.data.employee.map((employee: any) => ({
           empId: employee.empId,
           empName: employee.empName,

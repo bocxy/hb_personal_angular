@@ -375,6 +375,11 @@ table thead {
   flex-shrink: 1 !important;
 }
 
+hr{
+  border-top: 5px #7c5175 solid !important; 
+  margin: 0.2rem 0 !important;
+}
+
 .justify-content-start {
   -ms-flex-pack: start !important;
   justify-content: flex-start !important;

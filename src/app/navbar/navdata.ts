@@ -1,13 +1,12 @@
-export const navMenuBar = [
+import { navModel } from "./sidenav/helper";
+
+export const navMenuBar :navModel[] = [
 
         {
             routeLink: 'office-data/list',
             icon: 'assessment',
             label: 'Office Data',
             subItems: [
-                
-               
-               
                 { routeLink: 'office-data/list-head-office',icon: 'assessment', label: 'Head Office' },
                 { routeLink: 'office-data/list-circle-office',icon: 'assessment', label: 'Circle Office' },
                 { routeLink: 'office-data/list-division-office',icon: 'assessment', label: 'Division Office' },

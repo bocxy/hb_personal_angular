@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DialogComponent } from 'src/app/asset-details/dialog/dialog.component';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -24,6 +23,9 @@ export class AddComponent implements OnInit {
 
   id: number;
   data: any;
+
+  mid = "";
+  empId = "";
 
   status = [
     { 'status': "Mother", 'value': true },
@@ -80,17 +82,16 @@ export class AddComponent implements OnInit {
       nameOfFamilyMembers: [''],
       relationWithEmp: [''],
       familyMemDob: [''],
-      empId: [this.familyDetailFrmGrp.value.empId || ''],
+      empId: [this.empId],
       nid: [''],
-      mid: ['']
+      mid: [this.mid]
 
     });
   }
 
   addItem() {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
-
-    if (itemsFormArray.length < 5) {
+    if (true) {
       const newItem = this.createItem();
       itemsFormArray.push(newItem);
     } else {
@@ -114,128 +115,53 @@ export class AddComponent implements OnInit {
       (response) => {
         console.log('id', this.id);
         this.data = response.data;
-        const familyMembersList = [
-          {
-            "empId": "789",
-            "nameOfFamilyMembers": "amma",
-            "familyMemDob": "2026-06-12",
-            "relationWithEmp": "Son",
-            "mid": 3,
-            "nid": 1
-          },
-          {
-            "empId": "",
-            "nameOfFamilyMembers": "Name of Family Member",
-            "familyMemDob": "2024-01-10",
-            "relationWithEmp": "Mother",
-            "mid": 3,
-            "nid": 247
-          },
-          {
-            "empId": "",
-            "nameOfFamilyMembers": "Name of Family Member",
-            "familyMemDob": "2024-01-11",
-            "relationWithEmp": "Father",
-            "mid": 3,
-            "nid": 249
-          },
-          {
-            "empId": "789",
-            "nameOfFamilyMembers": "Name of Family Member 2",
-            "familyMemDob": "2024-01-12",
-            "relationWithEmp": "Daughter",
-            "mid": 3,
-            "nid": 250
-          },
-          {
-            "empId": "",
-            "nameOfFamilyMembers": "",
-            "familyMemDob": null,
-            "relationWithEmp": "",
-            "mid": 3,
-            "nid": 252
-          },
-          {
-            "empId": "789",
-            "nameOfFamilyMembers": "",
-            "familyMemDob": null,
-            "relationWithEmp": "",
-            "mid": 3,
-            "nid": 253
-          },
-          {
-            "empId": "",
-            "nameOfFamilyMembers": "",
-            "familyMemDob": null,
-            "relationWithEmp": "",
-            "mid": 3,
-            "nid": 255
-          },
-          {
-            "empId": "",
-            "nameOfFamilyMembers": "Abc",
-            "familyMemDob": "2024-01-11",
-            "relationWithEmp": "Father",
-            "mid": 3,
-            "nid": 257
-          },
-          {
-            "empId": "",
-            "nameOfFamilyMembers": "Family Gokul",
-            "familyMemDob": "2024-01-11",
-            "relationWithEmp": "Son",
-            "mid": 3,
-            "nid": 259
-          },
-          {
-            "empId": "789",
-            "nameOfFamilyMembers": "amma",
-            "familyMemDob": "2023-10-12",
-            "relationWithEmp": "Spouse",
-            "mid": 3,
-            "nid": 261
-          },
-          {
-            "empId": "789",
-            "nameOfFamilyMembers": "amma",
-            "familyMemDob": "2027-06-02",
-            "relationWithEmp": "Mother",
-            "mid": 3,
-            "nid": 263
-          },
-          {
-            "empId": "789",
-            "nameOfFamilyMembers": "Karthi",
-            "familyMemDob": "2024-01-27",
-            "relationWithEmp": "Spouse",
-            "mid": 3,
-            "nid": 267
-          }
-        ]
-        // this.data.familyMemberList; // map this value to form array -- KarthiChanges
-        if (familyMembersList.length > 0) {
-          familyMembersList.forEach((fam, i) => {
-            this.addItem();
-            const expansionPanel = this.items.at(i) as FormGroup;
-            expansionPanel.patchValue({
-              empId: familyMembersList[i].empId,
-              nameOfFamilyMembers: familyMembersList[i].nameOfFamilyMembers,
-              familyMemDob: familyMembersList[i].familyMemDob,
-              relationWithEmp: familyMembersList[i].relationWithEmp,
-            });
-          })
-          this.orderForm.controls['items'].patchValue(familyMembersList); // need to assign all values it is working only for 1 object and relationship with employee lov values not assigning -- KarthiChanges
-        }
-        this.familyDetailFrmGrp.patchValue({
-          // empId: this.data.empId,
-          empName: this.data.employeeName,
-          cadreCode: this.data.cadreCode,
-          cadreName: this.data.cadreName,
-          dateOfBirth: this.data.dateOfBirth,
-          dateOfJointService: this.data.dateOfJointService,
 
-        });
-        console.log('Response:', response);
+        if (this.data) {
+
+          const familyMembersList: any[] = this.data.familyMemberList; // map this value to form array --
+          const familyDataCount = this.data.familyDataCount;
+          if (familyDataCount > 0) {
+            this.familyDetailFrmGrp.reset();
+            this.snackbar.open('Employee Family Details Already Exist', 'Dismiss', {
+              duration: 5000, // Adjust the duration as needed
+            });
+          } else {
+            this.familyDetailFrmGrp.patchValue({
+              empId: this.data.empId,
+              empName: this.data.employeeName,
+              cadreCode: this.data.cadreCode,
+              cadreName: this.data.cadreName,
+              dateOfBirth: this.data.dateOfBirth,
+              dateOfJointService: this.data.dateOfJointService,
+
+            });
+
+            this.empId = this.data.empId;
+            this.mid = this.data.mid;
+            console.log('Response:', response);
+          }
+
+
+          if (false && familyMembersList?.length > 0) {
+
+            this.items.length = 0;
+
+            familyMembersList.forEach((fam, i) => {
+              this.addItem();
+              const expansionPanel = this.items.at(i) as FormGroup;
+              expansionPanel.patchValue({
+                empId: familyMembersList[i].empId,
+                nameOfFamilyMembers: familyMembersList[i].nameOfFamilyMembers,
+                familyMemDob: familyMembersList[i].familyMemDob,
+                relationWithEmp: familyMembersList[i].relationWithEmp,
+                nid: familyMembersList[i].nid,
+                mid: familyMembersList[i].mid
+              });
+            })
+          }
+        }
+
+
       },
       (error) => {
 
@@ -271,8 +197,8 @@ export class AddComponent implements OnInit {
 
       };
       console.log(data)
-      return
       // Call the service to save data
+      // return;
       this.employeeService.saveEmpFamilyDetails(data).subscribe(
         (response) => {
           console.log('Data saved:', response);
@@ -291,7 +217,24 @@ export class AddComponent implements OnInit {
 
   deleteContainerBox(index: number) {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
-    itemsFormArray.removeAt(index);
+    const nid = itemsFormArray.value[index].nid;
+    if (nid) {
+      this.employeeService.deleteFamilyData(nid).subscribe({
+        next: (response: any) => {
+          console.log("delete response", response);
+          if (response?.message && (response?.message === "Family Data Details deleted successfully.")) {
+            itemsFormArray.removeAt(index);
+          }
+        }
+      })
+    }
+    else {
+      itemsFormArray.removeAt(index);
+    }
+  }
+
+  routeToFamilyList() {
+    this.router.navigate(['/family-details/list']);
   }
 }
 

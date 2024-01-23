@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs';
 import { DialogComponent } from 'src/app/asset-details/dialog/dialog.component';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { ConfirmDialogComponent } from 'src/app/shared-module/confirm-dialog/confirm-dialog.component';
@@ -19,9 +18,9 @@ export interface AdditionalRows {
   empId: string;
   empName: string;
   cadreCode: string;
-  cadreName : string;
+  cadreName: string;
   // cadCate:string;
- action:string;
+  action: string;
 
 }
 
@@ -45,38 +44,22 @@ export class ListComponent implements OnInit {
   selectedStatus: string;
   noData = false;
   couponsListData: any;
-  filteredData: any[]=[];
+  filteredData: any[] = [];
   selectedData: any;
   id: any;
   data: any;
 
   selectedFilter: string = '';
-  familyDetailFrmGrp:FormGroup;
+  familyDetailFrmGrp: FormGroup;
 
 
   columnsToDisplay = ['sno', 'empId', 'empName', 'cadreCode', 'cadreName', 'action'];
 
-   status = [
-    { 'status': "Pending", 'value': true },
-    { 'status': "Approved", 'value': false },
-    { 'status': "Rejected", 'value': false }
-  ]
-row: any;
-
-  // columns = [
-  //   { columnDef: 'sno', header: 'S.No',    cell: (element: any) => element['sno'] },
-  //   { columnDef: 'empId',     header: 'Emp Id',   cell: (element: any) => 'empId'     },
-  //   { columnDef: 'empName',   header: 'Employee Name', cell: (element: any) => `${element.weight}`   },
-  //   { columnDef: 'cadCode',   header: 'Cade Code', cell: (element: any) => `${element.symbol}`   },
-  //   { columnDef: 'cadName', header: 'Cade Name',    cell: (element: any) => element['sno'] },
-  //   { columnDef: 'cadCate',     header: 'Cade Category',   cell: (element: any) => 'empId'     },
-  //   { columnDef: 'preOffCode',   header: 'Present Office Code', cell: (element: any) => `${element.weight}`   },
-  //   { columnDef: 'tranOffcCode',   header: 'Transfer Office Code', cell: (element: any) => `${element.symbol}`   },
-  // ];
+  row: any;
 
 
 
-  constructor(private fb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute,  private employeeService:EmployeeService,private http: HttpClient, private dialog: MatDialog,) { }
+  constructor(private fb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute, private employeeService: EmployeeService, private http: HttpClient, private dialog: MatDialog,) { }
 
 
   additionalRows: AdditionalRows[] = [
@@ -85,6 +68,8 @@ row: any;
 
 
   ngOnInit(): void {
+    this.getAllEmpFamilyDetails();
+
     this.dataSource.data = [];
     this.dataSource.data = this.couponsListData;
     this.filteredData = [];
@@ -93,13 +78,13 @@ row: any;
     this.noData = this.dataSource.data.length === 0;
 
     this.familyDetailFrmGrp = this.fb.group({
-      empId:[''],
-      empName:[''],
-      cadreCode:[''],
-      cadreName:[''],
-      dateOfBirth:[''],
-      dateOfJointService:[''],
-      remarks:[''],
+      empId: [''],
+      empName: [''],
+      cadreCode: [''],
+      cadreName: [''],
+      dateOfBirth: [''],
+      dateOfJointService: [''],
+      remarks: [''],
 
     })
 
@@ -111,7 +96,6 @@ row: any;
       console.log(this.id)
     });
 
-    this.getAllEmpFamilyDetails();
 
 
   }
@@ -172,8 +156,8 @@ row: any;
   }
 
   columnsToDisplayMainTable = ['sno', 'empId', 'empName', 'action'];
-expandedElement: any | null;
-expandRow(row: any): void {
+  expandedElement: any | null;
+  expandRow(row: any): void {
     this.expandedElement = this.expandedElement === row ? null : row;
   }
 
@@ -225,28 +209,6 @@ expandRow(row: any): void {
   }
 
 
-
-  // getAllEmpFamilyDetails(): void {
-  //   const id = 123; // Replace with the actual employee ID
-  //   this.employeeService.getAllEmpFamilyDetails(id).subscribe(
-  //     (response) => {
-  //       // Handle the response here, e.g., update your component's data
-  //       console.log(response);
-
-  //       if (response && Array.isArray(response.data)) {
-  //         this.dataSource.data = response.data;
-  //       } else {
-  //         console.error('Invalid response format or missing data array.');
-  //       }
-  //     },
-  //     (error) => {
-  //       // Handle any errors here
-  //       console.error(error);
-  //     }
-  //   );
-  // }
-
-
   getAllEmpFamilyDetails(): void {
     const id = 123;
     this.employeeService.getAllEmpFamilyDetails(id).subscribe(
@@ -275,26 +237,6 @@ expandRow(row: any): void {
   printScreen(): void {
     window.print();
   }
-
-  // getAllEmpFamilyDetailsOnly(): void {
-  //   const id = 123;
-  //   this.employeeService.getAllEmpFamilyDetailsOnly(id).subscribe(
-  //     (response: { data: getAllEmpFamilyDetailsOnly[] }) => {
-  //       if (response && Array.isArray(response.data)) {
-  //         console.log(response.data); // Add this line to log the data to the console
-  //         this.dataSource.data = response.data;
-  //       } else {
-  //         console.error('Invalid response format or missing data array.');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
-
-
-
 
   deleteEmpFamilyDetails(id: number) {
     // Open the confirmation dialog

@@ -20,75 +20,72 @@ export class AddComponent implements OnInit {
   dataSource: any;
   dialog: any;
   additionalRows: any;
-  orderForm:FormGroup;
+  orderForm: FormGroup;
 
-  id:number;
-  data:any;
+  id: number;
+  data: any;
+  employeeId = null;
+  mappingId = null;
 
   modeOfNominee = [
-    { 'modeOfNominee': "Original", 'value': true },
-    { 'modeOfNominee': "Alternate", 'value': false },
-    
-   
+    { 'modeOfNominee': "Original", 'value': 'Original' },
+    { 'modeOfNominee': "Alternate", 'value': 'Alternate' },
+
+
   ]
 
-  relatinshipWithEmp = [
-    { 'relatinshipWithEmp': "Mother", 'value': true },
-    { 'relatinshipWithEmp': "Father", 'value': false },
-    { 'relatinshipWithEmp': "Spouse", 'value': false },
-    { 'relatinshipWithEmp': "Daughter", 'value': false },
-    { 'relatinshipWithEmp': "Son", 'value': false },
-   
-  ]
- 
+  relationWithEmployee = [
+    { 'relationWithEmployee': "Mother", 'value': 'Mother' },
+    { 'relationWithEmployee': "Father", 'value': 'Father' },
+    { 'relationWithEmployee': "Spouse", 'value': 'Spouse' },
+    { 'relationWithEmployee': "Daughter", 'value': 'Daughter' },
+    { 'relationWithEmployee': "Son", 'value': 'Son' },
+  ];
+
   selectedStatus: string;
   SelectedValue: string;
-  empId:any
+  empId: any
 
-  constructor(private cb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute,  private employeeService:EmployeeService,private http: HttpClient, ) { }
+  constructor(private cb: FormBuilder, private router: Router, private snackbar: MatSnackBar, private activeRoute: ActivatedRoute, private employeeService: EmployeeService, private http: HttpClient,) { }
 
   ngOnInit(): void {
 
-    
-    
+
+
     this.empNmniFormGrp = this.cb.group({
-      empId:[''],
-      empName:[''],
-      cadreCode:[''],
-      cadreName:[''],
-      dateOfBirth:[''],
-      dateOfJointService:[''],
-      // modeOfNominee:[''],
-      // nameOfNominee:[''],
-      // relatinshipWithEmp:[''],
-      // ageOfNominee:[''],
-      // shareOfDcrg:[''],
-      // addressOfNominee:[''],
-      
+      empId: [''],
+      employeeName: [''],
+      cadreCode: [''],
+      cadreName: [''],
+      dateOfBirth: [''],
+      dateOfJointService: [''],
+      mid: [''],
+      nid: [''],
+      createdOn: [''],
+      lastUpdatedOn: ['']
     })
 
     this.orderForm = this.cb.group({
       items: this.cb.array([])
     });
 
-   this.addItem();
-    
+    this.addItem();
+
   }
 
   createItem(): FormGroup {
-    
+
     return this.cb.group({
       modeOfNominee: [''],
       nameOfNominee: [''],
-      relatinshipWithEmp: [''],
+      relationWithEmployee: [''],
       ageOfNominee: [''],
-      shareOfDcrg: [''],
+      perOfDcrg: [''],
       addressOfNominee: [''],
-      
+      nid: [''],
+      mid: [this.mappingId ?? null],
+      empId: [this.employeeId ?? null]
     });
-
-
-
   }
   addItem() {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
@@ -106,127 +103,139 @@ export class AddComponent implements OnInit {
     return (this.orderForm.get('items') as FormArray).controls;
   }
 
+  // delete nominee data with id
   deleteContainerBox(index: number) {
     const itemsFormArray = this.orderForm.get('items') as FormArray;
-    itemsFormArray.removeAt(index);
-  }
-
-
-
-  applyTypeFilter() {
-    if (this.selectedStatus?.length || this.SelectedValue?.length) {
-      this.filteredData = this.dataSource.data.filter(item => {
-        // Check if the item's category is included in the selectedValue array
-        if (this.SelectedValue?.length && !this.SelectedValue?.includes(item.type[0])) {
-          return false;
-        }
-  
-        // Check if the item's colour is included in the selectedColourValue array
-        if (this.selectedStatus?.length && !this.selectedStatus?.includes(item.couponStatus[0])) {
-          return false;
-        }
-        // If the item passed both filters, return true
-        return true;
-      });
-    } else {
-      this.filteredData = [];
-      this.dataSource.data = this.couponsListData;
-    }
-  
-  }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  onSubmit() {
-    console.log('click')
-    let nomineesData = [];
-  
-    // Iterate over the form array and collect nominee data
-    const nomineeFormArray = this.orderForm.get('items') as FormArray;
-    nomineeFormArray.controls.forEach((nomineeFormGroup: FormGroup) => {
-      nomineesData.push({
-        "empId": this.empNmniFormGrp.value.empId,
-        "modeOfNominee": this.orderForm.value.modeOfNominee,
-        "nameOfNominee": this.orderForm.value.nameOfNominee,
-        "relationWithEmployee": this.orderForm.value.relationWithEmployee,
-        "ageOfNominee": this.orderForm.value.ageOfNominee,
-        "perOfDcrg": this.orderForm.value.perOfDcrg,
-        "addressOfNominee": this.orderForm.value.addressOfNominee
-      });
-    });
-  
-    if (this.empNmniFormGrp.valid) {
-      let data = {
-        "employee": [
-          {
-            "empId": this.empNmniFormGrp.value.empId,
-            "empName": this.empNmniFormGrp.value.empName,
-            "cadreCode": this.empNmniFormGrp.value.cadreCode,
-            "cadreName": this.empNmniFormGrp.value.cadreName,
-            "dateOfBirth": this.empNmniFormGrp.value.dateOfBirth,
-            "dateOfJointService": this.empNmniFormGrp.value.dateOfJointService,
-            "remarks": this.empNmniFormGrp.value.remarks
+    const nid = itemsFormArray.value[index].nid;
+    if (nid) {
+      this.employeeService.deleteEmpNomination(nid).subscribe({
+        next: (response: any) => {
+          console.log("delete response", response);
+          if (response?.message && (response?.message === "Employee Nomination Record deleted successfully.")) {
+            itemsFormArray.removeAt(index);
           }
-        ],
-        "nominee": nomineesData
-      };
-  
-      console.log(data);
-  
-      this.employeeService.saveEmpNomination(data).subscribe(
+        }
+      })
+    }
+    else {
+      itemsFormArray.removeAt(index);
+    }
+  }
+
+
+
+  // Save Employee Data
+  onSubmit() {
+    // check form Group valid
+    if (this.empNmniFormGrp.valid && this.orderForm.valid) {
+      const empFormData = this.empNmniFormGrp.value;
+      const nomineeFormData = (this.orderForm.get('items') as FormArray).value;
+
+      console.log(`Nominee Save Data Employee ${empFormData} 
+    nomineeFormData ${nomineeFormData}`);
+
+      const nomineeSaveBody = {
+        employee: [empFormData],
+        nominee: nomineeFormData
+      }
+      console.log("Save Nominee Body", nomineeSaveBody);
+
+      // return;
+      this.employeeService.saveEmpNomination(nomineeSaveBody).subscribe(
         (response) => {
           console.log('Data saved:', response);
-          this.router.navigate(['/emp-nomini/list']);
+
+          if (response.message === "Data Saved Succesfully") {
+            this.router.navigate(['/emp-nomini/list']);
+          } else {
+
+          }
+
         },
         (error) => {
           console.error('Error saving data:', error);
           // Handle error
         }
       );
+    } else {
+      console.error(`FormGroup Error Employee -> ${this.empNmniFormGrp}
+      Nominee ${this.orderForm}`);
     }
   }
-  
 
 
-
-  
-  onButtonClicked(){
+  // Fetch Employee data 
+  onButtonClicked() {
 
     // console.log(id);
-    
-    let empId=this.empNmniFormGrp.value.empId ?JSON.parse(this.empNmniFormGrp.value.empId):'' 
+
+    let empId = this.empNmniFormGrp.value.empId ? JSON.parse(this.empNmniFormGrp.value.empId) : ''
     this.employeeService.getCommonDetails(empId).subscribe(
       (response) => {
-        console.log('id',this.id);
-        
-  this.data=response.data;
-  this.empNmniFormGrp.patchValue({
-           
-           
-    empName :this.data.employeeName,
-            cadreCode:this.data.cadreCode,
-            cadreName:this.data.cadreName,
-            dateOfBirth:this.data.dateOfBirth,
-            dateOfJointService:this.data.dateOfJointService,
-           
-          });
-  
         console.log('Response:', response);
-  
+
+        if (response?.data) {
+          const nomineeDataCount =response.data.nomineeDataCount;
+          if (nomineeDataCount > 0) {
+            this.empNmniFormGrp.reset();
+            this.snackbar.open('Employee Nominee Details Already Exist', 'Dismiss', {
+              duration: 5000, // Adjust the duration as needed
+            });
+          } else {
+            const employeeData = response?.data;
+            if (employeeData) {
+              this.employeeId = employeeData.empId;
+              this.mappingId = employeeData.mid;
+              this.empNmniFormGrp.patchValue(employeeData);
+              this.items.length = 0;
+              this.addItem();
+
+            } else {
+              console.warn(`Employee data not found for this employee Id ${empId}`)
+            }
+
+            const nomineeDetailsList: any[] = response.data.nominee; // map this value to form array -- KarthiChanges
+
+
+            if (false && nomineeDetailsList.length > 0) {
+
+              this.items.length = 0;
+
+              nomineeDetailsList.forEach((fam, i) => {
+                this.addItem();
+                const expansionPanel = this.items.at(i) as FormGroup;
+                expansionPanel.patchValue({
+                  modeOfNominee: nomineeDetailsList[i].modeOfNominee,
+                  nameOfNominee: nomineeDetailsList[i].nameOfNominee,
+                  relationWithEmployee: nomineeDetailsList[i].relationWithEmployee,
+                  ageOfNominee: nomineeDetailsList[i].ageOfNominee,
+                  perOfDcrg: nomineeDetailsList[i].perOfDcrg,
+                  addressOfNominee: nomineeDetailsList[i].addressOfNominee,
+                  nid: nomineeDetailsList[i].nid,
+                  mid: nomineeDetailsList[i].mid,
+                  empId: nomineeDetailsList[i].empId
+                });
+              })
+            }
+
+          }
+
+        }
+
+
+
       },
       (error) => {
-  
+
         console.error('Error:', error);
-  
+
       }
     );
   }
 
-  }
+}
 
- 
+
 
 
 

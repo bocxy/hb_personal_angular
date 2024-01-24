@@ -12,7 +12,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 <a class="sublevel-nav-link" [routerLink]="[item.routeLink]"
 routerLinkActive="active-sublevel"
 [routerLinkActiveOptions]="{exact: true}" (click)="handleClick(item)" *ngIf="item. subItems && item. subItems. length> 0" >
-<i class="sublevel-link-icon fa fa-circle"></i>
+<!-- <i class="sublevel-link-icon fa fa-circle"></i> -->
 <span class="sublevel-link-text" *ngIf="collapsed">{{item.label}}</span>
 <mat-icon *ngIf="data.subItems && collapsed" class="menu-collapse-icon">{{!data.expanded? 'chevron_right': 'expand_more'}}</mat-icon>
 
@@ -22,7 +22,7 @@ routerLinkActive="active-sublevel"
 [routerLink]="[item.routeLink]"
 routerLinkActive="active-sublevel"
 [routerLinkActiveOptions]="{exact: true}" >
-<i class="sublevel-link-icon fa fa-circle"></i>
+<!-- <i class="sublevel-link-icon fa fa-circle"></i> -->
 <span class="sublevel-link-text" *ngIf="collapsed">{{item.label}}</span>
 </a>
 <div *ngIf="item.subItems && item.subItems.length > 0">

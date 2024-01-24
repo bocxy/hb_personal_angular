@@ -32,7 +32,7 @@ export class ListCircleDataComponent implements OnInit {
   @ViewChild('officeSelect') officeSelect!: MatSelect;
 
   ngAfterViewInit(): void {
-    this.officeSelect.value = 'circleoffice';
+    // this.officeSelect.value = 'circleoffice';
    }
     selectedValue: string[] = [];
     types: string[] = ['Option 1', 'Option 2', 'Option 3'];

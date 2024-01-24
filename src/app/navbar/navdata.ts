@@ -3,8 +3,8 @@ import { navModel } from "./sidenav/helper";
 export const navMenuBar :navModel[] = [
 
         {
-            routeLink: 'office-data/list',
-            icon: 'assessment',
+            routeLink: 'office-data/list-head-office',
+            icon: 'apartment',
             label: 'Office Data',
             subItems: [
                 { routeLink: 'office-data/list-head-office',icon: 'assessment', label: 'Head Office' },
@@ -16,7 +16,7 @@ export const navMenuBar :navModel[] = [
 
     {
         routeLink: 'staff-strength/list',
-        icon: 'group',
+        icon: 'diversity_3',
         label: 'Staff Strength'
     },
 
@@ -28,101 +28,94 @@ export const navMenuBar :navModel[] = [
 
     {
         routeLink: 'family-details/list',
-        icon: 'group',
+        icon: 'diversity_1',
         label: 'Family Members'
     },
 
     {
         routeLink: 'emp-nomini/list',
-        icon: 'person',
+        icon: 'how_to_reg',
         label: 'Nomination'
     },
-
-    
-
     {
         routeLink: 'leave/list',
-        icon: 'book',
+        icon: 'exit_to_app',
         label: 'Leave'
     },
     
     {
         routeLink: 'emp-tenure/list',
-        icon: 'person',
+        icon: 'hourglass_empty',
         label: 'Tenure'
     },
    
     {
         routeLink: 'emp-promotion/list',
-        icon: 'trending_up',
+        icon: 'campaign',
         label: 'Promotion'
     },
 
     {
         routeLink: 'emp-pay/list',
-        icon: 'money',
+        icon: 'attach_money',
         label: 'Pay Fixation'
     },
 
     {
         routeLink: 'direct-recruitment/list',
-        icon: 'work',
+        icon: 'person_search',
         label: 'Direct Recruitment'
     },
 
     {
         routeLink: 'cga-details/list',
-        icon: 'view_list',
+        icon: 'calendar_month',
         label: 'Compassionate Ground Appoinments'
     },
 
     {
         routeLink: 'cga-register/list',
-        icon: 'reorder',
+        icon: 'edit_calendar',
         label: 'Compassionate Ground Register'
     },
-
-    
     {
         routeLink: 'noc-details/list',
-        icon: 'details',
+        icon: 'support_agent',
         label: 'NOC'
     },
-
-    
     {
         routeLink: 'exam-history/list',
-        icon: 'equalizer',
+        icon: 'note_alt',
         label: 'Examination'
     },
 
    
     {
         routeLink: 'asset-details/list',
-        icon: 'crop_landscape',
+        icon: 'location_city',
         label: 'Employee Assets'
     },
 
     {
         routeLink: 'cell-file/list',
-        icon: 'card_travel',
+        icon: 'business_center',
         label: 'D Cell File Details'
     },
 
     {
         routeLink: 'cell-case/list',
-        icon: 'card_travel',
+        icon: 'work',
         label: 'D Cell Case Details'
     },
 
     {
         routeLink: 'emp-asset/list',
-        icon: 'crop_landscape',
+        icon: 'folder',
         label: 'Employee File'
     },
     {
         routeLink: 'staffreport',
-        icon: 'crop_landscape',
+        icon: 'bar_chart',
         label: 'Report'
     },
 

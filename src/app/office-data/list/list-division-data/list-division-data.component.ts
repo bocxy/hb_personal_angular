@@ -28,7 +28,7 @@ export class ListDivisionDataComponent {
   @ViewChild('officeSelect') officeSelect!: MatSelect;
 
   ngAfterViewInit(): void {
-    this.officeSelect.value = 'divisionoffice';
+    // this.officeSelect.value = 'divisionoffice';
   }
 
   constructor(private router: Router,private employeeService:EmployeeService,){

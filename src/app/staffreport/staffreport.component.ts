@@ -513,22 +513,21 @@ export class StaffreportComponent {
     ];
 
     // Get all keys except the specified ones
-    const otherKeys = Object.keys(firstRecord)
+    const staffKeys = Object.keys(firstRecord)
       .filter((fieldName) => !separateKeys.includes(fieldName))
       .map((fieldName) => ({
         name: fieldName,
         checked: false,
       }));
-    this.fields = otherKeys;
+    this.fields = staffKeys;
     // Get the specified keys separately
-    const specifiedKeys = separateKeys.map((fieldName) => ({
+    const tenureKeys = separateKeys.map((fieldName) => ({
       name: fieldName,
       checked: false,
     }));
-    console.log(specifiedKeys)
-    this.tenureFieldExtract = specifiedKeys;
+    this.tenureFieldExtract = tenureKeys;
     // Combine all keys
-    const allKeys = [...otherKeys, ...specifiedKeys].sort((a, b) => a.name.localeCompare(b.name));
+    const allKeys = [...staffKeys, ...tenureKeys].sort((a, b) => a.name.localeCompare(b.name));
     this.allKeys = allKeys;
     this.filterValues = {};
     allKeys.forEach(field => {

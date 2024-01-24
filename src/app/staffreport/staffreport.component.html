@@ -22,8 +22,10 @@
           <div *ngIf="selectedDataType === 'staff'" class="select-multiple">
             <mat-form-field>
               <mat-select multiple placeholder="Choose">
-                <mat-option *ngFor="let field of fields" [(ngModel)]="field.checked"
-                  (ngModelChange)="updateSelectedFields()">
+                <mat-option *ngFor="let field of fields">
+
+                  <input type="checkbox" class="search-input" placeholder="Choose" [(ngModel)]="field.checked"
+                    (ngModelChange)="updateSelectedFields()" />
                   {{ field.name }}
                 </mat-option>
               </mat-select>
@@ -33,14 +35,25 @@
           <div *ngIf="selectedDataType === 'office'" class="select-multiple">
             <mat-form-field>
               <mat-select multiple placeholder="Choose">
-                <mat-option *ngFor="let officename of officeData" [checked]="selectedOfficeNames[officename]"
-                  (change)="toggleOfficeSelection(officename)">
+                <mat-option *ngFor="let officename of officeData">
+                <input type="checkbox" class="search-input" placeholder="Choose" [checked]="selectedOfficeNames[officename]"
+                  (change)="toggleOfficeSelection(officename)" />
                   {{ officename }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
-
+          <div *ngIf="selectedDataType === 'tenure'" class="select-multiple">
+            <mat-form-field>
+              <mat-select multiple placeholder="Choose">
+                <mat-option *ngFor="let field of tenureFieldExtract">
+                <input type="checkbox" class="search-input" placeholder="Choose" [(ngModel)]="field.checked"
+                (ngModelChange)="updateSelectedFields()" />
+                  {{ field.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
 
         <button class="btn btn-light" (click)="clearFilters()">Clear Filter</button>

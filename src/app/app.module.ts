@@ -18,12 +18,13 @@ import { EmployeeService } from './services/employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { SublevelMenuComponent } from './navbar/sidenav/sublevel-menu.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,SidenavComponent,HeadersComponent, BodyComponent, ConfirmDialogComponent, ],
+    AppComponent,SidenavComponent,HeadersComponent, BodyComponent, ConfirmDialogComponent,SublevelMenuComponent ],
 
   imports: [
    CommonModule,

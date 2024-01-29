@@ -27,7 +27,8 @@ export class ListHeadDataComponent  {
   @ViewChild('officeSelect') officeSelect!: MatSelect;
 
   ngAfterViewInit(): void {
-    this.officeSelect.value = 'headoffice';
+    console.log(this.officeSelect)
+    // this.officeSelect.value = 'headoffice';
   }
 
   constructor(private router: Router,private employeeService:EmployeeService,){

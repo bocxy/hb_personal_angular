@@ -14,6 +14,7 @@
             placeholder="Choose">
             <mat-option value="staff">Staff Data</mat-option>
             <mat-option value="office">Office Data</mat-option>
+            <mat-option value="tenure">Tenure Data</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -42,7 +43,17 @@
               </mat-select>
             </mat-form-field>
           </div>
-
+          <div *ngIf="selectedDataType === 'tenure'" class="select-multiple">
+            <mat-form-field>
+              <mat-select multiple placeholder="Choose">
+                <mat-option *ngFor="let field of tenureFieldExtract">
+                <input type="checkbox" class="search-input" placeholder="Choose" [(ngModel)]="field.checked"
+                (ngModelChange)="updateSelectedFields()" />
+                  {{ field.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
 
         <button class="btn btn-light" (click)="clearFilters()">Clear Filter</button>
